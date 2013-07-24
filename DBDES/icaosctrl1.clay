@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="1.4.2">
+<database-model alias="" author="" begin-script="" end-script="" name="icaosctrl1" remarks="" sql-dialect-id="jp.azzurri.clay.dialect.Postgre_7_3_Dialect" uid="14185ac:13fe66db811:-8000" version="1.0">
+<database-model-description/>
+<schema-list>
+<schema alias="" name="public" remarks="" uid="14185ac:13fe66db811:-7ffe">
+<schema-description/>
+<domain-list/>
+<table-list>
+<table alias="" name="registered_users" remarks="" uid="14185ac:13fe66db811:-7ffd">
+<table-description/>
+<table-figure-bounds height="570" width="447" x="89" y="14"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="14185ac:13fe66db811:-7fdc">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGSERIAL" selected-variant-pattern="BIGSERIAL">
+<variant type-name-pattern="BIGSERIAL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="64" decimal-digits="0" default-value="" mandatory="true" name="reg_id" remarks="EXAMPLE: TR#00034#1234-1234-1234-1234" uid="14185ac:13fe66db811:-7ffb">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="true" name="user_name" remarks="MAIL" uid="14185ac:13fe66db811:-7ffa">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="true" name="user_pass" remarks="" uid="14185ac:13fe66db811:-7ff9">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="false" name="title" remarks="" uid="14185ac:13fe66db811:-7ff7">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="false" name="company_person_name" remarks="" uid="14185ac:13fe66db811:-7f37">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="phone1" remarks="" uid="14185ac:13fe66db811:-7ff6">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="phone2" remarks="" uid="14185ac:13fe66db811:-7fd8">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="district" remarks="" uid="14185ac:13fe66db811:-7fd7">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="city" remarks="" uid="14185ac:13fe66db811:-7ff5">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="state" remarks="" uid="14185ac:13fe66db811:-7fd5">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="'TURKIYE'" mandatory="false" name="counrty" remarks="" uid="14185ac:13fe66db811:-7ff4">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="address1" remarks="" uid="14185ac:13fe66db811:-7ff3">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="address2" remarks="" uid="14185ac:13fe66db811:-7fd4">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="12" decimal-digits="0" default-value="" mandatory="false" name="zipcode" remarks="" uid="14185ac:13fe66db811:-7ff2">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="date_time" remarks="" uid="14185ac:13fe66db811:-7ff1">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="update_date_time" remarks="" uid="14185ac:13fe66db811:-7ff0">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="mac_id" remarks="" uid="14185ac:13fe66db811:-7fef">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="wan_ip" remarks="" uid="14185ac:13fe66db811:-7fcf">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="lan_ip" remarks="" uid="14185ac:13fe66db811:-7fee">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="install_type" remarks="" uid="14185ac:13fe66db811:-7fed">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="last_access_date_time" remarks="" uid="14185ac:13fe66db811:-7fec">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="prg_version" remarks="" uid="14185ac:13fe66db811:-7feb">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="false" name="reseller" remarks="" uid="14185ac:13fe66db811:-7fe8">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="reseller_type" remarks="" uid="14185ac:13fe66db811:-7fe7">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="sold_date" remarks="" uid="14185ac:13fe66db811:-7fe6">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="install_date" remarks="" uid="14185ac:13fe66db811:-7fe0">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="false" name="bill_no" remarks="" uid="14185ac:13fe66db811:-7fe5">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="license_client_count" remarks="" uid="14185ac:13fe66db811:-7fe4">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="license_gui_count" remarks="" uid="14185ac:13fe66db811:-7e59">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="75" decimal-digits="0" default-value="" mandatory="false" name="disk_serial_id" remarks="" uid="14185ac:13fe66db811:-7fe3">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="sale_type" remarks="CC - credit card, PAY - PAYPAL, CASH" uid="14185ac:13fe66db811:-7fe2">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="15" mandatory="false" name="licence_client_days" remarks="" uid="14185ac:13fe66db811:-7fdf">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="15" mandatory="false" name="licence_gui_days" remarks="" uid="14185ac:13fe66db811:-7e56">
+<column-description/>
+<data-type jdbc-type="4" name="INT4" selected-variant-pattern="INT4">
+<variant type-name-pattern="INT4"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_REGISTERED_USERS" remarks="" uid="14185ac:13fe66db811:-7ffc">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_registered_users_reg_id" remarks="" uid="14185ac:13fe66db811:-7fc3">
+<unique-key-description/>
+<unique-key-column name="reg_id"/>
+</unique-key>
+<unique-key alias="" name="UQ_registered_users_reg_id_user_name" remarks="" uid="14185ac:13fe66db811:-7fc2">
+<unique-key-description/>
+<unique-key-column name="reg_id"/>
+<unique-key-column name="user_name"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="Client's gui users for users inside" name="gui_users" remarks="" uid="14185ac:13fe66db811:-7fcc">
+<table-description/>
+<table-figure-bounds height="223" width="259" x="687" y="19"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="14185ac:13fe66db811:-7fc8">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGSERIAL" selected-variant-pattern="BIGSERIAL">
+<variant type-name-pattern="BIGSERIAL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="64" decimal-digits="0" default-value="" mandatory="true" name="reg_id" remarks="EXAMPLE: TR#00034#1234-1234-1234-1234" uid="14185ac:13fe66db811:-7f4b">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="128" decimal-digits="0" default-value="" mandatory="false" name="gui_id" remarks="EXAMPLE: TR#00034#1234-1234-1234-1234.G77" uid="14185ac:13fe66db811:-7e4b">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="false" name="user_name" remarks="MAIL" uid="14185ac:13fe66db811:-7f43">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="false" name="user_pass" remarks="" uid="14185ac:13fe66db811:-7f26">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="2048" decimal-digits="0" default-value="" mandatory="false" name="user_name_alias" remarks="" uid="14185ac:13fe66db811:-7f3a">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="0" mandatory="false" name="user_type" remarks="" uid="14185ac:13fe66db811:-7f3d">
+<column-description/>
+<data-type jdbc-type="-5" name="INT8" selected-variant-pattern="INT8">
+<variant type-name-pattern="INT8"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="30" decimal-digits="0" default-value="" mandatory="false" name="user_mobile" remarks="" uid="14185ac:13fe66db811:-7f2e">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="'false'" mandatory="true" name="is_responsible" remarks="" uid="14185ac:13fe66db811:-7f29">
+<column-description/>
+<data-type jdbc-type="16" name="BOOLEAN" selected-variant-pattern="BOOLEAN">
+<variant type-name-pattern="BOOLEAN"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_GUI_USERS" remarks="" uid="14185ac:13fe66db811:-7fcb">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_client_gui_users_gui_id" remarks="" uid="14185ac:13fe66db811:-7eab">
+<unique-key-description/>
+<unique-key-column name="gui_id"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_client_gui_users_1" on-delete="" on-update="" referenced-key="UQ_registered_users_reg_id" referenced-table="registered_users" referenced-table-schema="public" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="" uid="14185ac:13fe66db811:-7f58">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="reg_id" referenced-key-column-name="reg_id"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="clients_commands" remarks="" uid="14185ac:13fe66db811:-7f25">
+<table-description/>
+<table-figure-bounds height="202" width="221" x="903" y="441"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="14185ac:13fe66db811:-7f1a">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGSERIAL" selected-variant-pattern="BIGSERIAL">
+<variant type-name-pattern="BIGSERIAL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="url_command" remarks="" uid="14185ac:13fe66db811:-7f21">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="0" mandatory="false" name="command_sent" remarks="" uid="14185ac:13fe66db811:-7ec9">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="0" mandatory="false" name="command_got" remarks="" uid="14185ac:13fe66db811:-7ec2">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="'now'" mandatory="false" name="date_time" remarks="" uid="14185ac:13fe66db811:-7e51">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="false" mandatory="false" name="applied" remarks="" uid="14185ac:13fe66db811:-7e4e">
+<column-description/>
+<data-type jdbc-type="16" name="BOOLEAN" selected-variant-pattern="BOOLEAN">
+<variant type-name-pattern="BOOLEAN"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="'now'" mandatory="false" name="applied_date_time" remarks="" uid="14185ac:13fe66db811:-7e40">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_CLIENTS_COMMANDS" remarks="" uid="14185ac:13fe66db811:-7f24">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="clients_info" remarks="" uid="14185ac:13fe66db811:-7eb6">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="564" y="631"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="14185ac:13fe66db811:-7eb2">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGSERIAL" selected-variant-pattern="BIGSERIAL">
+<variant type-name-pattern="BIGSERIAL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="128" decimal-digits="0" default-value="" mandatory="false" name="client_id" remarks="EXAMPLE: TR#00034#1234-1234-1234-1234.C88" uid="14185ac:13fe66db811:-7e7c">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="false" name="client_id_all_info" remarks="" uid="14185ac:13fe66db811:-7eb1">
+<column-description/>
+<data-type jdbc-type="-1" literal-prefix="'" literal-suffix="'" name="TEXT" selected-variant-pattern="TEXT">
+<variant type-name-pattern="TEXT"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="'now'" mandatory="false" name="date_time" remarks="" uid="14185ac:13fe66db811:-7e70">
+<column-description/>
+<data-type jdbc-type="93" name="TIMESTAMP" selected-variant-pattern="TIMESTAMP">
+<variant type-name-pattern="TIMESTAMP"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p)"/>
+<variant type-name-pattern="TIMESTAMP WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITH TIME ZONE"/>
+<variant precision-max="9" precision-min="1" precision-variable="%p" type-name-pattern="TIMESTAMP(%p) WITHOUT TIME ZONE"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_CLIENTS_INFO" remarks="" uid="14185ac:13fe66db811:-7eb5">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="clients" remarks="" uid="14185ac:13fe66db811:-7e79">
+<table-description/>
+<table-figure-bounds height="211" width="195" x="597" y="341"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="id" remarks="" uid="14185ac:13fe66db811:-7e6b">
+<column-description/>
+<data-type jdbc-type="-5" name="BIGSERIAL" selected-variant-pattern="BIGSERIAL">
+<variant type-name-pattern="BIGSERIAL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="128" decimal-digits="0" default-value="" mandatory="false" name="client_id" remarks="" uid="14185ac:13fe66db811:-7e68">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="2147483647" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_CLIENTS" remarks="" uid="14185ac:13fe66db811:-7e78">
+<primary-key-description/>
+<primary-key-column name="id"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list/>
+<index-list/>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+</clay-model>
