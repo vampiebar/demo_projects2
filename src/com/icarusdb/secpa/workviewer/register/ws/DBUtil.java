@@ -13,14 +13,17 @@ public class DBUtil {
 
 	public static Connection _con;
 
-	public static void insertRegisteredUsers(String userName, String userPass,
-			String companyPersonName, String phone1, String district,
-			String city, String state, String stateNumberCode, String country,
-			String address1, String address2, String zipcode, String macID,
-			String wanIP, String lanIP, String installType, String soldDate,
-			String installDate, String billNo, String licenceClientCount,
-			String licenceGuiCount, String diskSerialID, String saleType,
-			String licenceClientDays, String licenceGuiDays) {
+	public static String insertRegisteredUsers(String userName,
+			String userPass, String companyPersonName, String phone1,
+			String district, String city, String state, String stateNumberCode,
+			String country, String address1, String address2, String zipcode,
+			String macID, String wanIP, String lanIP, String installType,
+			String soldDate, String installDate, String billNo,
+			String licenceClientCount, String licenceGuiCount,
+			String diskSerialID, String saleType, String licenceClientDays,
+			String licenceGuiDays) {
+
+		String result = "";
 
 		getConnection();
 
@@ -57,10 +60,16 @@ public class DBUtil {
 		lstValues.add(licenceClientDays);
 		lstValues.add(licenceGuiDays);
 
-		if (booRunSQLWithPreparedStatement(strSQL, lstValues)) {
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
 
-			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY");
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
 		}
+
+		return result;
 
 	}
 
@@ -95,8 +104,10 @@ public class DBUtil {
 
 		getConnection();
 
-		String strSQL = "SELECT reg_id, install_type FROM  registered_users  WHERE  disk_serial_id = "
-				+ "'" + diskID + "'";
+		// if(regID.equalsIgnoreCase(""))
+
+		String strSQL = "SELECT reg_id, install_type FROM  registered_users  WHERE  lower(disk_serial_id) = "
+				+ "'" + diskID.toLowerCase() + "'  ORDER BY id DESC";
 
 		System.out.println("SQL: " + strSQL);
 
@@ -134,6 +145,7 @@ public class DBUtil {
 			// Close
 			restTemp.close();
 			stmtTemp.close();
+			_con.close();
 
 		} catch (SQLException e) {
 
@@ -141,6 +153,7 @@ public class DBUtil {
 
 				restTemp.close();
 				stmtTemp.close();
+				_con.close();
 
 			} catch (SQLException e1) {
 
@@ -185,12 +198,14 @@ public class DBUtil {
 			booTemp = true;
 
 			ptmtTemp.close();
+			_con.close();
 
 		} catch (SQLException ex) {
 
 			try {
 
 				ptmtTemp.close();
+				_con.close();
 
 			} catch (SQLException e) {
 
@@ -203,6 +218,66 @@ public class DBUtil {
 		}
 
 		return booTemp;
+	}
+
+	public static String strRunSelectSQLWithPreparedStatement(String strSQL,
+			List<String> lstValues) {
+
+		String strTemp = "";
+
+		Connection connTemp = _con;
+		PreparedStatement ptmtTemp = null;
+
+		System.out.println("sql " + strSQL);
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+				return "";
+			}
+
+			ptmtTemp = connTemp.prepareStatement(strSQL);
+
+			for (int i = 0; i < lstValues.size(); i++) {
+
+				ptmtTemp.setObject(i + 1, lstValues.get(i));
+			}
+
+			System.out.println("strRunSelectSQLWithPreparedStatement() "
+					+ strSQL);
+
+			ResultSet restTemp = ptmtTemp.executeQuery();
+
+			if (restTemp.next()) {
+
+				strTemp = restTemp.getString(1);
+			}
+
+			ptmtTemp.close();
+			_con.close();
+
+		} catch (SQLException ex) {
+
+			try {
+
+				ptmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			strTemp = "";
+			System.err
+					.println("strRunSelectSQLWithPreparedStatement() Exception: "
+							+ ex.getMessage());
+			System.err.println("strRunSelectSQLWithPreparedStatement() SQL: "
+					+ strSQL);
+		}
+
+		return strTemp;
 	}
 
 	public static Connection getConnection() {
@@ -220,8 +295,9 @@ public class DBUtil {
 		try {
 
 			_con = DriverManager.getConnection(
-					"jdbc:postgresql://localhost/icaosctrl", "postgres",
+					"jdbc:postgresql://localhost/icaosctrl:6432", "postgres",
 					"secpa!74!#");
+			// "pbhbar");
 
 			return _con;
 
@@ -235,4 +311,63 @@ public class DBUtil {
 
 	}
 
+	public static String exportQueryToXml(String query) {
+
+		String result = "";
+
+		getConnection();
+
+		// if(regID.equalsIgnoreCase(""))
+
+		String strSQL = "select query_to_xml('" + query
+				+ "', false, false, '')";
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			if (restTemp.next()) {
+
+				result = restTemp.getString("query_to_xml");
+
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return result;
+
+	}
 }

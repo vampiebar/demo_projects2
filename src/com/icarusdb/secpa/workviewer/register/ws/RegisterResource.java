@@ -1,14 +1,13 @@
 package com.icarusdb.secpa.workviewer.register.ws;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -64,11 +63,11 @@ public class RegisterResource {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
 
-	@POST
+	@GET
 	@Path("addwithurl")
-	@Produces("application/xml")
-	@Consumes("application/xml")
-	public String addRegisterWithUrl(@Context UriInfo info) {
+	@Produces("text/plain")
+	public String addRegisterWithUrl(@Context UriInfo info,
+			@Context HttpServletRequest hsr) {
 
 		String userName = info.getQueryParameters().getFirst("user_name");
 		String userPass = info.getQueryParameters().getFirst("user_pass");
@@ -77,7 +76,7 @@ public class RegisterResource {
 		String phone1 = info.getQueryParameters().getFirst("phone1");
 		String district = info.getQueryParameters().getFirst("district");
 		String city = info.getQueryParameters().getFirst("city");
-		String state = info.getQueryParameters().getFirst("city");
+		String state = info.getQueryParameters().getFirst("state");
 		String stateNumberCode = info.getQueryParameters().getFirst(
 				"state_number_code");
 		String country = info.getQueryParameters().getFirst("country");
@@ -85,7 +84,13 @@ public class RegisterResource {
 		String address2 = info.getQueryParameters().getFirst("address2");
 		String zipcode = info.getQueryParameters().getFirst("zipcode");
 		String macID = info.getQueryParameters().getFirst("mac_id");
-		String wanIP = info.getQueryParameters().getFirst("wan_ip");
+
+		// THIS PART SPECIAL
+
+		System.out.println("Client IP = " + hsr.getRemoteAddr());
+
+		String wanIP = hsr.getRemoteAddr();
+
 		String lanIP = info.getQueryParameters().getFirst("lan_ip");
 		String installType = info.getQueryParameters().getFirst("install_type");
 		String soldDate = info.getQueryParameters().getFirst("sold_date");
@@ -103,62 +108,20 @@ public class RegisterResource {
 		String licenseGuiDays = info.getQueryParameters().getFirst(
 				"license_gui_days");
 
-		DBUtil.insertRegisteredUsers(userName, userPass, companyPersonName,
-				phone1, district, city, state, stateNumberCode, country,
-				address1, address2, zipcode, macID, wanIP, lanIP, installType,
-				soldDate, installDate, billNo, licenseClientCount,
-				licenseGuiCount, diskSerialID, saleType, licenseClientDays,
-				licenseGuiDays);
-
-		return "INSERTED";
+		return DBUtil.insertRegisteredUsers(userName, userPass,
+				companyPersonName, phone1, district, city, state,
+				stateNumberCode, country, address1, address2, zipcode, macID,
+				wanIP, lanIP, installType, soldDate, installDate, billNo,
+				licenseClientCount, licenseGuiCount, diskSerialID, saleType,
+				licenseClientDays, licenseGuiDays);
 
 		// throw new UnsupportedOperationException("Not yet implemented.");
 	}
 
 	@GET
-	@Path("getRegisterXML")
+	@Path("/checkreg")
 	@Produces("application/xml")
-	public List<Register> getRegisterXML() {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
-		List<Register> lstRegister = new ArrayList<Register>();
-
-		Register register = new Register();
-
-		register.setReg_id("AAA-TR-1234");
-		register.setUser_name("bulent@hotmail.com");
-		register.setUser_pass("passsssss");
-
-		register.setDate_time(new Date());
-
-		lstRegister.add(register);
-
-		return lstRegister;
-
-	}
-
-	@GET
-	@Path("getRegisterJSON")
-	@Produces("application/json")
-	public List<Register> getRegisterJSON() {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
-		List<Register> lstRegister = new ArrayList<Register>();
-
-		Register register = new Register();
-
-		register.setReg_id("AAA-TR-1234");
-
-		lstRegister.add(register);
-
-		return lstRegister;
-	}
-
-	@GET
-	@Path("/checkreg/{disk_id}/{reg_id}")
-	@Produces("text/plain")
-	public String checkReg(@PathParam("disk_id") String diskID,
-			@PathParam("reg_id") String regID) {
+	public String checkReg(@Context UriInfo info) {
 
 		// String result = "NOT_REGISTERED";
 		//
@@ -167,6 +130,11 @@ public class RegisterResource {
 		// result = "REGISTERED";
 		// }
 
+		String diskID = info.getQueryParameters().getFirst("did");
+		String regID = info.getQueryParameters().getFirst("regid");
+
+		System.err.println("NEW COMER: " + diskID + " --- " + diskID);
+		System.out.println("NEW COMER: " + diskID + " --- " + diskID);
 		return DBUtil.getRegType(diskID, regID);
 
 	}
@@ -186,6 +154,45 @@ public class RegisterResource {
 		DBUtil.insertSystemInfo(clientID, systemInfo);
 
 		return result;
+	}
+
+	// GET REGISTER INFO AND SERVE AS XML
+	@GET
+	@Path("getregistereduserinfo")
+	@Produces("text/plain")
+	public String getRegisteredUserInfo(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String diskid = info.getQueryParameters().getFirst("did");
+
+		String query = "SELECT  *  FROM  registered_users  WHERE disk_serial_id = ''%1'' "
+				.replace("%1", diskid);
+
+		return DBUtil.exportQueryToXml(query);
+	}
+
+	@GET
+	@Path("getregistereduserinfofromregid")
+	@Produces("text/plain")
+	public String getRegisteredUserInfoFromRegID(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String diskid = info.getQueryParameters().getFirst("regid");
+
+		String query = "SELECT  *  FROM  registered_users  WHERE reg_id = ''%1'' "
+				.replace("%1", diskid);
+
+		return DBUtil.exportQueryToXml(query);
+	}
+
+	@GET
+	@Path("getdatetime")
+	@Produces("text/plain")
+	public String getRegisteredUserInfoFromRegID() {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(new Date());
 	}
 
 }
