@@ -29,6 +29,7 @@ public class RegisterResource {
 		String userPass = register.getUser_pass();
 		String companyPersonName = register.getCompany_person_name();
 		String phone1 = register.getPhone1();
+		String phone2 = register.getPhone2();
 		String district = register.getDistrict();
 		String city = register.getCity();
 		String state = register.getState();
@@ -52,9 +53,9 @@ public class RegisterResource {
 		String licenceGuiDays = register.getLicence_gui_days();
 
 		DBUtil.insertRegisteredUsers(userName, userPass, companyPersonName,
-				phone1, district, city, state, stateNumberCode, country,
-				address1, address2, zipcode, macID, wanIP, lanIP, installType,
-				soldDate, installDate, billNo, licenceClientCount,
+				phone1, phone2, district, city, state, stateNumberCode,
+				country, address1, address2, zipcode, macID, wanIP, lanIP,
+				installType, soldDate, installDate, billNo, licenceClientCount,
 				licenceGuiCount, diskSerialID, saleType, licenceClientDays,
 				licenceGuiDays);
 
@@ -74,6 +75,8 @@ public class RegisterResource {
 		String companyPersonName = info.getQueryParameters().getFirst(
 				"company_person_name");
 		String phone1 = info.getQueryParameters().getFirst("phone1");
+		String phone2 = info.getQueryParameters().getFirst("phone2");
+
 		String district = info.getQueryParameters().getFirst("district");
 		String city = info.getQueryParameters().getFirst("city");
 		String state = info.getQueryParameters().getFirst("state");
@@ -109,7 +112,7 @@ public class RegisterResource {
 				"license_gui_days");
 
 		return DBUtil.insertRegisteredUsers(userName, userPass,
-				companyPersonName, phone1, district, city, state,
+				companyPersonName, phone1, phone2, district, city, state,
 				stateNumberCode, country, address1, address2, zipcode, macID,
 				wanIP, lanIP, installType, soldDate, installDate, billNo,
 				licenseClientCount, licenseGuiCount, diskSerialID, saleType,
@@ -134,13 +137,12 @@ public class RegisterResource {
 		String regID = info.getQueryParameters().getFirst("regid");
 
 		System.err.println("NEW COMER: " + diskID + " --- " + diskID);
-		System.out.println("NEW COMER: " + diskID + " --- " + diskID);
 		return DBUtil.getRegType(diskID, regID);
 
 	}
 
 	@POST
-	@Path("/systeminfo")
+	@Path("systeminfo")
 	@Produces("text/plain")
 	public String getSystemInfo(@Context UriInfo info) {
 
@@ -193,6 +195,15 @@ public class RegisterResource {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(new Date());
+	}
+
+	@GET
+	@Path("getreachperiod")
+	@Produces("text/plain")
+	public String getReachPeriod() {
+
+		// TODO Later read from database
+		return "180";
 	}
 
 }

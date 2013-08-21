@@ -76,6 +76,7 @@ public class Register {
 	private String company_person_name;
 
 	private String phone1;
+	private String phone2;
 	private String district;
 	private String city;
 	private String state;
@@ -321,6 +322,14 @@ public class Register {
 
 	public void setSale_type(String sale_type) {
 		this.sale_type = sale_type;
+	}
+
+	public String getPhone2() {
+		return phone2;
+	}
+
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
 	}
 
 }

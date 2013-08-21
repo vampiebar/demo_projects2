@@ -15,19 +15,19 @@ public class DBUtil {
 
 	public static String insertRegisteredUsers(String userName,
 			String userPass, String companyPersonName, String phone1,
-			String district, String city, String state, String stateNumberCode,
-			String country, String address1, String address2, String zipcode,
-			String macID, String wanIP, String lanIP, String installType,
-			String soldDate, String installDate, String billNo,
-			String licenceClientCount, String licenceGuiCount,
-			String diskSerialID, String saleType, String licenceClientDays,
-			String licenceGuiDays) {
+			String phone2, String district, String city, String state,
+			String stateNumberCode, String country, String address1,
+			String address2, String zipcode, String macID, String wanIP,
+			String lanIP, String installType, String soldDate,
+			String installDate, String billNo, String licenseClientCount,
+			String licenseGuiCount, String diskSerialID, String saleType,
+			String licenseClientDays, String licenseGuiDays) {
 
 		String result = "";
 
 		getConnection();
 
-		String strSQL = "SELECT ins_registered_users(?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?, ? )";
+		String strSQL = "SELECT ins_registered_users(?, ?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?,   ?, ?, ?, ?, ?, ?, ? )";
 
 		List<String> lstValues = new ArrayList<String>();
 
@@ -35,6 +35,7 @@ public class DBUtil {
 		lstValues.add(userPass);
 		lstValues.add(companyPersonName);
 		lstValues.add(phone1);
+		lstValues.add(phone2);
 		lstValues.add(district);
 		lstValues.add(city);
 
@@ -53,12 +54,12 @@ public class DBUtil {
 		lstValues.add(installDate);
 
 		lstValues.add(billNo);
-		lstValues.add(licenceClientCount);
-		lstValues.add(licenceGuiCount);
+		lstValues.add(licenseClientCount);
+		lstValues.add(licenseGuiCount);
 		lstValues.add(diskSerialID);
 		lstValues.add(saleType);
-		lstValues.add(licenceClientDays);
-		lstValues.add(licenceGuiDays);
+		lstValues.add(licenseClientDays);
+		lstValues.add(licenseGuiDays);
 
 		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
 
