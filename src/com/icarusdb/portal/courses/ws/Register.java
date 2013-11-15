@@ -1,4 +1,4 @@
-package com.icarusdb.secpa.workviewer.register.ws;
+package com.icarusdb.portal.courses.ws;
 
 import java.util.Date;
 
