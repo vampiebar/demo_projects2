@@ -5,9 +5,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class HizmetTanimla {
 
+	private String id;
 	private String hizmet_adi;
 	private String hizmet_turu;
 	private String birim_fiyati;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getHizmet_adi() {
 		return hizmet_adi;

@@ -5,12 +5,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class BankaEkle {
 
+	private String id;
 	private String banka_adi;
 	private String banka_sube;
 	private String hesap_no;
 	private String iban_no;
 	private String bankanin_odeme_sekli;
 	private String vade_tarihi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getBanka_adi() {
 		return banka_adi;

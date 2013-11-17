@@ -5,9 +5,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class IndirimTuru {
 
+	private String id;
 	private String indirim_turu;
 	private String indirim_sekli;
 	private String indirim_miktari;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getIndirim_turu() {
 		return indirim_turu;

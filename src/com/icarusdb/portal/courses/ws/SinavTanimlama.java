@@ -5,11 +5,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SinavTanimlama {
 
+	private String id;
 	private String sinav_no;
 	private String sinav_adi;
 	private String tarih;
 	private String son_kitapcik_no;
 	private String sablon_seciniz;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSinav_no() {
 		return sinav_no;

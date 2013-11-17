@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class OgretmenTanimlari {
 
+	private String id;
 	private String tc_kimlik_no;
 	private String adi_soyadi;
 	private String girdigi_ders_bilgisi;
@@ -19,6 +20,14 @@ public class OgretmenTanimlari {
 	private String sigorta_gun_sayisi;
 	private String ders_programini_gorsun;
 	private String durum;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getTc_kimlik_no() {
 		return tc_kimlik_no;

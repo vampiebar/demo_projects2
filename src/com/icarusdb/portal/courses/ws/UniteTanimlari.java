@@ -5,10 +5,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UniteTanimlari {
 
+	private String id;
 	private String egitim_turu_adi;
 	private String alan_adi;
 	private String ders_adi;
 	private String unite_adi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getEgitim_turu_adi() {
 		return egitim_turu_adi;

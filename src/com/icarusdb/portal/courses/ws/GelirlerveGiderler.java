@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GelirlerveGiderler {
 
+	private String id;
 	private String islem_tipi;
 	private String kategoriler;
 	private String gelirler;
@@ -15,6 +16,14 @@ public class GelirlerveGiderler {
 	private String miktar;
 	private String tarih;
 	private String aciklama;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getIslem_tipi() {
 		return islem_tipi;

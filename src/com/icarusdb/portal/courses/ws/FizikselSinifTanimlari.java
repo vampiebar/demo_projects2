@@ -5,6 +5,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class FizikselSinifTanimlari {
 
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private String fiziksel_sinif_adi;
 
 	public String getFiziksel_sinif_adi() {

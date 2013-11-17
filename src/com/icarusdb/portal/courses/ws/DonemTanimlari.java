@@ -4,6 +4,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class DonemTanimlari {
+
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private String donem_adi;
 	private String baslangic_tarihi;
 	private String bitis_tarihi;

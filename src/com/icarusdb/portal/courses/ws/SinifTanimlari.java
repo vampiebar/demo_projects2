@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SinifTanimlari {
 
+	private String id;
 	private String sinif_adi;
 	private String fiziksel_sinif_adi;
 	private String kurs_zamani;
@@ -18,6 +19,14 @@ public class SinifTanimlari {
 	private String fiyati;
 	private String baslangic_tarihi;
 	private String bitis_tarihi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSinif_adi() {
 		return sinif_adi;

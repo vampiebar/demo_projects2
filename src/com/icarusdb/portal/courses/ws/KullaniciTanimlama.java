@@ -5,11 +5,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class KullaniciTanimlama {
 
+	private String id;
 	private String kullanici_kodu;
 	private String adi;
 	private String soyadi;
 	private String sifre;
 	private String sifre_tekrar;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getKullanici_kodu() {
 		return kullanici_kodu;

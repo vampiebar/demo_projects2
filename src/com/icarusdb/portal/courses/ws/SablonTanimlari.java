@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SablonTanimlari {
 
+	private String id;
 	private String sablon_adi;
 	private String erkek;
 	private String kiz;
@@ -21,6 +22,14 @@ public class SablonTanimlari {
 	private String lys_4;
 	private String lys_5;
 	private String sinav_turu;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSablon_adi() {
 		return sablon_adi;

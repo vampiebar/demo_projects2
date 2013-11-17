@@ -5,10 +5,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class OdevTakipUnite {
 
+	private String id;
 	private String egitim_turu;
 	private String alan;
 	private String ders;
 	private String unite;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getEgitim_turu() {
 		return egitim_turu;

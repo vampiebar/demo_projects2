@@ -5,10 +5,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SaatGirisi {
 
+	private String id;
 	private String baslangic_saati;
 	private String bitis_saati;
 	private String gun;
 	private String aciklama;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getBaslangic_saati() {
 		return baslangic_saati;

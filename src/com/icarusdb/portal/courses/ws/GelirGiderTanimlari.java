@@ -5,9 +5,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GelirGiderTanimlari {
 
+	private String id;
 	private String kategori_adi;
 	private String tipi;
 	private String gelir_gider_adi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getKategori_adi() {
 		return kategori_adi;

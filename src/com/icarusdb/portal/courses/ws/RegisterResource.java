@@ -265,16 +265,16 @@ public class RegisterResource {
 
 		return DBUtil.putOnKayit(adi, soyadi, tc_kimlik_no, cinsiyet,
 				medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu, email,
-				ogrenci_bilgileri_ulke, ogrenci_bilgileri_ilce,
+				ogrenci_bilgileri_ulke, ogrenci_bilgileri_il,
 				ogrenci_bilgileri_ilce, okul, ogrenci_bilgileri_sinif,
 				egitim_turu, alan, kurs_zamani, gorusme_sinif,
 				kurs_indirim_fiyati, indirim_turu, indirim_miktari, referans,
 				gorusme_tarihi, gorusme_tipi, gorusme_sonucu, gorusme_yuzdesi,
 				aciklama, seri_no, cuzdan_no, ogrenci_kimlik_bilgileri_ulke,
 				ogrenci_kimlik_bilgileri_il, ogrenci_kimlik_bilgileri_ilce,
-				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
+				mahalle, cilt_no, aile_sira_no, sira_no, verildigi_yer,
 				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
-				adres_bilgileri_ilce, adres_bilgileri_ilce, semt, mahalle_koy,
+				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle_koy,
 				sokak_ve_no);
 	}
 
@@ -398,9 +398,16 @@ public class RegisterResource {
 	@GET
 	@Path("getsaatgirisi")
 	@Produces("application/xml")
-	public List<SaatGirisi> getSaatGirisi() {
+	public List<SaatGirisi> getSaatGirisi(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<SaatGirisi> listSaatGirisi = DBUtil.getSaatGirisi();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+		List<SaatGirisi> listSaatGirisi = DBUtil.getSaatGirisi(criteria);
 
 		return listSaatGirisi;
 
@@ -501,6 +508,12 @@ public class RegisterResource {
 
 		String criteria = " WHERE (1 = 1) ";
 
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
 		if ((egitim_turu != null) && egitim_turu.length() > 0) {
 
@@ -546,6 +559,12 @@ public class RegisterResource {
 
 		String criteria = "WHERE (1 = 1) ";
 
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		String baslangic_tarihi = info.getQueryParameters().getFirst(
 				"baslangic_tarihi");
 		if ((baslangic_tarihi != null) && baslangic_tarihi.length() > 0) {
@@ -584,10 +603,20 @@ public class RegisterResource {
 	@GET
 	@Path("getsinavtanimlama")
 	@Produces("application/xml")
-	public List<SinavTanimlama> getSinavTanimlama() {
+	public List<SinavTanimlama> getSinavTanimlama(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<SinavTanimlama> listSinavTanimlama = DBUtil.getSinavTanimlama();
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<SinavTanimlama> listSinavTanimlama = DBUtil
+				.getSinavTanimlama(criteria);
 		return listSinavTanimlama;
 	}
 
@@ -617,6 +646,12 @@ public class RegisterResource {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
 		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
 
 		String sablon_adi = info.getQueryParameters().getFirst("sablon_adi");
 		if ((sablon_adi != null) && sablon_adi.length() > 0) {
@@ -698,10 +733,19 @@ public class RegisterResource {
 	@GET
 	@Path("getgelirgidertanimlari")
 	@Produces("application/xml")
-	public List<GelirGiderTanimlari> getGelirGiderTanimlari() {
+	public List<GelirGiderTanimlari> getGelirGiderTanimlari(
+			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<GelirGiderTanimlari> listGelirGiderTanimlari = DBUtil
-				.getGelirGiderTanimlari();
+				.getGelirGiderTanimlari(criteria);
 		return listGelirGiderTanimlari;
 	}
 
@@ -724,10 +768,20 @@ public class RegisterResource {
 	@GET
 	@Path("getgelirgiderkategorileri")
 	@Produces("application/xml")
-	public List<GelirGiderKategorileri> getGelirGiderKategorileri() {
+	public List<GelirGiderKategorileri> getGelirGiderKategorileri(
+			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<GelirGiderKategorileri> listGelirGiderKategorileri = DBUtil
-				.getGelirGiderKategorileri();
+				.getGelirGiderKategorileri(criteria);
 		return listGelirGiderKategorileri;
 	}
 
@@ -746,9 +800,16 @@ public class RegisterResource {
 	@GET
 	@Path("getbankaekle")
 	@Produces("application/xml")
-	public List<BankaEkle> getBankaEkle() {
+	public List<BankaEkle> getBankaEkle(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<BankaEkle> listBankaEkle = DBUtil.getBankaEkle();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+		List<BankaEkle> listBankaEkle = DBUtil.getBankaEkle(criteria);
 		return listBankaEkle;
 	}
 
@@ -773,9 +834,18 @@ public class RegisterResource {
 	@GET
 	@Path("getdbssinavtanimla")
 	@Produces("application/xml")
-	public List<DBSSinavTanimla> getDBSSinavTanimla() {
+	public List<DBSSinavTanimla> getDBSSinavTanimla(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil.getDBSSinavTanimla();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil
+				.getDBSSinavTanimla(criteria);
 		return listDBSSinavTanimla;
 	}
 
@@ -799,10 +869,18 @@ public class RegisterResource {
 	@GET
 	@Path("getogretmentanimlari")
 	@Produces("application/xml")
-	public List<OgretmenTanimlari> getOgretmenTanimlari() {
+	public List<OgretmenTanimlari> getOgretmenTanimlari(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<OgretmenTanimlari> listOgretmenTanimlari = DBUtil
-				.getOgretmenTanimlari();
+				.getOgretmenTanimlari(criteria);
 		return listOgretmenTanimlari;
 	}
 
@@ -843,9 +921,18 @@ public class RegisterResource {
 	@GET
 	@Path("getsiniftanimlari")
 	@Produces("application/xml")
-	public List<SinifTanimlari> getSinifTanimlari() {
+	public List<SinifTanimlari> getSinifTanimlari(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<SinifTanimlari> listSinifTanimlari = DBUtil.getSinifTanimlari();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<SinifTanimlari> listSinifTanimlari = DBUtil
+				.getSinifTanimlari(criteria);
 		return listSinifTanimlari;
 	}
 
@@ -886,10 +973,18 @@ public class RegisterResource {
 	@GET
 	@Path("getindirimturu")
 	@Produces("application/xml")
-	public List<IndirimTuru> getIndirimTuru() {
+	public List<IndirimTuru> getIndirimTuru(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<IndirimTuru> listIndirimTuru = DBUtil.getIndirimTuru();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<IndirimTuru> listIndirimTuru = DBUtil.getIndirimTuru(criteria);
 		return listIndirimTuru;
 	}
 
@@ -915,10 +1010,20 @@ public class RegisterResource {
 	@GET
 	@Path("gethizmettanimla")
 	@Produces("application/xml")
-	public List<HizmetTanimla> getHizmetTanimla() {
+	public List<HizmetTanimla> getHizmetTanimla(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<HizmetTanimla> listHizmetTanimla = DBUtil.getHizmetTanimla();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<HizmetTanimla> listHizmetTanimla = DBUtil
+				.getHizmetTanimla(criteria);
+
 		return listHizmetTanimla;
 	}
 
@@ -941,10 +1046,18 @@ public class RegisterResource {
 	@GET
 	@Path("getreferanslar")
 	@Produces("application/xml")
-	public List<Referanslar> getReferanslar() {
+	public List<Referanslar> getReferanslar(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<Referanslar> listReferanslar = DBUtil.getReferanslar();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<Referanslar> listReferanslar = DBUtil.getReferanslar(criteria);
 		return listReferanslar;
 	}
 
@@ -965,10 +1078,18 @@ public class RegisterResource {
 	@GET
 	@Path("getpersoneltanimlari")
 	@Produces("application/xml")
-	public List<PersonelTanimlari> getPersonelTanimlari() {
+	public List<PersonelTanimlari> getPersonelTanimlari(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<PersonelTanimlari> listPersonelTanimlari = DBUtil
-				.getPersonelTanimlari();
+				.getPersonelTanimlari(criteria);
 		return listPersonelTanimlari;
 	}
 
@@ -1040,9 +1161,18 @@ public class RegisterResource {
 	@GET
 	@Path("getdonemtanimlari")
 	@Produces("application/xml")
-	public List<DonemTanimlari> getDonemTanimlari() {
+	public List<DonemTanimlari> getDonemTanimlari(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<DonemTanimlari> listDonemTanimlari = DBUtil.getDonemTanimlari();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<DonemTanimlari> listDonemTanimlari = DBUtil
+				.getDonemTanimlari(criteria);
 		return listDonemTanimlari;
 	}
 
@@ -1067,9 +1197,18 @@ public class RegisterResource {
 	@GET
 	@Path("getderstanimlari")
 	@Produces("application/xml")
-	public List<DersTanimlari> getDersTanimlari() {
+	public List<DersTanimlari> getDersTanimlari(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<DersTanimlari> listDersTanimlari = DBUtil.getDersTanimlari();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<DersTanimlari> listDersTanimlari = DBUtil
+				.getDersTanimlari(criteria);
 		return listDersTanimlari;
 	}
 
@@ -1090,10 +1229,19 @@ public class RegisterResource {
 	@GET
 	@Path("getunitetanimlari")
 	@Produces("application/xml")
-	public List<UniteTanimlari> getUniteTanimlari() {
+	public List<UniteTanimlari> getUniteTanimlari(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<UniteTanimlari> listUniteTanimlari = DBUtil.getUniteTanimlari();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<UniteTanimlari> listUniteTanimlari = DBUtil
+				.getUniteTanimlari(criteria);
 		return listUniteTanimlari;
 	}
 
@@ -1117,10 +1265,19 @@ public class RegisterResource {
 	@GET
 	@Path("getkonutanimlari")
 	@Produces("application/xml")
-	public List<KonuTanimlari> getKonuTanimlari() {
+	public List<KonuTanimlari> getKonuTanimlari(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
-		List<KonuTanimlari> listKonuTanimlari = DBUtil.getKonuTanimlari();
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<KonuTanimlari> listKonuTanimlari = DBUtil
+				.getKonuTanimlari(criteria);
 		return listKonuTanimlari;
 	}
 
@@ -1145,11 +1302,20 @@ public class RegisterResource {
 	@GET
 	@Path("getfizikselsiniftanimlari")
 	@Produces("application/xml")
-	public List<FizikselSinifTanimlari> getFizikselSinifTanimlari() {
+	public List<FizikselSinifTanimlari> getFizikselSinifTanimlari(
+			@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<FizikselSinifTanimlari> listFizikselSinifTanimlari = DBUtil
-				.getFizikselSinifTanimlari();
+				.getFizikselSinifTanimlari(criteria);
 		return listFizikselSinifTanimlari;
 	}
 
@@ -1169,11 +1335,20 @@ public class RegisterResource {
 	@GET
 	@Path("getkurszamanitanimlama")
 	@Produces("application/xml")
-	public List<KursZamaniTanimlama> getKursZamaniTanimlama() {
+	public List<KursZamaniTanimlama> getKursZamaniTanimlama(
+			@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<KursZamaniTanimlama> listKursZamaniTanimlama = DBUtil
-				.getKursZamaniTanimlama();
+				.getKursZamaniTanimlama(criteria);
 		return listKursZamaniTanimlama;
 	}
 
@@ -1242,11 +1417,19 @@ public class RegisterResource {
 	@GET
 	@Path("getkullanicitanimlama")
 	@Produces("application/xml")
-	public List<KullaniciTanimlama> getKullaniciTanimlama() {
+	public List<KullaniciTanimlama> getKullaniciTanimlama(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
 		List<KullaniciTanimlama> listKullaniciTanimlama = DBUtil
-				.getKullaniciTanimlama();
+				.getKullaniciTanimlama(criteria);
 		return listKullaniciTanimlama;
 	}
 

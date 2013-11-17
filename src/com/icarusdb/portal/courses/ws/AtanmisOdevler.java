@@ -2,8 +2,17 @@ package com.icarusdb.portal.courses.ws;
 
 public class AtanmisOdevler {
 
+	private String id;
 	private String baslangic_tarihi;
 	private String bitis_tarihi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getBaslangic_tarihi() {
 		return baslangic_tarihi;

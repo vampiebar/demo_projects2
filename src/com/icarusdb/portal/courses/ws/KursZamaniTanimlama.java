@@ -5,7 +5,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class KursZamaniTanimlama {
 
+	private String id;
 	private String kurs_zamani;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getKurs_zamani() {
 		return kurs_zamani;

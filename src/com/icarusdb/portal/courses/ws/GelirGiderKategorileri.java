@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class GelirGiderKategorileri {
 
+	private String id;
+
 	private String kategori_adi;
 
 	public String getKategori_adi() {
@@ -13,6 +15,14 @@ public class GelirGiderKategorileri {
 
 	public void setKategori_adi(String kategori_adi) {
 		this.kategori_adi = kategori_adi;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

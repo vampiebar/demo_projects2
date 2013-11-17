@@ -5,12 +5,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PersonelTanimlari {
 
+	private String id;
 	private String adi_soyadi;
 	private String gorevi;
 	private String ise_giris_tarihi;
 	private String ucreti;
 	private String telefonu_1;
 	private String telefonu_2;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getAdi_soyadi() {
 		return adi_soyadi;

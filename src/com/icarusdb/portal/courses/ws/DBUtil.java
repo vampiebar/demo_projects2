@@ -754,13 +754,17 @@ public class DBUtil {
 
 	// SAAT GÝRÝÞÝ
 	// GET
-	public static List<SaatGirisi> getSaatGirisi() {
+	public static List<SaatGirisi> getSaatGirisi(String criteria) {
 
 		List<SaatGirisi> listSaatGirisi = new ArrayList<SaatGirisi>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM saat_girisi ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -781,6 +785,8 @@ public class DBUtil {
 
 			while (restTemp.next()) {
 				SaatGirisi SaatGirisi = new SaatGirisi();
+
+				SaatGirisi.setId(restTemp.getString("id"));
 				SaatGirisi.setBaslangic_saati(restTemp
 						.getString("baslangic_saati"));
 				SaatGirisi.setBitis_saati(restTemp.getString("bitis_saati"));
@@ -1054,62 +1060,62 @@ public class DBUtil {
 		if (criteria.length() > 15) {
 
 			strSQL = strSQL + criteria;
+		}
+		System.out.println("SQL: " + strSQL);
 
-			System.out.println("SQL: " + strSQL);
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
 
-			// NOW PROCESS
-			Connection connTemp = _con;
-			Statement stmtTemp = null;
-			ResultSet restTemp = null;
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				OdevTakipUnite OdevTakipUnite = new OdevTakipUnite();
+
+				OdevTakipUnite.setId(restTemp.getString("id"));
+				OdevTakipUnite
+						.setEgitim_turu(restTemp.getString("egitim_turu"));
+				OdevTakipUnite.setAlan(restTemp.getString("alan"));
+				OdevTakipUnite.setDers(restTemp.getString("ders"));
+				OdevTakipUnite.setUnite(restTemp.getString("unite"));
+
+				listOdevTakipUnite.add(OdevTakipUnite);
+
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
 
 			try {
-
-				if (connTemp.isClosed()) {
-
-				}
-
-				stmtTemp = connTemp
-						.createStatement(ResultSet.TYPE_FORWARD_ONLY,
-								ResultSet.CONCUR_READ_ONLY);
-				restTemp = stmtTemp.executeQuery(strSQL);
-
-				while (restTemp.next()) {
-					OdevTakipUnite OdevTakipUnite = new OdevTakipUnite();
-
-					OdevTakipUnite.setEgitim_turu(restTemp
-							.getString("egitim_turu"));
-					OdevTakipUnite.setAlan(restTemp.getString("alan"));
-					OdevTakipUnite.setDers(restTemp.getString("ders"));
-					OdevTakipUnite.setUnite(restTemp.getString("unite"));
-
-					listOdevTakipUnite.add(OdevTakipUnite);
-
-				}
-
-				// Close
+				System.err
+						.println("getOdevTakipUnite Error: " + e.getMessage());
 				restTemp.close();
 				stmtTemp.close();
 				_con.close();
 
-			} catch (SQLException e) {
-
-				try {
-					System.err.println("getOdevTakipUnite Error: "
-							+ e.getMessage());
-					restTemp.close();
-					stmtTemp.close();
-					_con.close();
-
-				} catch (SQLException e1) {
-					System.err.println("getOdevTakipUnite Error: "
-							+ e1.getMessage());
-					e1.printStackTrace();
-				}
-
-				e.printStackTrace();
-
+			} catch (SQLException e1) {
+				System.err.println("getOdevTakipUnite Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
 			}
+
+			e.printStackTrace();
+
 		}
+
 		return listOdevTakipUnite;
 
 	}
@@ -1177,6 +1183,7 @@ public class DBUtil {
 				while (restTemp.next()) {
 					AtanmisOdevler AtanmisOdevler = new AtanmisOdevler();
 
+					AtanmisOdevler.setId(restTemp.getString("id"));
 					AtanmisOdevler.setBaslangic_tarihi(restTemp
 							.getString("baslangic_tarihi"));
 					AtanmisOdevler.setBitis_tarihi(restTemp
@@ -1245,12 +1252,16 @@ public class DBUtil {
 
 	// SINAV TANIMLAMA
 	// GET
-	public static List<SinavTanimlama> getSinavTanimlama() {
+	public static List<SinavTanimlama> getSinavTanimlama(String criteria) {
 		List<SinavTanimlama> listSinavTanimlama = new ArrayList<SinavTanimlama>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM sinav_tanimlama ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -1272,6 +1283,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				SinavTanimlama SinavTanimlama = new SinavTanimlama();
 
+				SinavTanimlama.setId(restTemp.getString("id"));
 				SinavTanimlama.setSinav_no(restTemp.getString("sinav_no"));
 				SinavTanimlama.setSinav_adi(restTemp.getString("sinav_adi"));
 				SinavTanimlama.setTarih(restTemp.getString("tarih"));
@@ -1374,6 +1386,7 @@ public class DBUtil {
 
 				SablonTanimlari SablonTanimlari = new SablonTanimlari();
 
+				SablonTanimlari.setId(restTemp.getString("id"));
 				SablonTanimlari.setSablon_adi(restTemp.getString("sablon_adi"));
 				SablonTanimlari.setErkek(restTemp.getString("erkek"));
 				SablonTanimlari.setKiz(restTemp.getString("kiz"));
@@ -1584,13 +1597,18 @@ public class DBUtil {
 
 	// GELÝR GÝDER TANIMLARI
 	// GET
-	public static List<GelirGiderTanimlari> getGelirGiderTanimlari() {
+	public static List<GelirGiderTanimlari> getGelirGiderTanimlari(
+			String criteria) {
 
 		List<GelirGiderTanimlari> listGelirGiderTanimlari = new ArrayList<GelirGiderTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM gelir_gider_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -1612,6 +1630,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				GelirGiderTanimlari GelirGiderTanimlari = new GelirGiderTanimlari();
 
+				GelirGiderTanimlari.setId(restTemp.getString("id"));
 				GelirGiderTanimlari.setKategori_adi(restTemp
 						.getString("kategori_adi"));
 				GelirGiderTanimlari.setTipi(restTemp.getString("tipi"));
@@ -1681,12 +1700,17 @@ public class DBUtil {
 
 	// GERLÝ/GÝDER KATEGORÝLERÝ
 	// GET
-	public static List<GelirGiderKategorileri> getGelirGiderKategorileri() {
+	public static List<GelirGiderKategorileri> getGelirGiderKategorileri(
+			String criteria) {
 		List<GelirGiderKategorileri> listGelirGiderKategorileri = new ArrayList<GelirGiderKategorileri>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM gelir_gider_kategorileri ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -1708,6 +1732,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				GelirGiderKategorileri GelirGiderKategorileri = new GelirGiderKategorileri();
 
+				GelirGiderKategorileri.setId(restTemp.getString("id"));
 				GelirGiderKategorileri.setKategori_adi(restTemp
 						.getString("kategori_adi"));
 
@@ -1771,12 +1796,16 @@ public class DBUtil {
 
 	// BANKA EKLE
 	// GET
-	public static List<BankaEkle> getBankaEkle() {
+	public static List<BankaEkle> getBankaEkle(String criteria) {
 		List<BankaEkle> listBankaEkle = new ArrayList<BankaEkle>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM banka_ekle ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -1798,6 +1827,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				BankaEkle BankaEkle = new BankaEkle();
 
+				BankaEkle.setId(restTemp.getString("id"));
 				BankaEkle.setBanka_adi(restTemp.getString("banka_adi"));
 				BankaEkle.setBanka_sube(restTemp.getString("banka_sube"));
 				BankaEkle.setHesap_no(restTemp.getString("hesap_no"));
@@ -1870,13 +1900,17 @@ public class DBUtil {
 
 	// DBS SINAV TANIMLA
 	// GET
-	public static List<DBSSinavTanimla> getDBSSinavTanimla() {
+	public static List<DBSSinavTanimla> getDBSSinavTanimla(String criteria) {
 
 		List<DBSSinavTanimla> listDBSSinavTanimla = new ArrayList<DBSSinavTanimla>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM dbs_sinav_tanimla ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -1898,6 +1932,8 @@ public class DBUtil {
 			while (restTemp.next()) {
 
 				DBSSinavTanimla DBSSinavTanimla = new DBSSinavTanimla();
+
+				DBSSinavTanimla.setId(restTemp.getString("id"));
 				DBSSinavTanimla.setOkul_adi(restTemp.getString("okul_adi"));
 				DBSSinavTanimla.setAlan_bilgisi(restTemp
 						.getString("alan_bilgisi"));
@@ -1973,13 +2009,17 @@ public class DBUtil {
 
 	// ÖÐRETMEN TANIMLARI
 	// GET
-	public static List<OgretmenTanimlari> getOgretmenTanimlari() {
+	public static List<OgretmenTanimlari> getOgretmenTanimlari(String criteria) {
 
 		List<OgretmenTanimlari> listOgretmenTanimlari = new ArrayList<OgretmenTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM ogretmen_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2002,6 +2042,7 @@ public class DBUtil {
 
 				OgretmenTanimlari OgretmenTanimlari = new OgretmenTanimlari();
 
+				OgretmenTanimlari.setId(restTemp.getString("id"));
 				OgretmenTanimlari.setTc_kimlik_no(restTemp
 						.getString("tc_kimlik_no"));
 				OgretmenTanimlari.setAdi_soyadi(restTemp
@@ -2105,13 +2146,17 @@ public class DBUtil {
 
 	// SINIF TANIMLARI
 	// GET
-	public static List<SinifTanimlari> getSinifTanimlari() {
+	public static List<SinifTanimlari> getSinifTanimlari(String criteria) {
 
 		List<SinifTanimlari> listSinifTanimlari = new ArrayList<SinifTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM sinif_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2133,6 +2178,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				SinifTanimlari SinifTanimlari = new SinifTanimlari();
 
+				SinifTanimlari.setId(restTemp.getString("id"));
 				SinifTanimlari.setSinif_adi(restTemp.getString("sinif_adi"));
 				SinifTanimlari.setFiziksel_sinif_adi(restTemp
 						.getString("fiziksel_sinif_adi"));
@@ -2232,13 +2278,17 @@ public class DBUtil {
 
 	// ÝNDÝRÝM TÜRÜ
 	// GET
-	public static List<IndirimTuru> getIndirimTuru() {
+	public static List<IndirimTuru> getIndirimTuru(String criteria) {
 
 		List<IndirimTuru> listIndirimTuru = new ArrayList<IndirimTuru>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM indirim_turu ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2261,6 +2311,7 @@ public class DBUtil {
 
 				IndirimTuru IndirimTuru = new IndirimTuru();
 
+				IndirimTuru.setId(restTemp.getString("id"));
 				IndirimTuru.setIndirim_turu(restTemp.getString("indirim_turu"));
 				IndirimTuru.setIndirim_sekli(restTemp
 						.getString("indirim_sekli"));
@@ -2328,13 +2379,17 @@ public class DBUtil {
 
 	// HÝZMET TANIMLA
 	// GET
-	public static List<HizmetTanimla> getHizmetTanimla() {
+	public static List<HizmetTanimla> getHizmetTanimla(String criteria) {
 
 		List<HizmetTanimla> listHizmetTanimla = new ArrayList<HizmetTanimla>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM hizmet_tanimla ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2356,6 +2411,7 @@ public class DBUtil {
 			if (restTemp.next()) {
 				HizmetTanimla HizmetTanimla = new HizmetTanimla();
 
+				HizmetTanimla.setId(restTemp.getString("id"));
 				HizmetTanimla.setHizmet_adi(restTemp.getString("hizmet_adi"));
 				HizmetTanimla.setHizmet_turu(restTemp.getString("hizmet_turu"));
 				HizmetTanimla.setBirim_fiyati(restTemp
@@ -2424,12 +2480,16 @@ public class DBUtil {
 
 	// REFERANSLAR
 	// GET
-	public static List<Referanslar> getReferanslar() {
+	public static List<Referanslar> getReferanslar(String criteria) {
 		List<Referanslar> listReferanslar = new ArrayList<Referanslar>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM referanslar ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2450,6 +2510,8 @@ public class DBUtil {
 
 			while (restTemp.next()) {
 				Referanslar Referanslar = new Referanslar();
+
+				Referanslar.setId(restTemp.getString("id"));
 				Referanslar.setReferans_adi_soyadi(restTemp
 						.getString("referans_adi_soyadi"));
 				listReferanslar.add(Referanslar);
@@ -2509,12 +2571,16 @@ public class DBUtil {
 
 	// PERSONEL TANIMLARI
 	// GET
-	public static List<PersonelTanimlari> getPersonelTanimlari() {
+	public static List<PersonelTanimlari> getPersonelTanimlari(String criteria) {
 		List<PersonelTanimlari> listPersonelTanimlari = new ArrayList<PersonelTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM personel_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2536,6 +2602,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				PersonelTanimlari PersonelTanimlari = new PersonelTanimlari();
 
+				PersonelTanimlari.setId(restTemp.getString("id"));
 				PersonelTanimlari.setAdi_soyadi(restTemp
 						.getString("adi_soyadi"));
 				PersonelTanimlari.setGorevi(restTemp.getString("gorevi"));
@@ -2740,12 +2807,16 @@ public class DBUtil {
 
 	// DONEM TANIMLARI
 	// GET
-	public static List<DonemTanimlari> getDonemTanimlari() {
+	public static List<DonemTanimlari> getDonemTanimlari(String criteria) {
 		List<DonemTanimlari> listDonemTanimlari = new ArrayList<DonemTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM donem_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2767,6 +2838,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				DonemTanimlari DonemTanimlari = new DonemTanimlari();
 
+				DonemTanimlari.setId(restTemp.getString("id"));
 				DonemTanimlari.setDonem_adi(restTemp.getString("donem_adi"));
 				DonemTanimlari.setBaslangic_tarihi(restTemp
 						.getString("baslangic_tarihi"));
@@ -2840,12 +2912,16 @@ public class DBUtil {
 
 	// DERS TANIMLARI
 	// GET
-	public static List<DersTanimlari> getDersTanimlari() {
+	public static List<DersTanimlari> getDersTanimlari(String criteria) {
 		List<DersTanimlari> listDersTanimlari = new ArrayList<DersTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM ders_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2867,6 +2943,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				DersTanimlari DersTanimlari = new DersTanimlari();
 
+				DersTanimlari.setId(restTemp.getString("id"));
 				DersTanimlari.setEgitim_turu_adi(restTemp
 						.getString("egitim_turu_adi"));
 				DersTanimlari.setAlan_adi(restTemp.getString("alan_adi"));
@@ -2934,12 +3011,16 @@ public class DBUtil {
 
 	// ÜNÝTE TANIMLARI
 	// GET
-	public static List<UniteTanimlari> getUniteTanimlari() {
+	public static List<UniteTanimlari> getUniteTanimlari(String criteria) {
 		List<UniteTanimlari> listUniteTanimlari = new ArrayList<UniteTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM unite_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -2961,6 +3042,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				UniteTanimlari UniteTanimlari = new UniteTanimlari();
 
+				UniteTanimlari.setId(restTemp.getString("id"));
 				UniteTanimlari.setEgitim_turu_adi(restTemp
 						.getString("egitim_turu_adi"));
 				UniteTanimlari.setAlan_adi(restTemp.getString("alan_adi"));
@@ -3031,12 +3113,16 @@ public class DBUtil {
 
 	// KONU TANIMLARI
 	// GET
-	public static List<KonuTanimlari> getKonuTanimlari() {
+	public static List<KonuTanimlari> getKonuTanimlari(String criteria) {
 		List<KonuTanimlari> listKonuTanimlari = new ArrayList<KonuTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM konu_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -3058,6 +3144,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				KonuTanimlari KonuTanimlari = new KonuTanimlari();
 
+				KonuTanimlari.setId(restTemp.getString("id"));
 				KonuTanimlari.setEgitim_turu_adi(restTemp
 						.getString("egitim_turu_adi"));
 				KonuTanimlari.setAlan_adi(restTemp.getString("alan_adi"));
@@ -3129,13 +3216,18 @@ public class DBUtil {
 
 	// FÝZÝKSEL SINIF TANIMLARI
 	// GET
-	public static List<FizikselSinifTanimlari> getFizikselSinifTanimlari() {
+	public static List<FizikselSinifTanimlari> getFizikselSinifTanimlari(
+			String criteria) {
 
 		List<FizikselSinifTanimlari> listFizikselSinifTanimlari = new ArrayList<FizikselSinifTanimlari>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM fiziksel_sinif_tanimlari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -3219,12 +3311,17 @@ public class DBUtil {
 
 	// KURS ZAMANI TANIMLAMA
 	// GET
-	public static List<KursZamaniTanimlama> getKursZamaniTanimlama() {
+	public static List<KursZamaniTanimlama> getKursZamaniTanimlama(
+			String criteria) {
 		List<KursZamaniTanimlama> listKursZamaniTanimlama = new ArrayList<KursZamaniTanimlama>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM kurs_zamani_tanimlama ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -3246,6 +3343,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				KursZamaniTanimlama KursZamaniTanimlama = new KursZamaniTanimlama();
 
+				KursZamaniTanimlama.setId(restTemp.getString("id"));
 				KursZamaniTanimlama.setKurs_zamani(restTemp
 						.getString("kurs_zamani"));
 
@@ -3489,12 +3587,16 @@ public class DBUtil {
 
 	// KULLANICI TANIMLAMA
 	// GET
-	public static List<KullaniciTanimlama> getKullaniciTanimlama() {
+	public static List<KullaniciTanimlama> getKullaniciTanimlama(String criteria) {
 		List<KullaniciTanimlama> listKullaniciTanimlama = new ArrayList<KullaniciTanimlama>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM kullanici_tanimlama ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -3516,6 +3618,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				KullaniciTanimlama KullaniciTanimlama = new KullaniciTanimlama();
 
+				KullaniciTanimlama.setId(restTemp.getString("id"));
 				KullaniciTanimlama.setKullanici_kodu(restTemp
 						.getString("kullanici_kodu"));
 				KullaniciTanimlama.setAdi(restTemp.getString("adi"));

@@ -5,11 +5,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class DBSSinavTanimla {
 
+	private String id;
 	private String okul_adi;
 	private String alan_bilgisi;
 	private String sinav_tarihi;
 	private String kota;
 	private String bina_sekli;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getOkul_adi() {
 		return okul_adi;
