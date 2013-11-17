@@ -197,7 +197,10 @@ public class DBUtil {
 
 			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
 					+ result);
+			result = "OK";
 
+		} else {
+			result = "ERROR";
 		}
 
 		return result;
@@ -4160,6 +4163,344 @@ public class DBUtil {
 		}
 
 		return result;
+
+	}
+
+	// EĞİTİM TÜRÜ ADI
+	// GET
+	public static List<EgitimTuru> getEgitimTuru(String criteria) {
+		List<EgitimTuru> listEgitimTuru = new ArrayList<EgitimTuru>();
+
+		getConnection();
+
+		System.out.println("CRITERIA: " + criteria);
+
+		String strSQL = "SELECT * FROM egitim_turu ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL33333333: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				EgitimTuru EgitimTuru = new EgitimTuru();
+
+				EgitimTuru.setId(restTemp.getString("id"));
+				EgitimTuru.setEgitim_turu_adi(restTemp
+						.getString("egitim_turu_adi"));
+
+				listEgitimTuru.add(EgitimTuru);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getegitimturu Error: " + e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getegitimturu Error: " + e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listEgitimTuru;
+
+	}
+
+	// INSERT
+	public static String putEgitimTuru(String egitim_turu_adi) {
+
+		String result = "";
+
+		getConnection();
+
+		String strSQL = "INSERT INTO egitim_turu(egitim_turu_adi)  VALUES (?) ";
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(egitim_turu_adi);
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
+	// EĞİTİM TÜRÜ ALAN
+	// GET
+	public static List<EgitimTuruAlan> getEgitimTuruAlan(String criteria) {
+		List<EgitimTuruAlan> listEgitimTuruAlan = new ArrayList<EgitimTuruAlan>();
+
+		getConnection();
+
+		System.out.println("CRITERIA: " + criteria);
+
+		String strSQL = "SELECT * FROM egitim_turu_alan ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL33333333: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				EgitimTuruAlan EgitimTuruAlan = new EgitimTuruAlan();
+
+				EgitimTuruAlan.setId(restTemp.getString("id"));
+				EgitimTuruAlan.setEgitim_turu_adi(restTemp
+						.getString("egitim_turu_adi"));
+				EgitimTuruAlan.setAlan_adi(restTemp.getString("alan_adi"));
+
+				listEgitimTuruAlan.add(EgitimTuruAlan);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err
+						.println("getegitimturualan Error: " + e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getegitimturualan Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listEgitimTuruAlan;
+
+	}
+
+	// INSERT
+	public static String putEgitimTuruAlan(String egitim_turu_adi,
+			String alan_adi) {
+
+		String result = "";
+
+		getConnection();
+
+		String strSQL = "INSERT INTO egitim_turu(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(egitim_turu_adi);
+		lstValues.add(alan_adi);
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
+	// EĞİTİM TÜRÜ KONU
+	// GET
+	public static List<EgitimTuruKonu> getEgitimTuruKonu(String criteria) {
+		List<EgitimTuruKonu> listEgitimTuruKonu = new ArrayList<EgitimTuruKonu>();
+
+		getConnection();
+
+		System.out.println("CRITERIA: " + criteria);
+
+		String strSQL = "SELECT * FROM egitim_turu_konu ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL33333333: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				EgitimTuruKonu EgitimTuruKonu = new EgitimTuruKonu();
+
+				EgitimTuruKonu.setId(restTemp.getString("id"));
+				EgitimTuruKonu.setEgitim_turu_adi(restTemp
+						.getString("egitim_turu_adi"));
+				EgitimTuruKonu.setAlan_adi(restTemp.getString("alan_adi"));
+				EgitimTuruKonu.setUnite_adi(restTemp.getString("unite_adi"));
+				EgitimTuruKonu.setKonu_adi(restTemp.getString("konu_adi"));
+
+				listEgitimTuruKonu.add(EgitimTuruKonu);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err
+						.println("getegitimturukonu Error: " + e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getegitimturukonu Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listEgitimTuruKonu;
+
+	}
+
+	// EĞİTİM TÜRÜ ÜNİTE
+	// GET
+	public static List<EgitimTuruUnite> getEgitimTuruUnite(String criteria) {
+		List<EgitimTuruUnite> listEgitimTuruUnite = new ArrayList<EgitimTuruUnite>();
+
+		getConnection();
+
+		System.out.println("CRITERIA: " + criteria);
+
+		String strSQL = "SELECT * FROM egitim_turu_unite ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL33333333: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				EgitimTuruUnite EgitimTuruUnite = new EgitimTuruUnite();
+
+				EgitimTuruUnite.setId(restTemp.getString("id"));
+				EgitimTuruUnite.setEgitim_turu_adi(restTemp
+						.getString("egitim_turu_adi"));
+				EgitimTuruUnite.setAlan_adi(restTemp.getString("alan_adi"));
+				EgitimTuruUnite.setUnite_adi(restTemp.getString("unite_adi"));
+
+				listEgitimTuruUnite.add(EgitimTuruUnite);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getegitimturuunite Error: "
+						+ e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getegitimturuunite Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listEgitimTuruUnite;
 
 	}
 

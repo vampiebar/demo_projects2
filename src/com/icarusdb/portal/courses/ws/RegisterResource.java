@@ -1658,6 +1658,158 @@ public class RegisterResource {
 		return DBUtil.putPostaKoduMahalle(mahalle, posta_kodu);
 	}
 
+	@GET
+	@Path("getegitimturu")
+	@Produces("application/xml")
+	public List<EgitimTuru> getEgitimTuru(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
+		List<EgitimTuru> listEgitimTuru = DBUtil.getEgitimTuru(criteria);
+
+		return listEgitimTuru;
+	}
+
+	@GET
+	@Path("putegitimturu")
+	@Produces("application/xml")
+	public String putEgitimTuru(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+
+		return DBUtil.putEgitimTuru(egitim_turu_adi);
+
+	}
+
+	@GET
+	@Path("getegitimturualan")
+	@Produces("application/xml")
+	public List<EgitimTuruAlan> getEgitimTuruAlan(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
+		List<EgitimTuruAlan> listEgitimTuruAlan = DBUtil
+				.getEgitimTuruAlan(criteria);
+
+		return listEgitimTuruAlan;
+	}
+
+	// @GET
+	// @Path("putegitimturu")
+	// @Produces("application/xml")
+	// public String putEgitimTuru(@Context UriInfo info) {
+	// // throw new UnsupportedOperationException("Not yet implemented.");
+	//
+	// String egitim_turu_adi = info.getQueryParameters().getFirst(
+	// "egitim_turu_adi");
+	//
+	// return DBUtil.putEgitimTuru(egitim_turu_adi);
+	//
+	// }
+
+	@GET
+	@Path("getegitimturuunite")
+	@Produces("application/xml")
+	public List<EgitimTuruUnite> getEgitimTuruUnite(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+
+		if ((unite_adi != null) && unite_adi.length() > 0) {
+
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
+		}
+
+		List<EgitimTuruUnite> listEgitimTuruUnite = DBUtil
+				.getEgitimTuruUnite(criteria);
+
+		return listEgitimTuruUnite;
+	}
+
+	@GET
+	@Path("getegitimturukonu")
+	@Produces("application/xml")
+	public List<EgitimTuruKonu> getEgitimTuruKonu(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+
+		if ((unite_adi != null) && unite_adi.length() > 0) {
+
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
+		}
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+
+		if ((unite_adi != null) && konu_adi.length() > 0) {
+
+			criteria = criteria + " AND konu_adi = '" + konu_adi + "'";
+		}
+
+		List<EgitimTuruKonu> listEgitimTuruKonu = DBUtil
+				.getEgitimTuruKonu(criteria);
+
+		return listEgitimTuruKonu;
+	}
+
 	@POST
 	@Path("add")
 	@Produces("application/xml")

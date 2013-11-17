@@ -1,5 +1,8 @@
 package com.icarusdb.portal.courses.ws;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class AtanmisOdevler {
 
 	private String id;
