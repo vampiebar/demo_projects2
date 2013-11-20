@@ -281,9 +281,18 @@ public class RegisterResource {
 	@GET
 	@Path("getveliekle")
 	@Produces("application/xml")
-	public List<VeliEkle> getVeliEkle() {
+	public List<VeliEkle> getVeliEkle(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
-		List<VeliEkle> listVeliEkle = DBUtil.getVeliEkle();
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<VeliEkle> listVeliEkle = DBUtil.getVeliEkle(criteria);
 
 		return listVeliEkle;
 	}
@@ -293,7 +302,7 @@ public class RegisterResource {
 	@Produces("application/xml")
 	public String putVeliEkle(@Context UriInfo info) {
 
-		System.out.println("HERE putveliekle");
+		// System.out.println("HERE putveliekle");
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String veli_bilgileri_adi = info.getQueryParameters().getFirst(
@@ -1712,6 +1721,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
 
 		if ((alan_adi != null) && alan_adi.length() > 0) {
@@ -1725,18 +1742,19 @@ public class RegisterResource {
 		return listEgitimTuruAlan;
 	}
 
-	// @GET
-	// @Path("putegitimturu")
-	// @Produces("application/xml")
-	// public String putEgitimTuru(@Context UriInfo info) {
-	// // throw new UnsupportedOperationException("Not yet implemented.");
-	//
-	// String egitim_turu_adi = info.getQueryParameters().getFirst(
-	// "egitim_turu_adi");
-	//
-	// return DBUtil.putEgitimTuru(egitim_turu_adi);
-	//
-	// }
+	@GET
+	@Path("putegitimturualan")
+	@Produces("application/xml")
+	public String putEgitimTuruAlan(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		return DBUtil.putEgitimTuruAlan(egitim_turu_adi, alan_adi);
+
+	}
 
 	@GET
 	@Path("getegitimturuunite")
@@ -1750,6 +1768,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
 		}
 
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
@@ -1772,6 +1798,20 @@ public class RegisterResource {
 	}
 
 	@GET
+	@Path("putegitimturuunite")
+	@Produces("application/xml")
+	public String putEgitimTuruUnite(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+
+		return DBUtil.putEgitimTuruUnite(egitim_turu_adi, alan_adi, unite_adi);
+	}
+
+	@GET
 	@Path("getegitimturukonu")
 	@Produces("application/xml")
 	public List<EgitimTuruKonu> getEgitimTuruKonu(@Context UriInfo info) {
@@ -1783,6 +1823,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
 		}
 
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
@@ -1808,6 +1856,22 @@ public class RegisterResource {
 				.getEgitimTuruKonu(criteria);
 
 		return listEgitimTuruKonu;
+	}
+
+	@GET
+	@Path("putegitimturukonu")
+	@Produces("application/xml")
+	public String putEgitimTuruKonu(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+
+		return DBUtil.putEgitimTuruKonu(egitim_turu_adi, alan_adi, unite_adi,
+				konu_adi);
 	}
 
 	@POST

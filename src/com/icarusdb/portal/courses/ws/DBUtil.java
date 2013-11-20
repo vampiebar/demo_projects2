@@ -247,7 +247,7 @@ public class DBUtil {
 				onKayit.setTc_kimlik_no(restTemp.getString("tc_kimlik_no"));
 				onKayit.setCinsiyet(restTemp.getString("cinsiyet"));
 				onKayit.setMedeni_hali(restTemp.getString("medeni_hali"));
-				// onKayit.setDogum_tarihi(restTemp.getString("dogum_tarihi"));
+				onKayit.setDogum_tarihi(restTemp.getString("dogum_tarihi"));
 				onKayit.setEv_telefonu(restTemp.getString("ev_telefonu"));
 				onKayit.setCep_telefonu(restTemp.getString("cep_telefonu"));
 				onKayit.setEmail(restTemp.getString("email"));
@@ -270,7 +270,7 @@ public class DBUtil {
 				onKayit.setIndirim_miktari(restTemp
 						.getString("indirim_miktari"));
 				onKayit.setReferans(restTemp.getString("referans"));
-				// onKayit.setGorusme_tarihi(restTemp.getString("gorusme_tarihi"));
+				onKayit.setGorusme_tarihi(restTemp.getString("gorusme_tarihi"));
 				onKayit.setGorusme_tipi(restTemp.getString("gorusme_tipi"));
 				onKayit.setGorusme_sonucu(restTemp.getString("gorusme_sonucu"));
 				onKayit.setGorusme_yuzdesi(restTemp
@@ -429,13 +429,18 @@ public class DBUtil {
 
 	// VELİ EKLE
 	// GET
-	public static List<VeliEkle> getVeliEkle() {
+	public static List<VeliEkle> getVeliEkle(String criteria) {
 
 		List<VeliEkle> listVeliEkle = new ArrayList<VeliEkle>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM veli_ekle ";
+
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 
@@ -457,6 +462,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				VeliEkle VeliEkle = new VeliEkle();
 
+				VeliEkle.setId(restTemp.getString("id"));
 				VeliEkle.setVeli_bilgileri_adi(restTemp
 						.getString("veli_bilgileri_adi"));
 				VeliEkle.setVeli_bilgileri_soyadi(restTemp
@@ -473,7 +479,7 @@ public class DBUtil {
 				VeliEkle.setE_mail(restTemp.getString("e_mail"));
 				VeliEkle.setFirma(restTemp.getString("firma"));
 				VeliEkle.setSektor(restTemp.getString("sektor"));
-				VeliEkle.setUnvani(restTemp.getString("unvan"));
+				VeliEkle.setUnvani(restTemp.getString("unvani"));
 				VeliEkle.setGorevi(restTemp.getString("gorevi"));
 				VeliEkle.setVeli_bilgileri_adres(restTemp
 						.getString("veli_bilgileri_adres"));
@@ -3252,6 +3258,7 @@ public class DBUtil {
 			while (restTemp.next()) {
 				FizikselSinifTanimlari FizikselSinifTanimlari = new FizikselSinifTanimlari();
 
+				FizikselSinifTanimlari.setId(restTemp.getString("id"));
 				FizikselSinifTanimlari.setFiziksel_sinif_adi(restTemp
 						.getString("fiziksel_sinif_adi"));
 
@@ -3699,7 +3706,7 @@ public class DBUtil {
 
 		getConnection();
 
-		String strSQL = "SELECT * FROM il";
+		String strSQL = "SELECT * FROM il ";
 
 		System.out.println("SQL: " + strSQL);
 
@@ -3736,6 +3743,7 @@ public class DBUtil {
 
 			try {
 				System.err.println("getil Error: " + e.getMessage());
+
 				restTemp.close();
 				stmtTemp.close();
 				_con.close();
@@ -4432,6 +4440,33 @@ public class DBUtil {
 
 	}
 
+	// INSERT
+	public static String putEgitimTuruKonu(String egitim_turu_adi,
+			String alan_adi, String unite_adi, String konu_adi) {
+
+		String result = "";
+
+		getConnection();
+
+		String strSQL = "INSERT INTO egitim_turu(egitim_turu_adi,alan_adi,unite_adi,konu_adi)  VALUES (?,?,?,?) ";
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(egitim_turu_adi);
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
 	// EĞİTİM TÜRÜ ÜNİTE
 	// GET
 	public static List<EgitimTuruUnite> getEgitimTuruUnite(String criteria) {
@@ -4501,6 +4536,33 @@ public class DBUtil {
 		}
 
 		return listEgitimTuruUnite;
+
+	}
+
+	// INSERT
+	public static String putEgitimTuruUnite(String egitim_turu_adi,
+			String alan_adi, String unite_adi) {
+
+		String result = "";
+
+		getConnection();
+
+		String strSQL = "INSERT INTO egitim_turu(egitim_turu_adi,alan_adi,unite_adi)  VALUES (?,?,?) ";
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(egitim_turu_adi);
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
 
 	}
 

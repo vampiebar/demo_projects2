@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class VeliEkle {
 
+	private String id;
 	private String veli_bilgileri_adi;
 	private String veli_bilgileri_soyadi;
 	private String veli_bilgileri_tc_kimlik_no;
@@ -19,6 +20,14 @@ public class VeliEkle {
 	private String unvani;
 	private String gorevi;
 	private String veli_bilgileri_adres;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getVeli_bilgileri_adi() {
 		return veli_bilgileri_adi;
