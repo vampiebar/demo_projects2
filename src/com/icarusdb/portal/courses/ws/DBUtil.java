@@ -144,13 +144,20 @@ public class DBUtil {
 			String verilis_tarihi, String adres_bilgileri_ulke,
 			String adres_bilgileri_il, String adres_bilgileri_ilce,
 			String semt, String mahalle, String sokak_ve_no,
-			String okul_durumu, String alan_bilgisi, String sinav_tarihi) {
+			String okul_durumu, String alan_bilgisi, String sinav_tarihi,
+			String id) {
 
 		String result = "";
 
 		getConnection();
 
+		System.out.println("SINAV TARIHIIII: " + verilis_tarihi);
 		String strSQL = "INSERT INTO dbs_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,sinif,seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,okul_durumu,alan_bilgisi,sinav_tarihi)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+
+		if (id != null) {
+
+			strSQL = "UPDATE dbs_kayit SET adi = ?, soyadi = ? i tc_kimlik_no = ? , cinsiyet = ?, medeni_hali = ?, dogum_tarihi = ? , ev_telefonu = ? , cep_telefonu = ? ,	email = ? , ogrenci_bilgileri_ulke = ? ,	  ogrenci_bilgileri_il = ? ,  ogrenci_bilgileri_ilce = ? , okul = ? , sinif = ? , seri_no = ? ,    cuzdan_no = ? ,	ogrenci_kimlik_bilgileri_ulke = ? ,ogrenci_kimlik_bilgileri_il = ? ,ogrenci_kimlik_bilgileri_ilce = ? ,mahalle_koy = ? ,cilt_no = ? ,aile_sira_no = ? ,sira_no = ? ,verildigi_yer = ? ,verilis_nedeni = ? ,kayit_no = ? ,verilis_tarihi = ? ,adres_bilgileri_ulke = ? ,adres_bilgileri_il = ? , adres_bilgileri_ilce = ? ,semt = ? ,mahalle, = ? sokak_ve_no = ? ,okul_durumu = ? ,alan_bilgisi = ? ,sinav_tarihi = ?  	WHERE id = ?::bigint";
+		}
 
 		List<String> lstValues = new ArrayList<String>();
 
@@ -190,6 +197,11 @@ public class DBUtil {
 		lstValues.add(okul_durumu);
 		lstValues.add(alan_bilgisi);
 		lstValues.add(sinav_tarihi);
+
+		if (id != null) {
+
+			lstValues.add(id);
+		}
 
 		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
 
@@ -435,7 +447,7 @@ public class DBUtil {
 
 		getConnection();
 
-		String strSQL = "SELECT * FROM veli_ekle ";
+		String strSQL = "SELECT * FROM veliler ";
 
 		if (criteria.length() > 15) {
 
@@ -483,6 +495,8 @@ public class DBUtil {
 				VeliEkle.setGorevi(restTemp.getString("gorevi"));
 				VeliEkle.setVeli_bilgileri_adres(restTemp
 						.getString("veli_bilgileri_adres"));
+				VeliEkle.setOgrenci_tc_kimlik_no(restTemp
+						.getString("ogrenci_tc_kimlik_no"));
 
 				listVeliEkle.add(VeliEkle);
 			}
@@ -496,13 +510,13 @@ public class DBUtil {
 
 			try {
 
-				System.err.println("getveliekle Error: " + e.getMessage());
+				System.err.println("getveliler Error: " + e.getMessage());
 				restTemp.close();
 				stmtTemp.close();
 				_con.close();
 
 			} catch (SQLException e1) {
-				System.err.println("getveliekle Error: " + e1.getMessage());
+				System.err.println("getveliler Error: " + e1.getMessage());
 				e1.printStackTrace();
 			}
 
@@ -520,13 +534,13 @@ public class DBUtil {
 			String yakinlik_durumu, String odeme_sorumlusu, String cep_tel,
 			String ev_tel, String is_tel, String e_mail, String firma,
 			String sektor, String unvani, String gorevi,
-			String veli_bilgileri_adres) {
+			String veli_bilgileri_adres, String ogrenci_tc_kimlik_no) {
 
 		String result = "";
 
 		getConnection();
 
-		String strSQL = "INSERT INTO veli_ekle(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		List<String> lstValues = new ArrayList<String>();
 
@@ -544,6 +558,7 @@ public class DBUtil {
 		lstValues.add(unvani);
 		lstValues.add(gorevi);
 		lstValues.add(veli_bilgileri_adres);
+		lstValues.add(ogrenci_tc_kimlik_no);
 
 		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
 

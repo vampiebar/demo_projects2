@@ -20,6 +20,15 @@ public class VeliEkle {
 	private String unvani;
 	private String gorevi;
 	private String veli_bilgileri_adres;
+	private String ogrenci_tc_kimlik_no;
+
+	public String getOgrenci_tc_kimlik_no() {
+		return ogrenci_tc_kimlik_no;
+	}
+
+	public void setOgrenci_tc_kimlik_no(String ogrenci_tc_kimlik_no) {
+		this.ogrenci_tc_kimlik_no = ogrenci_tc_kimlik_no;
+	}
 
 	public String getId() {
 		return id;

@@ -98,8 +98,9 @@ public class RegisterResource {
 				.getFirst("alan_bilgisi");
 		String sinav_tarihi = info.getQueryParameters()
 				.getFirst("sinav_tarihi");
+		String id = info.getQueryParameters().getFirst("id");
 
-		return DBUtil.putDBSKayit(adi, soyadi, tc_kimlik_no, cinsiyet,
+		return DBUtil.putDBSKayit(id, adi, soyadi, tc_kimlik_no, cinsiyet,
 				medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu, email,
 				ogrenci_bilgileri_ulke, ogrenci_bilgileri_il,
 				ogrenci_bilgileri_ilce, okul, sinif, seri_no, cuzdan_no,
@@ -279,7 +280,7 @@ public class RegisterResource {
 	}
 
 	@GET
-	@Path("getveliekle")
+	@Path("getveliler")
 	@Produces("application/xml")
 	public List<VeliEkle> getVeliEkle(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
@@ -292,13 +293,21 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
+				"ogrenci_tc_kimlik_no");
+		if ((ogrenci_tc_kimlik_no != null) && ogrenci_tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND ogrenci_tc_kimlik_no = '"
+					+ ogrenci_tc_kimlik_no + "'";
+		}
+
 		List<VeliEkle> listVeliEkle = DBUtil.getVeliEkle(criteria);
 
 		return listVeliEkle;
 	}
 
 	@GET
-	@Path("putveliekle")
+	@Path("putveliler")
 	@Produces("application/xml")
 	public String putVeliEkle(@Context UriInfo info) {
 
@@ -325,11 +334,13 @@ public class RegisterResource {
 		String gorevi = info.getQueryParameters().getFirst("gorevi");
 		String veli_bilgileri_adres = info.getQueryParameters().getFirst(
 				"veli_bilgileri_adres");
+		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
+				"ogrenci_tc_kimlik_no");
 
 		return DBUtil.putVeliEkle(veli_bilgileri_adi, veli_bilgileri_soyadi,
 				veli_bilgileri_tc_kimlik_no, yakinlik_durumu, odeme_sorumlusu,
 				cep_tel, ev_tel, is_tel, e_mail, firma, sektor, unvani, gorevi,
-				veli_bilgileri_adres);
+				veli_bilgileri_adres, ogrenci_tc_kimlik_no);
 	}
 
 	@GET
