@@ -3,7 +3,7 @@ package com.icarusdb.portal.courses.ws;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class VeliEkle {
+public class Veliler {
 
 	private String id;
 	private String veli_bilgileri_adi;

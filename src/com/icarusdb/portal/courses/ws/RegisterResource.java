@@ -286,7 +286,7 @@ public class RegisterResource {
 	@GET
 	@Path("getveliler")
 	@Produces("application/xml")
-	public List<VeliEkle> getVeliEkle(@Context UriInfo info) {
+	public List<Veliler> getVeliler(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String criteria = "WHERE (1 = 1) ";
@@ -305,9 +305,9 @@ public class RegisterResource {
 					+ ogrenci_tc_kimlik_no + "'";
 		}
 
-		List<VeliEkle> listVeliEkle = DBUtil.getVeliEkle(criteria);
+		List<Veliler> listVeliler = DBUtil.getVeliler(criteria);
 
-		return listVeliEkle;
+		return listVeliler;
 	}
 
 	@GET
@@ -315,9 +315,9 @@ public class RegisterResource {
 	@Produces("application/xml")
 	public String putVeliEkle(@Context UriInfo info) {
 
-		// System.out.println("HERE putveliekle");
+		// System.out.println("HERE putveliler");
 		// throw new UnsupportedOperationException("Not yet implemented.");
-
+		String id = info.getQueryParameters().getFirst("id");
 		String veli_bilgileri_adi = info.getQueryParameters().getFirst(
 				"veli_bilgileri_adi");
 		String veli_bilgileri_soyadi = info.getQueryParameters().getFirst(
@@ -341,7 +341,7 @@ public class RegisterResource {
 		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
 				"ogrenci_tc_kimlik_no");
 
-		return DBUtil.putVeliEkle(veli_bilgileri_adi, veli_bilgileri_soyadi,
+		return DBUtil.putVeliler(id, veli_bilgileri_adi, veli_bilgileri_soyadi,
 				veli_bilgileri_tc_kimlik_no, yakinlik_durumu, odeme_sorumlusu,
 				cep_tel, ev_tel, is_tel, e_mail, firma, sektor, unvani, gorevi,
 				veli_bilgileri_adres, ogrenci_tc_kimlik_no);
@@ -443,16 +443,15 @@ public class RegisterResource {
 	public String putSaatGirisi(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
-		String id = info.getQueryParameters().getFirst(
-				"id");
+		String id = info.getQueryParameters().getFirst("id");
 		String baslangic_saati = info.getQueryParameters().getFirst(
 				"baslangic_saati");
 		String bitis_saati = info.getQueryParameters().getFirst("bitis_saati");
 		String gun = info.getQueryParameters().getFirst("gun");
 		String aciklama = info.getQueryParameters().getFirst("aciklama");
 
-		return DBUtil
-				.putSaatGirisi(id,baslangic_saati, bitis_saati, gun, aciklama);
+		return DBUtil.putSaatGirisi(id, baslangic_saati, bitis_saati, gun,
+				aciklama);
 	}
 
 	@GET
@@ -653,6 +652,7 @@ public class RegisterResource {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
 
+		String id = info.getQueryParameters().getFirst("id");
 		String sinav_no = info.getQueryParameters().getFirst("sinav_no");
 		String sinav_adi = info.getQueryParameters().getFirst("sinav_adi");
 		String tarih = info.getQueryParameters().getFirst("tarih");
@@ -661,7 +661,7 @@ public class RegisterResource {
 		String sablon_seciniz = info.getQueryParameters().getFirst(
 				"sablon_seciniz");
 
-		return DBUtil.putSinavTanimlari(sinav_no, sinav_adi, tarih,
+		return DBUtil.putSinavTanimlari(id, sinav_no, sinav_adi, tarih,
 				son_kitapcik_no, sablon_seciniz);
 	}
 
@@ -698,6 +698,7 @@ public class RegisterResource {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
 
+		String id = info.getQueryParameters().getFirst("id");
 		String sablon_adi = info.getQueryParameters().getFirst("sablon_adi");
 		String erkek = info.getQueryParameters().getFirst("erkek");
 		String kiz = info.getQueryParameters().getFirst("kiz");
@@ -715,7 +716,7 @@ public class RegisterResource {
 		String lys_5 = info.getQueryParameters().getFirst("lys_5");
 		String sinav_turu = info.getQueryParameters().getFirst("sinav_turu");
 
-		return DBUtil.putSablonTanimlari(sablon_adi, erkek, kiz, sayisal,
+		return DBUtil.putSablonTanimlari(id, sablon_adi, erkek, kiz, sayisal,
 				sozel, esit_a, dil, alani_yok, alan, deger, lys_1, lys_2,
 				lys_3, lys_4, lys_5, sinav_turu);
 
