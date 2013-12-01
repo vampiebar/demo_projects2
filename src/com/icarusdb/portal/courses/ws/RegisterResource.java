@@ -862,41 +862,41 @@ public class RegisterResource {
 				iban_no, bankanin_odeme_sekli, vade_tarihi);
 	}
 
-	@GET
-	@Path("getdbssinavtanimla")
-	@Produces("application/xml")
-	public List<DBSSinavTanimla> getDBSSinavTanimla(@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-		String criteria = "WHERE (1 = 1) ";
-
-		String id = info.getQueryParameters().getFirst("id");
-		if ((id != null) && id.length() > 0) {
-
-			criteria = criteria + " AND id = '" + id + "'";
-		}
-
-		List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil
-				.getDBSSinavTanimla(criteria);
-		return listDBSSinavTanimla;
-	}
-
-	@GET
-	@Path("putdbssinavtanimla")
-	@Produces("application/xml")
-	public String putDBSSinavTanimla(@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
-		String id = info.getQueryParameters().getFirst("id");
-		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
-		String alan = info.getQueryParameters().getFirst("alan");
-		String sinav_tarihi = info.getQueryParameters()
-				.getFirst("sinav_tarihi");
-		String kota = info.getQueryParameters().getFirst("kota");
-		String bina_sekli = info.getQueryParameters().getFirst("bina_sekli");
-
-		return DBUtil.putDBSSinavTanimla(id, okul_durumu, alan, sinav_tarihi,
-				kota, bina_sekli);
-	}
+	// @GET
+	// @Path("getdbssinavtanimla")
+	// @Produces("application/xml")
+	// public List<DBSSinavTanimla> getDBSSinavTanimla(@Context UriInfo info) {
+	// // throw new UnsupportedOperationException("Not yet implemented.");
+	// String criteria = "WHERE (1 = 1) ";
+	//
+	// String id = info.getQueryParameters().getFirst("id");
+	// if ((id != null) && id.length() > 0) {
+	//
+	// criteria = criteria + " AND id = '" + id + "'";
+	// }
+	//
+	// List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil
+	// .getDBSSinavTanimla(criteria);
+	// return listDBSSinavTanimla;
+	// }
+	//
+	// @GET
+	// @Path("putdbssinavtanimla")
+	// @Produces("application/xml")
+	// public String putDBSSinavTanimla(@Context UriInfo info) {
+	// // throw new UnsupportedOperationException("Not yet implemented.");
+	//
+	// String id = info.getQueryParameters().getFirst("id");
+	// String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
+	// String alan = info.getQueryParameters().getFirst("alan");
+	// String sinav_tarihi = info.getQueryParameters()
+	// .getFirst("sinav_tarihi");
+	// String kota = info.getQueryParameters().getFirst("kota");
+	// String bina_sekli = info.getQueryParameters().getFirst("bina_sekli");
+	//
+	// return DBUtil.putDBSSinavTanimla(id, okul_durumu, alan, sinav_tarihi,
+	// kota, bina_sekli);
+	// }
 
 	@GET
 	@Path("getogretmentanimlari")
@@ -1153,10 +1153,17 @@ public class RegisterResource {
 	@GET
 	@Path("getkurumsalbilgiler")
 	@Produces("application/xml")
-	public KurumsalBilgiler getKurumsalBilgiler() {
+	public KurumsalBilgiler getKurumsalBilgiler(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
 
-		return DBUtil.getKurumsalBilgiler();
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		return DBUtil.getKurumsalBilgiler(criteria);
 	}
 
 	@GET

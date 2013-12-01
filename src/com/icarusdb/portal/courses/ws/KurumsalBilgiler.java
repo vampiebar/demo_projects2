@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class KurumsalBilgiler {
 
+	private String id;
 	private String sube_resmi_adi;
 	private String sube_kisa_adi;
 	private String sirket_adi;
@@ -24,6 +25,14 @@ public class KurumsalBilgiler {
 	private String faks;
 	private String email;
 	private String adres;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getSube_kisa_adi() {
 		return sube_kisa_adi;
