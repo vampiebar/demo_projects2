@@ -11,7 +11,9 @@ public class SinifTanimlari {
 	private String kurs_zamani;
 	private String egitim_turu;
 	private String alan;
-	private String danisman_ogretmen;
+
+	private String dan_ogretmen; // danisman_ogretmen
+
 	private String sinif_kontenjani;
 	private String baslangic_numarasi;
 	private String bitis_numarasi;
@@ -19,6 +21,8 @@ public class SinifTanimlari {
 	private String fiyati;
 	private String baslangic_tarihi;
 	private String bitis_tarihi;
+
+	private String test;
 
 	public String getId() {
 		return id;
@@ -66,14 +70,6 @@ public class SinifTanimlari {
 
 	public void setAlan(String alan) {
 		this.alan = alan;
-	}
-
-	public String getdanisman_ogretmen() {
-		return danisman_ogretmen;
-	}
-
-	public void setDanisman_ogretmen(String danisman_ogretmen) {
-		this.danisman_ogretmen = danisman_ogretmen;
 	}
 
 	public String getSinif_kontenjani() {
@@ -130,6 +126,22 @@ public class SinifTanimlari {
 
 	public void setBitis_tarihi(String bitis_tarihi) {
 		this.bitis_tarihi = bitis_tarihi;
+	}
+
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	public String getDan_ogretmen() {
+		return dan_ogretmen;
+	}
+
+	public void setDan_ogretmen(String dan_ogretmen) {
+		this.dan_ogretmen = dan_ogretmen;
 	}
 
 }
