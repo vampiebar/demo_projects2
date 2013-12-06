@@ -10,13 +10,15 @@ public class DBSSinavTanimla {
 	private String alan_bilgisi;
 	private String sinav_tarihi;
 	private String kota;
-	private String bina_sekli;
+	private String sinav_yeri;
 	private String ulke;
 	private String il;
 	private String ilce;
 	private String semt;
 	private String mahalle_koy;
 	private String adres;
+	private String saat;
+	private String dakika;
 
 	public String getId() {
 		return id;
@@ -58,13 +60,12 @@ public class DBSSinavTanimla {
 		this.kota = kota;
 	}
 
-	public String getBina_sekli() {
-		return bina_sekli;
+	public String getSinav_yeri() {
+		return sinav_yeri;
 	}
 
-	public void setBina_sekli(String bina_sekli) {
-		this.bina_sekli = bina_sekli;
-
+	public void setSinav_yeri(String sinav_yeri) {
+		this.sinav_yeri = sinav_yeri;
 	}
 
 	public String getUlke() {
@@ -113,5 +114,21 @@ public class DBSSinavTanimla {
 
 	public void setAdres(String adres) {
 		this.adres = adres;
+	}
+
+	public String getSaat() {
+		return saat;
+	}
+
+	public void setSaat(String saat) {
+		this.saat = saat;
+	}
+
+	public String getDakika() {
+		return dakika;
+	}
+
+	public void setDakika(String dakika) {
+		this.dakika = dakika;
 	}
 }

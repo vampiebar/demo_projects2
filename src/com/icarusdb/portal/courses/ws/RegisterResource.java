@@ -32,6 +32,26 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String adi = info.getQueryParameters().getFirst("adi");
+		if ((adi != null) && adi.length() > 0) {
+
+			criteria = criteria + " AND adi ilike " + "'%" + adi + "%'";
+		}
+
+		String soyadi = info.getQueryParameters().getFirst("soyadi");
+		if ((soyadi != null) && soyadi.length() > 0) {
+
+			criteria = criteria + " AND soyadi ilike " + "'%" + soyadi + "%'";
+		}
+
+		String tc_kimlik_no = info.getQueryParameters()
+				.getFirst("tc_kimlik_no");
+		if ((tc_kimlik_no != null) && tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND tc_kimlik_no ilike " + "'%"
+					+ tc_kimlik_no + "%'";
+		}
+
 		List<DBSKayit> listDBSKayit = DBUtil.getDBSKayit(criteria);
 
 		return listDBSKayit;
@@ -721,9 +741,11 @@ public class RegisterResource {
 				"son_kitapcik_no");
 		String sablon_seciniz = info.getQueryParameters().getFirst(
 				"sablon_seciniz");
+		String saat = info.getQueryParameters().getFirst("saat");
+		String dakika = info.getQueryParameters().getFirst("dakika");
 
 		return DBUtil.putSinavTanimlari(id, sinav_no, sinav_adi, tarih,
-				son_kitapcik_no, sablon_seciniz);
+				son_kitapcik_no, sablon_seciniz, saat, dakika);
 	}
 
 	@GET
@@ -954,17 +976,19 @@ public class RegisterResource {
 		String sinav_tarihi = info.getQueryParameters()
 				.getFirst("sinav_tarihi");
 		String kota = info.getQueryParameters().getFirst("kota");
-		String bina_sekli = info.getQueryParameters().getFirst("bina_sekli");
+		String sinav_yeri = info.getQueryParameters().getFirst("sinav_yeri");
 		String ulke = info.getQueryParameters().getFirst("ulke");
 		String il = info.getQueryParameters().getFirst("il");
 		String ilce = info.getQueryParameters().getFirst("ilce");
 		String semt = info.getQueryParameters().getFirst("semt");
 		String mahalle_koy = info.getQueryParameters().getFirst("mahalle_koy");
 		String adres = info.getQueryParameters().getFirst("adres");
+		String saat = info.getQueryParameters().getFirst("saat");
+		String dakika = info.getQueryParameters().getFirst("dakika");
 
 		return DBUtil.putDBSSinavTanimla(id, okul_adi, alan_bilgisi,
-				sinav_tarihi, kota, bina_sekli, ulke, il, ilce, semt,
-				mahalle_koy, adres);
+				sinav_tarihi, kota, sinav_yeri, ulke, il, ilce, semt,
+				mahalle_koy, adres, saat, dakika);
 	}
 
 	@GET
@@ -1013,11 +1037,20 @@ public class RegisterResource {
 		String ders_programini_gorsun = info.getQueryParameters().getFirst(
 				"ders_programini_gorsun");
 		String durum = info.getQueryParameters().getFirst("durum");
+		String pazartesi = info.getQueryParameters().getFirst("pazartesi");
+		String sali = info.getQueryParameters().getFirst("sali");
+		String carsamba = info.getQueryParameters().getFirst("carsamba");
+		String persembe = info.getQueryParameters().getFirst("persembe");
+		String cuma = info.getQueryParameters().getFirst("cuma");
+		String cumartesi = info.getQueryParameters().getFirst("cumartesi");
+		String pazar = info.getQueryParameters().getFirst("pazar");
 
 		return DBUtil.putOgretmenTanimlari(id, tc_kimlik_no, adi_soyadi,
 				girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler,
 				ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email,
-				sigorta_gun_sayisi, ders_programini_gorsun, durum);
+				sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi,
+				sali, carsamba, persembe, cuma, cumartesi, pazar);
+
 	}
 
 	@GET
@@ -2000,6 +2033,49 @@ public class RegisterResource {
 				konu_adi);
 	}
 
+	// @GET
+	// @Path("getegitimturualankategorileri")
+	// @Produces("application/xml")
+	// public List<EgitimTuruAlanKategorileri> getEgitimTuruAlanKategorileri(
+	// @Context UriInfo info) {
+	// // throw new UnsupportedOperationException("Not yet implemented.");
+	//
+	// String criteria = "WHERE (1 = 1) ";
+	//
+	// String id = info.getQueryParameters().getFirst("id");
+	// if ((id != null) && id.length() > 0) {
+	//
+	// criteria = criteria + " AND id = '" + id + "'";
+	// }
+	//
+	// String egitim_turu_adi = info.getQueryParameters().getFirst(
+	// "egitim_turu_adi");
+	// if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+	//
+	// criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+	// + "'";
+	// }
+	//
+	// List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
+	// .getEgitimTuruAlanKategorileri(criteria);
+	//
+	// return listEgitimTuruAlanKategorileri;
+	// }
+
+	@GET
+	@Path("putegitimturualankategorileri")
+	@Produces("application/xml")
+	public String putEgitimTuruAlanKategorileri(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		return DBUtil.putEgitimTuruAlanKategorileri(egitim_turu_adi, alan_adi);
+
+	}
+
 	@GET
 	@Path("getegitimturualankategorileri")
 	@Produces("application/xml")
@@ -2023,6 +2099,12 @@ public class RegisterResource {
 					+ "'";
 		}
 
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
 		List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
 				.getEgitimTuruAlanKategorileri(criteria);
 
@@ -2030,17 +2112,73 @@ public class RegisterResource {
 	}
 
 	@GET
-	@Path("putegitimturualankategorileri")
+	@Path("getEgitimTuruAlanKategorileriGetEgitimTuru")
 	@Produces("application/xml")
-	public String putEgitimTuruAlanKategorileri(@Context UriInfo info) {
+	public List<EgitimTuru> getEgitimTuruAlanKategorileriGetEgitimTuru(
+			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
 
 		String egitim_turu_adi = info.getQueryParameters().getFirst(
 				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
 
-		return DBUtil.putEgitimTuruAlanKategorileri(egitim_turu_adi, alan_adi);
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
 
+		List<EgitimTuru> listEgitimTuruAlanKategorileri = DBUtil
+				.getEgitimTuruAlanKategorileriGetEgitimTuru(criteria);
+
+		return listEgitimTuruAlanKategorileri;
+	}
+
+	@GET
+	@Path("getEgitimTuruAlanKategorileriGetAlanAdi")
+	@Produces("application/xml")
+	public List<EgitimTuruAlanKategorileri> getEgitimTuruAlanKategorileriGetAlanAdi(
+			@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
+		List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
+				.getEgitimTuruAlanKategorileriGetAlanAdi(criteria);
+
+		return listEgitimTuruAlanKategorileri;
 	}
 
 	@POST

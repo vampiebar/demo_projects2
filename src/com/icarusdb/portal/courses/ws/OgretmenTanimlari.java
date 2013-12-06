@@ -20,6 +20,13 @@ public class OgretmenTanimlari {
 	private String sigorta_gun_sayisi;
 	private String ders_programini_gorsun;
 	private String durum;
+	private String pazartesi;
+	private String sali;
+	private String carsamba;
+	private String persembe;
+	private String cuma;
+	private String cumartesi;
+	private String pazar;
 
 	public String getId() {
 		return id;
@@ -139,6 +146,62 @@ public class OgretmenTanimlari {
 
 	public void setDurum(String durum) {
 		this.durum = durum;
+	}
+
+	public String getPazartesi() {
+		return pazartesi;
+	}
+
+	public void setPazartesi(String pazartesi) {
+		this.pazartesi = pazartesi;
+	}
+
+	public String getSali() {
+		return sali;
+	}
+
+	public void setSali(String sali) {
+		this.sali = sali;
+	}
+
+	public String getCarsamba() {
+		return carsamba;
+	}
+
+	public void setCarsamba(String carsamba) {
+		this.carsamba = carsamba;
+	}
+
+	public String getPersembe() {
+		return persembe;
+	}
+
+	public void setPersembe(String persembe) {
+		this.persembe = persembe;
+	}
+
+	public String getCuma() {
+		return cuma;
+	}
+
+	public void setCuma(String cuma) {
+		this.cuma = cuma;
+	}
+
+	public String getCumartesi() {
+		return cumartesi;
+	}
+
+	public void setCumartesi(String cumartesi) {
+		this.cumartesi = cumartesi;
+	}
+
+	public String getPazar() {
+		return pazar;
+	}
+
+	public void setPazar(String pazar) {
+		this.pazar = pazar;
 	}
 
 }

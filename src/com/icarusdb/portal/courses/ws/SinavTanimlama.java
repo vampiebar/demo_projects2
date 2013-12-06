@@ -11,6 +11,8 @@ public class SinavTanimlama {
 	private String tarih;
 	private String son_kitapcik_no;
 	private String sablon_seciniz;
+	private String saat;
+	private String dakika;
 
 	public String getId() {
 		return id;
@@ -58,6 +60,22 @@ public class SinavTanimlama {
 
 	public void setSablon_seciniz(String sablon_seciniz) {
 		this.sablon_seciniz = sablon_seciniz;
+	}
+
+	public String getSaat() {
+		return saat;
+	}
+
+	public void setSaat(String saat) {
+		this.saat = saat;
+	}
+
+	public String getDakika() {
+		return dakika;
+	}
+
+	public void setDakika(String dakika) {
+		this.dakika = dakika;
 	}
 
 }
