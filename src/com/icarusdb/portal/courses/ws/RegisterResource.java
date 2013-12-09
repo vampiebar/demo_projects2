@@ -783,25 +783,9 @@ public class RegisterResource {
 
 		String id = info.getQueryParameters().getFirst("id");
 		String sablon_adi = info.getQueryParameters().getFirst("sablon_adi");
-		String erkek = info.getQueryParameters().getFirst("erkek");
-		String kiz = info.getQueryParameters().getFirst("kiz");
-		String sayisal = info.getQueryParameters().getFirst("sayisal");
-		String sozel = info.getQueryParameters().getFirst("sozel");
-		String esit_a = info.getQueryParameters().getFirst("esit_a");
-		String dil = info.getQueryParameters().getFirst("dil");
-		String alani_yok = info.getQueryParameters().getFirst("alani_yok");
-		String alan = info.getQueryParameters().getFirst("alan");
-		String deger = info.getQueryParameters().getFirst("deger");
-		String lys_1 = info.getQueryParameters().getFirst("lys_1");
-		String lys_2 = info.getQueryParameters().getFirst("lys_2");
-		String lys_3 = info.getQueryParameters().getFirst("lys_3");
-		String lys_4 = info.getQueryParameters().getFirst("lys_4");
-		String lys_5 = info.getQueryParameters().getFirst("lys_5");
 		String sinav_turu = info.getQueryParameters().getFirst("sinav_turu");
 
-		return DBUtil.putSablonTanimlari(id, sablon_adi, erkek, kiz, sayisal,
-				sozel, esit_a, dil, alani_yok, alan, deger, lys_1, lys_2,
-				lys_3, lys_4, lys_5, sinav_turu);
+		return DBUtil.putSablonTanimlari(id, sablon_adi, sinav_turu);
 
 	}
 
@@ -1521,6 +1505,38 @@ public class RegisterResource {
 		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
 
 		return DBUtil.putKursZamaniTanimlama(id, kurs_zamani);
+	}
+
+	@GET
+	@Path("getsozlesmemaddeleri")
+	@Produces("application/xml")
+	public List<SozlesmeMaddeleri> getSozlesmeMaddeleri(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<SozlesmeMaddeleri> listSozlesmeMaddeleri = DBUtil
+				.getSozlesmeMaddeleri(criteria);
+		return listSozlesmeMaddeleri;
+	}
+
+	@GET
+	@Path("putsozlesmemaddeleri")
+	@Produces("application/xml")
+	public String putSozlesmeMaddeleri(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sozlesme = info.getQueryParameters().getFirst("sozlesme");
+
+		return DBUtil.putSozlesmeMaddeleri(id, sozlesme);
 	}
 
 	@GET
