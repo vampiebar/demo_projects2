@@ -588,26 +588,27 @@ public class DBUtil {
 		boolean isInsert = true;
 
 		getConnection();
-
-		String strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+		String strSQL = "";
+		// String strSQL =
+		// "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE veliler SET veli_bilgileri_adi=?,veli_bilgileri_soyadi= ?,veli_bilgileri_tc_kimlik_no= ?,yakinlik_durumu= ?,odeme_sorumlusu = ?,cep_tel= ?,ev_tel= ?,is_tel = ?,e_mail = ?,firma = ?,sektor= ?,unvani= ?,gorevi= ?,veli_bilgileri_adres= ?,ogrenci_tc_kimlik_no= ?  WHERE id = ?::bigint ";
+			strSQL = "UPDATE veliler SET veli_bilgileri_adi=?,veli_bilgileri_soyadi= ?,veli_bilgileri_tc_kimlik_no= ?,yakinlik_durumu= ?,odeme_sorumlusu = ?::boolean,cep_tel= ?,ev_tel= ?,is_tel = ?,e_mail = ?,firma = ?,sektor= ?,unvani= ?,gorevi= ?,veli_bilgileri_adres= ?,ogrenci_tc_kimlik_no= ?  WHERE id = ?::bigint ";
 
 			isInsert = false;
 		}
@@ -3419,7 +3420,7 @@ public class DBUtil {
 
 		String strSQL = "";
 		getConnection();
-
+		System.out.println("1111111:" + id);
 		// strSQL =
 		// "INSERT INTO kurumsal_bilgiler(sube_kisa_adi, sube_resmi_adi, sirket_adi, vergi_dairesi, vergi_no, yonetici_adi, yonetici_tel, mudur, mudur_yardimcisi, logo, ulke, il, ilce, semt, mahalle_koy, telefon, faks, email, adres)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
@@ -3432,13 +3433,13 @@ public class DBUtil {
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO kurumsal_bilgiler(sube_kisa_adi, sube_resmi_adi, sirket_adi, vergi_dairesi, vergi_no, yonetici_adi, yonetici_tel, mudur, mudur_yardimcisi, logo, ulke, il, ilce, semt, mahalle_koy, telefon, faks, email, adres)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			strSQL = "UPDATE kurumsal_bilgiler SET sube_kisa_adi=?, sube_resmi_adi= ?, sirket_adi = ?, vergi_dairesi= ?, vergi_no= ?, yonetici_adi= ?, yonetici_tel= ?, mudur= ?, mudur_yardimcisi= ?, logo= ?, ulke= ?, il= ?, ilce= ?, semt= ?, mahalle_koy= ?, telefon= ?, faks= ?, email= ?, adres=? WHERE id =1::bigint ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE kurumsal_bilgiler SET sube_kisa_adi=?, sube_resmi_adi= ?, sirket_adi = ?, vergi_dairesi= ?, vergi_no= ?, yonetici_adi= ?, yonetici_tel= ?, mudur= ?, mudur_yardimcisi= ?, logo= ?, ulke= ?, il= ?, ilce= ?, semt= ?, mahalle_koy= ?, telefon= ?, faks= ?, email= ?, adres=? WHERE id = ?::bigint ";
+			strSQL = "UPDATE kurumsal_bilgiler SET sube_kisa_adi=?, sube_resmi_adi= ?, sirket_adi = ?, vergi_dairesi= ?, vergi_no= ?, yonetici_adi= ?, yonetici_tel= ?, mudur= ?, mudur_yardimcisi= ?, logo= ?, ulke= ?, il= ?, ilce= ?, semt= ?, mahalle_koy= ?, telefon= ?, faks= ?, email= ?, adres=? WHERE id = 1::bigint ";
 
 			isInsert = false;
 		}
@@ -4316,6 +4317,8 @@ public class DBUtil {
 
 		String strSQL = "";
 
+		System.out.println(" wqeqweqwqw: " + id);
+
 		if (id == null) {
 
 			strSQL = "INSERT INTO sozlesme_maddeleri(sozlesme)  VALUES (?)";
@@ -4325,13 +4328,13 @@ public class DBUtil {
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO sozlesme_maddeleri(sozlesme)  VALUES (?)";
+			strSQL = "UPDATE  sozlesme_maddeleri SET sozlesme=? WHERE id = 1::bigint";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE  sozlesme_maddeleri SET sozlesme=? WHEREWHERE id =1 ?::bigint";
+			strSQL = "UPDATE  sozlesme_maddeleri SET sozlesme=? WHERE id = 1::bigint";
 
 			isInsert = false;
 		}
