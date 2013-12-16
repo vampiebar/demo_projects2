@@ -1946,12 +1946,17 @@ public class DBUtil {
 
 	// GELÝRLER ve GÝDERLER
 	// GET
-	public static List<GelirlerveGiderler> getGelirlerveGiderler() {
+	public static List<GelirlerveGiderler> getGelirlerveGiderler(String criteria) {
 		List<GelirlerveGiderler> listGelirlerveGiderler = new ArrayList<GelirlerveGiderler>();
 
 		getConnection();
 
 		String strSQL = "SELECT * FROM gelirler_ve_giderler ";
+
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
 
 		System.out.println("SQL: " + strSQL);
 

@@ -792,11 +792,19 @@ public class RegisterResource {
 	@GET
 	@Path("getgelirlervegiderler")
 	@Produces("application/xml")
-	public List<GelirlerveGiderler> getGelirlerveGiderler() {
+	public List<GelirlerveGiderler> getGelirlerveGiderler(@Context UriInfo info) {
 		// throw new
 		// UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
 		List<GelirlerveGiderler> listGelirlerveGiderler = DBUtil
-				.getGelirlerveGiderler();
+				.getGelirlerveGiderler(criteria);
 
 		return listGelirlerveGiderler;
 
