@@ -2371,12 +2371,12 @@ public class RegisterResource {
 	// REPORTS
 
 	@GET
-	@Path("run_report")
+	@Path("run_report2")
 	@Produces("text/plain")
 	public String runReport(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
-		DBUtil.ReportProducePDF();
+		DBUtil.ReportProducePDF("c:/reports", "Sozlesme.jrxml", "499");
 		return "";
 
 	}
