@@ -7,7 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class DBUtil {
 
@@ -5884,42 +5891,6 @@ public class DBUtil {
 
 	}
 
-	// // INSERT
-	// public static String putEgitimTuruAlanKategorileri(String
-	// egitim_turu_adi,
-	// String alan_adi) {
-	//
-	// String result = "";
-	//
-	// getConnection();
-	//
-	// String strSQL =
-	// "INSERT INTO egitim_turu_alan_kategorileri(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
-	//
-	// List<String> lstValues = new ArrayList<String>();
-	//
-	// lstValues.add(egitim_turu_adi);
-	// lstValues.add(alan_adi);
-	//
-	// result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
-	//
-	// if (result.length() > 1) {
-	//
-	// System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
-	// + result);
-	//
-	// }
-	//
-	// return result;
-	//
-	// }
-
-	//
-	//
-	//
-	//
-	//
-
 	public static String insertRegisteredUsers(String userName,
 			String userPass, String companyPersonName, String phone1,
 			String phone2, String district, String city, String state,
@@ -6278,4 +6249,57 @@ public class DBUtil {
 		return result;
 
 	}
+
+	public static void ReportProducePDF() {
+
+		try {
+
+			System.out.println("Start ....");
+
+			getConnection();
+
+			// Get jasper report
+			String jrxmlFileName = "C:/reports/Sozlesme.jrxml";
+			String jasperFileName = "C:/reports/Sozlesme22.jasper";
+			String pdfFileName = "C:/reports/test.pdf";
+
+			JasperCompileManager.compileReportToFile(jrxmlFileName,
+					jasperFileName);
+
+			// // String dbUrl = props.getProperty("jdbc.url");
+			// String dbUrl = "jdbc:oracle:thin:@localhost:1521:mydbname";
+			// // String dbDriver = props.getProperty("jdbc.driver");
+			// String dbDriver = "oracle.jdbc.driver.OracleDriver";
+			// // String dbUname = props.getProperty("db.username");
+			// String dbUname = "mydb";
+			// // String dbPwd = props.getProperty("db.password");
+			// String dbPwd = "mydbpw";
+			//
+			// // Load the JDBC driver
+			// Class.forName(dbDriver);
+			// // Get the connection
+			// Connection conn = DriverManager
+			// .getConnection(dbUrl, dbUname, dbPwd);
+
+			// Create arguments
+			// Map params = new HashMap();
+			Map<String, Object> hm = new HashMap();
+			hm.put("ID", "123");
+			hm.put("DATENAME", "April 2006");
+
+			// Generate jasper print
+			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(
+					jasperFileName, hm, _con);
+
+			// Export pdf file
+			JasperExportManager.exportReportToPdfFile(jprint, pdfFileName);
+
+			System.out.println("Done exporting reports to pdf");
+
+		} catch (Exception e) {
+			System.out.print("Exceptiion" + e);
+		}
+
+	}
+
 }

@@ -2057,35 +2057,6 @@ public class RegisterResource {
 				konu_adi);
 	}
 
-	// @GET
-	// @Path("getegitimturualankategorileri")
-	// @Produces("application/xml")
-	// public List<EgitimTuruAlanKategorileri> getEgitimTuruAlanKategorileri(
-	// @Context UriInfo info) {
-	// // throw new UnsupportedOperationException("Not yet implemented.");
-	//
-	// String criteria = "WHERE (1 = 1) ";
-	//
-	// String id = info.getQueryParameters().getFirst("id");
-	// if ((id != null) && id.length() > 0) {
-	//
-	// criteria = criteria + " AND id = '" + id + "'";
-	// }
-	//
-	// String egitim_turu_adi = info.getQueryParameters().getFirst(
-	// "egitim_turu_adi");
-	// if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
-	//
-	// criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
-	// + "'";
-	// }
-	//
-	// List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
-	// .getEgitimTuruAlanKategorileri(criteria);
-	//
-	// return listEgitimTuruAlanKategorileri;
-	// }
-
 	@GET
 	@Path("putegitimturualankategorileri")
 	@Produces("application/xml")
@@ -2395,6 +2366,19 @@ public class RegisterResource {
 
 		// TODO Later read from database
 		return "180";
+	}
+
+	// REPORTS
+
+	@GET
+	@Path("run_report")
+	@Produces("text/plain")
+	public String runReport(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		DBUtil.ReportProducePDF();
+		return "";
+
 	}
 
 }
