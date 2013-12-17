@@ -2370,13 +2370,28 @@ public class RegisterResource {
 
 	// REPORTS
 
+	// @GET
+	// @Path("run_report")
+	// @Produces("text/plain")
+	// public String runReport(@Context UriInfo info) {
+	// // throw new UnsupportedOperationException("Not yet implemented.");
+	//
+	// DBUtil.ReportProducePDF("c:/reports", "Sozlesme.jrxml", "499");
+	// return "";
+	//
+	// }
+
 	@GET
-	@Path("run_report2")
+	@Path("run_report")
 	@Produces("text/plain")
 	public String runReport(@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
+		// // throw new UnsupportedOperationException("Not yet implemented.");
 
-		DBUtil.ReportProducePDF("c:/reports", "Sozlesme.jrxml", "499");
+		String path = info.getQueryParameters().getFirst("path");
+		String file = info.getQueryParameters().getFirst("file");
+		String id = info.getQueryParameters().getFirst("id");
+
+		DBUtil.ReportProducePDF(path, file, id);
 		return "";
 
 	}
