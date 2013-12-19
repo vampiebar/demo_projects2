@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -6174,9 +6173,9 @@ public class DBUtil {
 		try {
 
 			_con = DriverManager.getConnection(
-					"jdbc:postgresql://localhost/icacourses:5432", "postgres",
-					"akay");
-			// "pbhbar");
+					"jdbc:postgresql://localhost/icacourses:6432", "postgres",
+					// "akay");
+					"pbhbar");
 
 			return _con;
 
@@ -6269,18 +6268,25 @@ public class DBUtil {
 			String pdfFileName = path + "/"
 					+ jrxmlFile.replace(".jrxml", ".pdf");
 
-			JasperCompileManager.compileReportToFile(jrxmlFileName,
-					jasperFileName);
+			System.out.print("Compiling Report");
+			// JasperCompileManager.compileReportToFile(jrxmlFileName,
+			// jasperFileName);
+
+			System.out.print("FINISHED COMPILE");
 
 			// Create arguments
 			// Map params = new HashMap();
 			Map<String, Object> hm = new HashMap();
-			hm.put("id", id);
+			hm.put("parID", id);
 			hm.put("DATENAME", "April 2006");
+
+			System.out.println("PAR ID: " + hm.get("parID"));
 
 			// Generate jasper print
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(
 					jasperFileName, hm, _con);
+
+			System.out.print("FINISHED FILL REPORT");
 
 			// Export pdf file
 			JasperExportManager.exportReportToPdfFile(jprint, pdfFileName);

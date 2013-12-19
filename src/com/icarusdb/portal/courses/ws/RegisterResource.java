@@ -2387,11 +2387,13 @@ public class RegisterResource {
 	public String runReport(@Context UriInfo info) {
 		// // throw new UnsupportedOperationException("Not yet implemented.");
 
-		String path = info.getQueryParameters().getFirst("path");
-		String file = info.getQueryParameters().getFirst("file");
+		String path = info.getQueryParameters().getFirst("path")
+				.replace("___", " ");
+		System.out.println("path" + path);
+		String jrxmlFile = info.getQueryParameters().getFirst("jrxmlfile");
 		String id = info.getQueryParameters().getFirst("id");
 
-		DBUtil.ReportProducePDF(path, file, id);
+		DBUtil.ReportProducePDF(path, jrxmlFile, id);
 		return "";
 
 	}
