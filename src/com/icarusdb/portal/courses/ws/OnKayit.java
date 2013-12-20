@@ -19,15 +19,17 @@ public class OnKayit {
 	private String ogrenci_bilgileri_il;
 	private String ogrenci_bilgileri_ilce;
 	private String okul;
+	private String okul_numarasi;
 	private String ogrenci_bilgileri_sinif;
-	private String egitim_turu;
-	private String alan;
-	private String kurs_zamani;
+	private String gorusme_egitim_turu;
+	private String gorusme_alan;
+	private String gorusme_kurs_zamani;
 	private String gorusme_sinif;
-	private String kurs_indirim_fiyati;
-	private String indirim_turu;
-	private String indirim_miktari;
-	private String referans;
+	private String gorusme_kurs_indirim_fiyati;
+	private String gorusme_indirim_turu;
+	private String gorusme_indirim_sekli;
+	private String gorusme_indirim_miktari;
+	private String gorusme_referans;
 	private String gorusme_tarihi;
 	private String gorusme_tipi;
 	private String gorusme_sonucu;
@@ -38,32 +40,73 @@ public class OnKayit {
 		return id;
 	}
 
+	public String getGorusme_egitim_turu() {
+		return gorusme_egitim_turu;
+	}
+
+	public void setGorusme_egitim_turu(String gorusme_egitim_turu) {
+		this.gorusme_egitim_turu = gorusme_egitim_turu;
+	}
+
+	public String getGorusme_alan() {
+		return gorusme_alan;
+	}
+
+	public void setGorusme_alan(String gorusme_alan) {
+		this.gorusme_alan = gorusme_alan;
+	}
+
+	public String getGorusme_kurs_zamani() {
+		return gorusme_kurs_zamani;
+	}
+
+	public void setGorusme_kurs_zamani(String gorusme_kurs_zamani) {
+		this.gorusme_kurs_zamani = gorusme_kurs_zamani;
+	}
+
+	public String getGorusme_kurs_indirim_fiyati() {
+		return gorusme_kurs_indirim_fiyati;
+	}
+
+	public void setGorusme_kurs_indirim_fiyati(
+			String gorusme_kurs_indirim_fiyati) {
+		this.gorusme_kurs_indirim_fiyati = gorusme_kurs_indirim_fiyati;
+	}
+
+	public String getGorusme_indirim_turu() {
+		return gorusme_indirim_turu;
+	}
+
+	public void setGorusme_indirim_turu(String gorusme_indirim_turu) {
+		this.gorusme_indirim_turu = gorusme_indirim_turu;
+	}
+
+	public String getGorusme_indirim_sekli() {
+		return gorusme_indirim_sekli;
+	}
+
+	public void setGorusme_indirim_sekli(String gorusme_indirim_sekli) {
+		this.gorusme_indirim_sekli = gorusme_indirim_sekli;
+	}
+
+	public String getGorusme_indirim_miktari() {
+		return gorusme_indirim_miktari;
+	}
+
+	public void setGorusme_indirim_miktari(String gorusme_indirim_miktari) {
+		this.gorusme_indirim_miktari = gorusme_indirim_miktari;
+	}
+
+	public String getGorusme_referans() {
+		return gorusme_referans;
+	}
+
+	public void setGorusme_referans(String gorusme_referans) {
+		this.gorusme_referans = gorusme_referans;
+	}
+
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getEgitim_turu() {
-		return egitim_turu;
-	}
-
-	public void setEgitim_turu(String egitim_turu) {
-		this.egitim_turu = egitim_turu;
-	}
-
-	public String getAlan() {
-		return alan;
-	}
-
-	public void setAlan(String alan) {
-		this.alan = alan;
-	}
-
-	public String getKurs_zamani() {
-		return kurs_zamani;
-	}
-
-	public void setKurs_zamani(String kurs_zamani) {
-		this.kurs_zamani = kurs_zamani;
 	}
 
 	public String getGorusme_sinif() {
@@ -72,38 +115,6 @@ public class OnKayit {
 
 	public void setGorusme_sinif(String gorusme_sinif) {
 		this.gorusme_sinif = gorusme_sinif;
-	}
-
-	public String getKurs_indirim_fiyati() {
-		return kurs_indirim_fiyati;
-	}
-
-	public void setKurs_indirim_fiyati(String kurs_indirim_fiyati) {
-		this.kurs_indirim_fiyati = kurs_indirim_fiyati;
-	}
-
-	public String getIndirim_turu() {
-		return indirim_turu;
-	}
-
-	public void setIndirim_turu(String indirim_turu) {
-		this.indirim_turu = indirim_turu;
-	}
-
-	public String getIndirim_miktari() {
-		return indirim_miktari;
-	}
-
-	public void setIndirim_miktari(String indirim_miktari) {
-		this.indirim_miktari = indirim_miktari;
-	}
-
-	public String getReferans() {
-		return referans;
-	}
-
-	public void setReferans(String referans) {
-		this.referans = referans;
 	}
 
 	public String getGorusme_tarihi() {
@@ -270,6 +281,14 @@ public class OnKayit {
 		this.okul = okul;
 	}
 
+	public String getOkul_numarasi() {
+		return okul_numarasi;
+	}
+
+	public void setOkul_numarasi(String okul_numarasi) {
+		this.okul_numarasi = okul_numarasi;
+	}
+
 	public String getOgrenci_bilgileri_sinif() {
 		return ogrenci_bilgileri_sinif;
 	}
@@ -431,6 +450,97 @@ public class OnKayit {
 
 	public void setSokak_ve_no(String sokak_ve_no) {
 		this.sokak_ve_no = sokak_ve_no;
+	}
+
+	private String egitim_turu;
+	private String alan;
+	private String kurs_zamani;
+	private String sinif;
+	private String ogrenci_numarasi;
+	private String kurs_indirim_fiyati;
+	private String indirim_turu;
+	private String indirim_sekli;
+	private String indirim_miktari;
+	private String referans;
+
+	public String getEgitim_turu() {
+		return egitim_turu;
+	}
+
+	public void setEgitim_turu(String egitim_turu) {
+		this.egitim_turu = egitim_turu;
+	}
+
+	public String getAlan() {
+		return alan;
+	}
+
+	public void setAlan(String alan) {
+		this.alan = alan;
+	}
+
+	public String getKurs_zamani() {
+		return kurs_zamani;
+	}
+
+	public void setKurs_zamani(String kurs_zamani) {
+		this.kurs_zamani = kurs_zamani;
+	}
+
+	public String getSinif() {
+		return sinif;
+	}
+
+	public void setSinif(String sinif) {
+		this.sinif = sinif;
+	}
+
+	public String getOgrenci_numarasi() {
+		return ogrenci_numarasi;
+	}
+
+	public void setOgrenci_numarasi(String ogrenci_numarasi) {
+		this.ogrenci_numarasi = ogrenci_numarasi;
+	}
+
+	public String getKurs_indirim_fiyati() {
+		return kurs_indirim_fiyati;
+	}
+
+	public void setKurs_indirim_fiyati(String kurs_indirim_fiyati) {
+		this.kurs_indirim_fiyati = kurs_indirim_fiyati;
+	}
+
+	public String getIndirim_turu() {
+		return indirim_turu;
+	}
+
+	public void setIndirim_turu(String indirim_turu) {
+		this.indirim_turu = indirim_turu;
+	}
+
+	public String getIndirim_sekli() {
+		return indirim_sekli;
+	}
+
+	public void setIndirim_sekli(String indirim_sekli) {
+		this.indirim_sekli = indirim_sekli;
+	}
+
+	public String getIndirim_miktari() {
+		return indirim_miktari;
+	}
+
+	public void setIndirim_miktari(String indirim_miktari) {
+		this.indirim_miktari = indirim_miktari;
+	}
+
+	public String getReferans() {
+		return referans;
+	}
+
+	public void setReferans(String referans) {
+		this.referans = referans;
 	}
 
 }

@@ -20,6 +20,15 @@ public class Odemeler {
 	private String taksitin_yatacagi_banka;
 	private String taksit_sayisi;
 	private String takside_baslanacak_gun;
+	private String ogrenci_numarasi;
+
+	public String getOgrenci_numarasi() {
+		return ogrenci_numarasi;
+	}
+
+	public void setOgrenci_numarasi(String ogrenci_numarasi) {
+		this.ogrenci_numarasi = ogrenci_numarasi;
+	}
 
 	public String getId() {
 		return id;

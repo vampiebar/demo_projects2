@@ -177,32 +177,6 @@ public class RegisterResource {
 					+ tc_kimlik_no + "%'";
 		}
 
-		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
-		if ((egitim_turu != null) && egitim_turu.length() > 0) {
-
-			criteria = criteria + " AND egitim_turu ilike " + "'%"
-					+ egitim_turu + "%'";
-		}
-
-		String alan = info.getQueryParameters().getFirst("alan");
-		if ((alan != null) && alan.length() > 0) {
-
-			criteria = criteria + " AND alan ilike " + "'%" + alan + "%'";
-		}
-
-		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
-		if ((kurs_zamani != null) && alan.length() > 0) {
-
-			criteria = criteria + " AND kurs_zamani ilike " + "'%"
-					+ kurs_zamani + "%'";
-		}
-
-		String sinif = info.getQueryParameters().getFirst("sinif");
-		if ((sinif != null) && alan.length() > 0) {
-
-			criteria = criteria + " AND sinif ilike " + "'%" + sinif + "%'";
-		}
-
 		List<OnKayit> listOnKayit = DBUtil.getOnKayit(criteria);
 
 		return listOnKayit;
@@ -297,10 +271,166 @@ public class RegisterResource {
 				gorusme_tarihi, gorusme_tipi, gorusme_sonucu, gorusme_yuzdesi,
 				aciklama, seri_no, cuzdan_no, ogrenci_kimlik_bilgileri_ulke,
 				ogrenci_kimlik_bilgileri_il, ogrenci_kimlik_bilgileri_ilce,
-				mahalle, cilt_no, aile_sira_no, sira_no, verildigi_yer,
+				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
 				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
-				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle_koy,
+				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle,
 				sokak_ve_no);
+	}
+
+	@GET
+	@Path("getkesinkayitbilgileri")
+	@Produces("application/xml")
+	public List<OnKayit> getKesinKayitBilgileri(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		List<OnKayit> listOnKayit = DBUtil.getOnKayit(criteria);
+
+		return listOnKayit;
+	}
+
+	@GET
+	@Path("putkesinkayitbilgileri")
+	@Produces("application/xml")
+	public String putKesinKayitBilgileri(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String adi = info.getQueryParameters().getFirst("adi");
+		String soyadi = info.getQueryParameters().getFirst("soyadi");
+		String tc_kimlik_no = info.getQueryParameters()
+				.getFirst("tc_kimlik_no");
+		String cinsiyet = info.getQueryParameters().getFirst("cinsiyet");
+		String medeni_hali = info.getQueryParameters().getFirst("medeni_hali");
+		String dogum_tarihi = info.getQueryParameters()
+				.getFirst("dogum_tarihi");
+		String ev_telefonu = info.getQueryParameters().getFirst("ev_telefonu");
+		String cep_telefonu = info.getQueryParameters()
+				.getFirst("cep_telefonu");
+		String email = info.getQueryParameters().getFirst("email");
+		String ogrenci_bilgileri_ulke = info.getQueryParameters().getFirst(
+				"ogrenci_bilgileri_ulke");
+		String ogrenci_bilgileri_il = info.getQueryParameters().getFirst(
+				"ogrenci_bilgileri_il");
+		String ogrenci_bilgileri_ilce = info.getQueryParameters().getFirst(
+				"ogrenci_bilgileri_ilce");
+		String okul = info.getQueryParameters().getFirst("okul");
+		String okul_numarasi = info.getQueryParameters().getFirst(
+				"okul_numarasi");
+		String ogrenci_bilgileri_sinif = info.getQueryParameters().getFirst(
+				"ogrenci_bilgileri_sinif");
+		String seri_no = info.getQueryParameters().getFirst("seri_no");
+		String cuzdan_no = info.getQueryParameters().getFirst("cuzdan_no");
+		String ogrenci_kimlik_bilgileri_ulke = info.getQueryParameters()
+				.getFirst("ogrenci_kimlik_bilgileri_ulke");
+		String ogrenci_kimlik_bilgileri_il = info.getQueryParameters()
+				.getFirst("ogrenci_kimlik_bilgileri_il");
+		String ogrenci_kimlik_bilgileri_ilce = info.getQueryParameters()
+				.getFirst("ogrenci_kimlik_bilgileri_ilce");
+		String mahalle_koy = info.getQueryParameters().getFirst("mahalle_koy");
+		String cilt_no = info.getQueryParameters().getFirst("cilt_no");
+		String aile_sira_no = info.getQueryParameters()
+				.getFirst("aile_sira_no");
+		String sira_no = info.getQueryParameters().getFirst("sira_no");
+		String verildigi_yer = info.getQueryParameters().getFirst(
+				"verildigi_yer");
+		String verilis_nedeni = info.getQueryParameters().getFirst(
+				"verilis_nedeni");
+		String kayit_no = info.getQueryParameters().getFirst("kayit_no");
+		String verilis_tarihi = info.getQueryParameters().getFirst(
+				"verilis_tarihi");
+		String adres_bilgileri_ulke = info.getQueryParameters().getFirst(
+				"adres_bilgileri_ulke");
+		String adres_bilgileri_il = info.getQueryParameters().getFirst(
+				"adres_bilgileri_il");
+		String adres_bilgileri_ilce = info.getQueryParameters().getFirst(
+				"adres_bilgileri_ilce");
+		String mahalle = info.getQueryParameters().getFirst("mahalle");
+		String semt = info.getQueryParameters().getFirst("semt");
+		String sokak_ve_no = info.getQueryParameters().getFirst("sokak_ve_no");
+		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
+		String alan = info.getQueryParameters().getFirst("alan");
+		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
+		String sinif = info.getQueryParameters().getFirst("sinif");
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
+		String kurs_indirim_fiyati = info.getQueryParameters().getFirst(
+				"kurs_indirim_fiyati");
+		String indirim_turu = info.getQueryParameters()
+				.getFirst("indirim_turu");
+		String indirim_sekli = info.getQueryParameters().getFirst(
+				"indirim_sekli");
+		String indirim_miktari = info.getQueryParameters().getFirst(
+				"indirim_miktari");
+		String referans = info.getQueryParameters().getFirst("referans");
+
+		return DBUtil.putKesinKayitBilgileri(id, adi, soyadi, tc_kimlik_no,
+				cinsiyet, medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu,
+				email, ogrenci_bilgileri_ulke, ogrenci_bilgileri_il,
+				ogrenci_bilgileri_ilce, okul, okul_numarasi,
+				ogrenci_bilgileri_sinif, seri_no, cuzdan_no,
+				ogrenci_kimlik_bilgileri_ulke, ogrenci_kimlik_bilgileri_il,
+				ogrenci_kimlik_bilgileri_ilce, mahalle_koy, cilt_no,
+				aile_sira_no, sira_no, verildigi_yer, verilis_nedeni, kayit_no,
+				verilis_tarihi, adres_bilgileri_ulke, adres_bilgileri_il,
+				adres_bilgileri_ilce, semt, mahalle, sokak_ve_no, egitim_turu,
+				alan, kurs_zamani, sinif, ogrenci_numarasi,
+				kurs_indirim_fiyati, indirim_turu, indirim_sekli,
+				indirim_miktari, referans);
+	}
+
+	@GET
+	@Path("gethizmetler")
+	@Produces("application/xml")
+	public List<Hizmetler> getHizmetler(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
+		if ((ogrenci_numarasi != null) && ogrenci_numarasi.length() > 0) {
+
+			criteria = criteria + " AND ogrenci_numarasi = '"
+					+ ogrenci_numarasi + "'";
+		}
+
+		List<Hizmetler> listHizmetler = DBUtil.getHizmetler(criteria);
+
+		return listHizmetler;
+	}
+
+	@GET
+	@Path("puthizmetler")
+	@Produces("application/xml")
+	public String putHizmetler(@Context UriInfo info) {
+
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String hizmet_turu = info.getQueryParameters().getFirst("hizmet_turu");
+		String hizmet_adi = info.getQueryParameters().getFirst("hizmet_adi");
+		String miktar = info.getQueryParameters().getFirst("miktar");
+		String hizmetler_indirim_turu = info.getQueryParameters().getFirst(
+				"hizmetler_indirim_turu");
+		String hizmetler_indirim_miktari = info.getQueryParameters().getFirst(
+				"hizmetler_indirim_miktari");
+
+		return DBUtil.putHizmetler(id, hizmet_turu, hizmet_adi, miktar,
+				hizmetler_indirim_turu, hizmetler_indirim_miktari);
 	}
 
 	@GET
@@ -378,6 +508,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
+		if ((ogrenci_numarasi != null) && ogrenci_numarasi.length() > 0) {
+
+			criteria = criteria + " AND ogrenci_numarasi = '"
+					+ ogrenci_numarasi + "'";
 		}
 
 		List<Odemeler> listOdemeler = DBUtil.getOdemeler(criteria);
