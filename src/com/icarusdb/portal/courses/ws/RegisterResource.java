@@ -211,18 +211,22 @@ public class RegisterResource {
 		String ogrenci_bilgileri_sinif = info.getQueryParameters().getFirst(
 				"ogrenci_bilgileri_sinif");
 
-		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
-		String alan = info.getQueryParameters().getFirst("alan");
-		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
+		String gorusme_egitim_turu = info.getQueryParameters().getFirst(
+				"gorusme_egitim_turu");
+		String gorusme_alan = info.getQueryParameters()
+				.getFirst("gorusme_alan");
+		String gorusme_kurs_zamani = info.getQueryParameters().getFirst(
+				"gorusme_kurs_zamani");
 		String gorusme_sinif = info.getQueryParameters().getFirst(
 				"gorusme_sinif");
-		String kurs_indirim_fiyati = info.getQueryParameters().getFirst(
-				"kurs_indirim_fiyati");
-		String indirim_turu = info.getQueryParameters()
-				.getFirst("indirim_turu");
-		String indirim_miktari = info.getQueryParameters().getFirst(
-				"indirim_miktari");
-		String referans = info.getQueryParameters().getFirst("referans");
+		String gorusme_kurs_indirim_fiyati = info.getQueryParameters()
+				.getFirst("gorusme_kurs_indirim_fiyati");
+		String gorusme_indirim_turu = info.getQueryParameters().getFirst(
+				"gorusme_indirim_turu");
+		String gorusme_indirim_miktari = info.getQueryParameters().getFirst(
+				"gorusme_indirim_miktari");
+		String gorusme_referans = info.getQueryParameters().getFirst(
+				"gorusme_referans");
 		String gorusme_tarihi = info.getQueryParameters().getFirst(
 				"gorusme_tarihi");
 		String gorusme_tipi = info.getQueryParameters()
@@ -266,15 +270,16 @@ public class RegisterResource {
 				medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu, email,
 				ogrenci_bilgileri_ulke, ogrenci_bilgileri_il,
 				ogrenci_bilgileri_ilce, okul, ogrenci_bilgileri_sinif,
-				egitim_turu, alan, kurs_zamani, gorusme_sinif,
-				kurs_indirim_fiyati, indirim_turu, indirim_miktari, referans,
-				gorusme_tarihi, gorusme_tipi, gorusme_sonucu, gorusme_yuzdesi,
-				aciklama, seri_no, cuzdan_no, ogrenci_kimlik_bilgileri_ulke,
-				ogrenci_kimlik_bilgileri_il, ogrenci_kimlik_bilgileri_ilce,
-				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
-				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
-				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle,
-				sokak_ve_no);
+				gorusme_egitim_turu, gorusme_alan, gorusme_kurs_zamani,
+				gorusme_sinif, gorusme_kurs_indirim_fiyati,
+				gorusme_indirim_turu, gorusme_indirim_miktari,
+				gorusme_referans, gorusme_tarihi, gorusme_tipi, gorusme_sonucu,
+				gorusme_yuzdesi, aciklama, seri_no, cuzdan_no,
+				ogrenci_kimlik_bilgileri_ulke, ogrenci_kimlik_bilgileri_il,
+				ogrenci_kimlik_bilgileri_ilce, mahalle_koy, cilt_no,
+				aile_sira_no, sira_no, verildigi_yer, verilis_nedeni, kayit_no,
+				verilis_tarihi, adres_bilgileri_ulke, adres_bilgileri_il,
+				adres_bilgileri_ilce, semt, mahalle, sokak_ve_no);
 	}
 
 	@GET
@@ -291,7 +296,7 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
-		List<OnKayit> listOnKayit = DBUtil.getOnKayit(criteria);
+		List<OnKayit> listOnKayit = DBUtil.getKesinKayitBilgileri(criteria);
 
 		return listOnKayit;
 	}
