@@ -5547,14 +5547,15 @@ public class DBUtil {
 
 	// EĞİTİM TÜRÜ ADI
 	// GET
-	public static List<EgitimTuru> getEgitimTuru(String criteria) {
-		List<EgitimTuru> listEgitimTuru = new ArrayList<EgitimTuru>();
+	public static List<EgitimTuruTanimlama> getEgitimTuruTanimlama(
+			String criteria) {
+		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = new ArrayList<EgitimTuruTanimlama>();
 
 		getConnection();
 
 		System.out.println("CRITERIA: " + criteria);
 
-		String strSQL = "SELECT * FROM egitim_turu ";
+		String strSQL = "SELECT * FROM egitim_turu_tanimlama ";
 		if (criteria.length() > 15) {
 
 			strSQL = strSQL + criteria;
@@ -5578,13 +5579,13 @@ public class DBUtil {
 			restTemp = stmtTemp.executeQuery(strSQL);
 
 			while (restTemp.next()) {
-				EgitimTuru EgitimTuru = new EgitimTuru();
+				EgitimTuruTanimlama EgitimTuruTanimlama = new EgitimTuruTanimlama();
 
-				EgitimTuru.setId(restTemp.getString("id"));
-				EgitimTuru.setEgitim_turu_adi(restTemp
+				EgitimTuruTanimlama.setId(restTemp.getString("id"));
+				EgitimTuruTanimlama.setEgitim_turu_adi(restTemp
 						.getString("egitim_turu_adi"));
 
-				listEgitimTuru.add(EgitimTuru);
+				listEgitimTuruTanimlama.add(EgitimTuruTanimlama);
 			}
 
 			// Close
@@ -5595,13 +5596,15 @@ public class DBUtil {
 		} catch (SQLException e) {
 
 			try {
-				System.err.println("getegitimturu Error: " + e.getMessage());
+				System.err.println("getegitimturutanimlama Error: "
+						+ e.getMessage());
 				restTemp.close();
 				stmtTemp.close();
 				_con.close();
 
 			} catch (SQLException e1) {
-				System.err.println("getegitimturu Error: " + e1.getMessage());
+				System.err.println("getegitimturutanimlama Error: "
+						+ e1.getMessage());
 				e1.printStackTrace();
 			}
 
@@ -5609,22 +5612,48 @@ public class DBUtil {
 
 		}
 
-		return listEgitimTuru;
+		return listEgitimTuruTanimlama;
 
 	}
 
 	// INSERT
-	public static String putEgitimTuru(String egitim_turu_adi) {
+	public static String putEgitimTuruTanimlama(String id,
+			String egitim_turu_adi) {
 
 		String result = "";
+		boolean isInsert = true;
 
 		getConnection();
+		String strSQL = "";
 
-		String strSQL = "INSERT INTO egitim_turu(egitim_turu_adi)  VALUES (?) ";
+		if (id == null) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi)  VALUES (?) ";
+
+		} else if (id.length() <= 0) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi)  VALUES (?) ";
+
+		} else if (new Long(id).longValue() < 0) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi)  VALUES (?) ";
+		}
+
+		else {
+
+			strSQL = "UPDATE egitim_turu_tanimlama SET egitim_turu_adi= ?  	WHERE id = ?  ::bigint";
+
+			isInsert = false;
+		}
 
 		List<String> lstValues = new ArrayList<String>();
 
 		lstValues.add(egitim_turu_adi);
+
+		if (!isInsert) {
+
+			lstValues.add(id);
+		}
 
 		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
 
@@ -6122,10 +6151,10 @@ public class DBUtil {
 
 	// EĞİTİM TÜRÜ Alan KATEGORİLERİ
 	// GET
-	public static List<EgitimTuru> getEgitimTuruAlanKategorileriGetEgitimTuru(
+	public static List<EgitimTuruTanimlama> getEgitimTuruAlanKategorileriGetEgitimTuru(
 			String criteria) {
 
-		List<EgitimTuru> listEgitimTuruAlanKategorileri = new ArrayList<EgitimTuru>();
+		List<EgitimTuruTanimlama> listEgitimTuruAlanKategorileri = new ArrayList<EgitimTuruTanimlama>();
 
 		getConnection();
 
@@ -6155,7 +6184,7 @@ public class DBUtil {
 			restTemp = stmtTemp.executeQuery(strSQL);
 
 			while (restTemp.next()) {
-				EgitimTuru egitimTuru = new EgitimTuru();
+				EgitimTuruTanimlama egitimTuru = new EgitimTuruTanimlama();
 
 				egitimTuru.setId(restTemp.getString("id"));
 				egitimTuru.setEgitim_turu_adi(restTemp

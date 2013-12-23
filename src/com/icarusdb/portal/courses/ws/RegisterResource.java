@@ -1994,9 +1994,10 @@ public class RegisterResource {
 	}
 
 	@GET
-	@Path("getegitimturu")
+	@Path("getegitimturutanimlama")
 	@Produces("application/xml")
-	public List<EgitimTuru> getEgitimTuru(@Context UriInfo info) {
+	public List<EgitimTuruTanimlama> getEgitimTurutanimlama(
+			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String criteria = "WHERE (1 = 1) ";
@@ -2015,21 +2016,23 @@ public class RegisterResource {
 					+ "'";
 		}
 
-		List<EgitimTuru> listEgitimTuru = DBUtil.getEgitimTuru(criteria);
+		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
+				.getEgitimTuruTanimlama(criteria);
 
-		return listEgitimTuru;
+		return listEgitimTuruTanimlama;
 	}
 
 	@GET
-	@Path("putegitimturu")
+	@Path("putegitimturutanimlama")
 	@Produces("application/xml")
-	public String putEgitimTuru(@Context UriInfo info) {
+	public String putEgitimTurutanimlama(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
+		String id = info.getQueryParameters().getFirst("id");
 
 		String egitim_turu_adi = info.getQueryParameters().getFirst(
 				"egitim_turu_adi");
 
-		return DBUtil.putEgitimTuru(egitim_turu_adi);
+		return DBUtil.putEgitimTuruTanimlama(id, egitim_turu_adi);
 
 	}
 
@@ -2252,7 +2255,7 @@ public class RegisterResource {
 	@GET
 	@Path("getEgitimTuruAlanKategorileriGetEgitimTuru")
 	@Produces("application/xml")
-	public List<EgitimTuru> getEgitimTuruAlanKategorileriGetEgitimTuru(
+	public List<EgitimTuruTanimlama> getEgitimTuruAlanKategorileriGetEgitimTuru(
 			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
@@ -2278,7 +2281,7 @@ public class RegisterResource {
 			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
 		}
 
-		List<EgitimTuru> listEgitimTuruAlanKategorileri = DBUtil
+		List<EgitimTuruTanimlama> listEgitimTuruAlanKategorileri = DBUtil
 				.getEgitimTuruAlanKategorileriGetEgitimTuru(criteria);
 
 		return listEgitimTuruAlanKategorileri;
