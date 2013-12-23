@@ -831,14 +831,14 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO hiztmerler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO hiztmerler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO hiztmerler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
 
 		}
 
