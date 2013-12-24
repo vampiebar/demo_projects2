@@ -35,6 +35,16 @@ public class OnKayit {
 	private String gorusme_sonucu;
 	private String gorusme_yuzdesi;
 	private String aciklama;
+	private String sinif_bilgileri_kurs_indirim_fiyati;
+
+	public String getSinif_bilgileri_kurs_indirim_fiyati() {
+		return sinif_bilgileri_kurs_indirim_fiyati;
+	}
+
+	public void setSinif_bilgileri_kurs_indirim_fiyati(
+			String sinif_bilgileri_kurs_indirim_fiyati) {
+		this.sinif_bilgileri_kurs_indirim_fiyati = sinif_bilgileri_kurs_indirim_fiyati;
+	}
 
 	public String getId() {
 		return id;

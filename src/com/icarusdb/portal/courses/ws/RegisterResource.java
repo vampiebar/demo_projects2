@@ -366,8 +366,8 @@ public class RegisterResource {
 		String sinif = info.getQueryParameters().getFirst("sinif");
 		String ogrenci_numarasi = info.getQueryParameters().getFirst(
 				"ogrenci_numarasi");
-		String kurs_indirim_fiyati = info.getQueryParameters().getFirst(
-				"kurs_indirim_fiyati");
+		String sinif_bilgileri_kurs_indirim_fiyati = info.getQueryParameters()
+				.getFirst("sinif_bilgileri_kurs_indirim_fiyati");
 		String indirim_turu = info.getQueryParameters()
 				.getFirst("indirim_turu");
 		String indirim_sekli = info.getQueryParameters().getFirst(
@@ -387,8 +387,8 @@ public class RegisterResource {
 				verilis_tarihi, adres_bilgileri_ulke, adres_bilgileri_il,
 				adres_bilgileri_ilce, semt, mahalle, sokak_ve_no, egitim_turu,
 				alan, kurs_zamani, sinif, ogrenci_numarasi,
-				kurs_indirim_fiyati, indirim_turu, indirim_sekli,
-				indirim_miktari, referans);
+				sinif_bilgileri_kurs_indirim_fiyati, indirim_turu,
+				indirim_sekli, indirim_miktari, referans);
 	}
 
 	@GET
@@ -2016,6 +2016,13 @@ public class RegisterResource {
 					+ "'";
 		}
 
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
 		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
 				.getEgitimTuruTanimlama(criteria);
 
@@ -2031,9 +2038,37 @@ public class RegisterResource {
 
 		String egitim_turu_adi = info.getQueryParameters().getFirst(
 				"egitim_turu_adi");
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
 
-		return DBUtil.putEgitimTuruTanimlama(id, egitim_turu_adi);
+		return DBUtil.putEgitimTuruTanimlama(id, egitim_turu_adi, alan_adi);
 
+	}
+
+	@GET
+	@Path("getegitimturu")
+	@Produces("application/xml")
+	public List<EgitimTuru> getEgitim(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
+		List<EgitimTuru> listEgitimTuru = DBUtil.getEgitimTuru(criteria);
+
+		return listEgitimTuru;
 	}
 
 	@GET
@@ -2220,8 +2255,7 @@ public class RegisterResource {
 	@GET
 	@Path("getegitimturualankategorileri")
 	@Produces("application/xml")
-	public List<EgitimTuruAlanKategorileri> getEgitimTuruAlanKategorileri(
-			@Context UriInfo info) {
+	public List<EgitimTuru> getEgitimTuruAlanKategorileri(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String criteria = "WHERE (1 = 1) ";
@@ -2246,7 +2280,7 @@ public class RegisterResource {
 			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
 		}
 
-		List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
+		List<EgitimTuru> listEgitimTuruAlanKategorileri = DBUtil
 				.getEgitimTuruAlanKategorileri(criteria);
 
 		return listEgitimTuruAlanKategorileri;
@@ -2281,16 +2315,16 @@ public class RegisterResource {
 			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
 		}
 
-		List<EgitimTuruTanimlama> listEgitimTuruAlanKategorileri = DBUtil
+		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
 				.getEgitimTuruAlanKategorileriGetEgitimTuru(criteria);
 
-		return listEgitimTuruAlanKategorileri;
+		return listEgitimTuruTanimlama;
 	}
 
 	@GET
-	@Path("getEgitimTuruAlanKategorileriGetAlanAdi")
+	@Path("getegitimturutanimlamaalanadi")
 	@Produces("application/xml")
-	public List<EgitimTuruAlanKategorileri> getEgitimTuruAlanKategorileriGetAlanAdi(
+	public List<EgitimTuruTanimlama> getEgitimTuruAlanKategorileriGetAlanAdi(
 			@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
@@ -2316,10 +2350,10 @@ public class RegisterResource {
 			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
 		}
 
-		List<EgitimTuruAlanKategorileri> listEgitimTuruAlanKategorileri = DBUtil
-				.getEgitimTuruAlanKategorileriGetAlanAdi(criteria);
+		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
+				.getEgitimTuruTanimlamaGetAlanAdi(criteria);
 
-		return listEgitimTuruAlanKategorileri;
+		return listEgitimTuruTanimlama;
 	}
 
 	@POST
