@@ -1497,6 +1497,28 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+
+		if ((ders_adi != null) && ders_adi.length() > 0) {
+
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
 		List<DersTanimlari> listDersTanimlari = DBUtil
 				.getDersTanimlari(criteria);
 		return listDersTanimlari;
@@ -1529,6 +1551,35 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu_adi = info.getQueryParameters().getFirst(
+				"egitim_turu_adi");
+		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
+					+ "'";
+		}
+
+		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+
+		if ((alan_adi != null) && alan_adi.length() > 0) {
+
+			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+
+		if ((ders_adi != null) && ders_adi.length() > 0) {
+
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+
+		if ((unite_adi != null) && unite_adi.length() > 0) {
+
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
 		}
 
 		List<UniteTanimlari> listUniteTanimlari = DBUtil
