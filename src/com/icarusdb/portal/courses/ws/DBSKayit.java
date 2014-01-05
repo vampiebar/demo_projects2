@@ -42,6 +42,16 @@ public class DBSKayit {
 	private String alan_bilgisi;
 	private String sinav_tarihi;
 
+	private String adi_soyadi_tc_kimlik_no;
+
+	public String getAdi_soyadi_tc_kimlik_no() {
+		return adi_soyadi_tc_kimlik_no;
+	}
+
+	public void setAdi_soyadi_tc_kimlik_no(String adi_soyadi_tc_kimlik_no) {
+		this.adi_soyadi_tc_kimlik_no = adi_soyadi_tc_kimlik_no;
+	}
+
 	public String getId() {
 		return id;
 	}

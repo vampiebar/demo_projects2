@@ -32,6 +32,16 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String adi_soyadi_tc_kimlik_no = info.getQueryParameters().getFirst(
+				"adi_soyadi_tc_kimlik_no");
+
+		if ((adi_soyadi_tc_kimlik_no != null)
+				&& adi_soyadi_tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND adi || soyadi || tc_kimlik_no ilike '%"
+					+ adi_soyadi_tc_kimlik_no + "%'";
+		}
+
 		String adi = info.getQueryParameters().getFirst("adi");
 		if ((adi != null) && adi.length() > 0) {
 
@@ -147,6 +157,16 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String adi_soyadi_tc_kimlik_no = info.getQueryParameters().getFirst(
+				"adi_soyadi_tc_kimlik_no");
+
+		if ((adi_soyadi_tc_kimlik_no != null)
+				&& adi_soyadi_tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND adi || soyadi || tc_kimlik_no ilike '%"
+					+ adi_soyadi_tc_kimlik_no + "%'";
 		}
 
 		String kesin_kayit_mi = info.getQueryParameters().getFirst(
@@ -716,6 +736,7 @@ public class RegisterResource {
 	public String putOdevOlustur(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
+		String id = info.getQueryParameters().getFirst("id");
 		String odev_adi = info.getQueryParameters().getFirst("odev_adi");
 		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
 		String alan = info.getQueryParameters().getFirst("alan");
@@ -723,8 +744,8 @@ public class RegisterResource {
 		String unite = info.getQueryParameters().getFirst("unite");
 		String soru_sayisi = info.getQueryParameters().getFirst("soru_sayisi");
 
-		return DBUtil.putOdevOlustur(odev_adi, egitim_turu, alan, ders, unite,
-				soru_sayisi);
+		return DBUtil.putOdevOlustur(id, odev_adi, egitim_turu, alan, ders,
+				unite, soru_sayisi);
 	}
 
 	@GET
@@ -792,12 +813,13 @@ public class RegisterResource {
 	public String putOdevTakipUnite(@Context UriInfo info) {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
+		String id = info.getQueryParameters().getFirst("id");
 		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
 		String alan = info.getQueryParameters().getFirst("alan");
 		String ders = info.getQueryParameters().getFirst("ders");
 		String unite = info.getQueryParameters().getFirst("unite");
 
-		return DBUtil.putOdevTakipUnite(egitim_turu, alan, ders, unite);
+		return DBUtil.putOdevTakipUnite(id, egitim_turu, alan, ders, unite);
 	}
 
 	@GET
@@ -2123,25 +2145,11 @@ public class RegisterResource {
 	}
 
 	@GET
-	@Path("putegitimturualankategorileri")
+	@Path("getegitimturusinifadi")
 	@Produces("application/xml")
-	public String putEgitimTuruAlanKategorileri(@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
-		String egitim_turu_adi = info.getQueryParameters().getFirst(
-				"egitim_turu_adi");
-		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
-
-		return DBUtil.putEgitimTuruAlanKategorileri(egitim_turu_adi, alan_adi);
-
-	}
-
-	@GET
-	@Path("getegitimturualankategorileri")
-	@Produces("application/xml")
-	public List<EgitimTuru> getEgitimTuruAlanKategorileri(@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
+	public List<EgitimTuruSinifAdi> getEgitimTuruSinifAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
 		String criteria = "WHERE (1 = 1) ";
 
 		String id = info.getQueryParameters().getFirst("id");
@@ -2150,33 +2158,194 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
-		String egitim_turu_adi = info.getQueryParameters().getFirst(
-				"egitim_turu_adi");
-		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		if ((sinif_adi != null) && sinif_adi.length() > 0) {
 
-			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
-					+ "'";
+			criteria = criteria + " AND sinif_adi = '" + sinif_adi + "'";
 		}
 
-		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
-		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
-
-			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
-		}
-
-		List<EgitimTuru> listEgitimTuruAlanKategorileri = DBUtil
-				.getEgitimTuruAlanKategorileri(criteria);
-
-		return listEgitimTuruAlanKategorileri;
+		List<EgitimTuruSinifAdi> listEgitimTuruSinifAdi = DBUtil
+				.getEgitimTuruSinifAdi(criteria);
+		return listEgitimTuruSinifAdi;
 	}
 
 	@GET
-	@Path("getEgitimTuruAlanKategorileriGetEgitimTuru")
+	@Path("putegitimturusinifadi")
 	@Produces("application/xml")
-	public List<EgitimTuruTanimlama> getEgitimTuruAlanKategorileriGetEgitimTuru(
+	public String putEgitimTuruSinifAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+
+		return DBUtil.putEgitimTuruSinifAdi(id, sinif_adi);
+	}
+
+	@GET
+	@Path("getegitimturudersadi")
+	@Produces("application/xml")
+	public List<EgitimTuruDersAdi> getEgitimTuruDersAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		if ((sinif_adi != null) && sinif_adi.length() > 0) {
+
+			criteria = criteria + " AND sinif_adi = '" + sinif_adi + "'";
+		}
+
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		if ((ders_adi != null) && ders_adi.length() > 0) {
+
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
+		List<EgitimTuruDersAdi> listEgitimTuruDersAdi = DBUtil
+				.getEgitimTuruDersAdi(criteria);
+		return listEgitimTuruDersAdi;
+	}
+
+	@GET
+	@Path("putegitimturudersadi")
+	@Produces("application/xml")
+	public String putEgitimTuruDersAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+
+		return DBUtil.putEgitimTuruDersAdi(id, sinif_adi, ders_adi);
+	}
+
+	@GET
+	@Path("getegitimturuuniteadi")
+	@Produces("application/xml")
+	public List<EgitimTuruUniteAdi> getEgitimTuruUniteAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		if ((sinif_adi != null) && sinif_adi.length() > 0) {
+
+			criteria = criteria + " AND sinif_adi = '" + sinif_adi + "'";
+		}
+
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		if ((ders_adi != null) && ders_adi.length() > 0) {
+
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		if ((unite_adi != null) && unite_adi.length() > 0) {
+
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
+		}
+
+		List<EgitimTuruUniteAdi> listEgitimTuruUniteAdi = DBUtil
+				.getEgitimTuruUniteAdi(criteria);
+		return listEgitimTuruUniteAdi;
+	}
+
+	@GET
+	@Path("putegitimturuuniteadi")
+	@Produces("application/xml")
+	public String putEgitimTuruUniteAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+
+		return DBUtil.putEgitimTuruUniteAdi(id, sinif_adi, ders_adi, unite_adi);
+	}
+
+	@GET
+	@Path("getegitimturukonuadi")
+	@Produces("application/xml")
+	public List<EgitimTuruKonuAdi> getEgitimTuruKonuAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		if ((sinif_adi != null) && sinif_adi.length() > 0) {
+
+			criteria = criteria + " AND sinif_adi = '" + sinif_adi + "'";
+		}
+
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		if ((ders_adi != null) && ders_adi.length() > 0) {
+
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		if ((unite_adi != null) && unite_adi.length() > 0) {
+
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
+		}
+
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+		if ((konu_adi != null) && konu_adi.length() > 0) {
+
+			criteria = criteria + " AND konu_adi = '" + konu_adi + "'";
+		}
+
+		List<EgitimTuruKonuAdi> listEgitimTuruKonuAdi = DBUtil
+				.getEgitimTuruKonuAdi(criteria);
+		return listEgitimTuruKonuAdi;
+	}
+
+	@GET
+	@Path("putegitimturukonuadi")
+	@Produces("application/xml")
+	public String putEgitimTuruKonuAdi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+
+		return DBUtil.putEgitimTuruKonuAdi(id, sinif_adi, ders_adi, unite_adi,
+				konu_adi);
+	}
+
+	@GET
+	@Path("getegitimturukazanimlar")
+	@Produces("application/xml")
+	public List<EgitimTuruKazanimlar> getEgitimTuruKazanimlar(
 			@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
 		String criteria = "WHERE (1 = 1) ";
 
 		String id = info.getQueryParameters().getFirst("id");
@@ -2185,59 +2354,56 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
-		String egitim_turu_adi = info.getQueryParameters().getFirst(
-				"egitim_turu_adi");
-		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		if ((sinif_adi != null) && sinif_adi.length() > 0) {
 
-			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
-					+ "'";
+			criteria = criteria + " AND sinif_adi = '" + sinif_adi + "'";
 		}
 
-		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
-		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		if ((ders_adi != null) && ders_adi.length() > 0) {
 
-			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
 		}
 
-		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
-				.getEgitimTuruAlanKategorileriGetEgitimTuru(criteria);
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		if ((unite_adi != null) && unite_adi.length() > 0) {
 
-		return listEgitimTuruTanimlama;
+			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
+		}
+
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+		if ((konu_adi != null) && konu_adi.length() > 0) {
+
+			criteria = criteria + " AND konu_adi = '" + konu_adi + "'";
+		}
+
+		String kazanimlar = info.getQueryParameters().getFirst("kazanimlar");
+		if ((kazanimlar != null) && kazanimlar.length() > 0) {
+
+			criteria = criteria + " AND kazanimlar = '" + kazanimlar + "'";
+		}
+
+		List<EgitimTuruKazanimlar> listEgitimTuruKazanimlar = DBUtil
+				.getEgitimTuruKazanimlar(criteria);
+		return listEgitimTuruKazanimlar;
 	}
 
 	@GET
-	@Path("getegitimturutanimlamaalanadi")
+	@Path("putegitimturukazanimlar")
 	@Produces("application/xml")
-	public List<EgitimTuruTanimlama> getEgitimTuruAlanKategorileriGetAlanAdi(
-			@Context UriInfo info) {
-		// throw new UnsupportedOperationException("Not yet implemented.");
-
-		String criteria = "WHERE (1 = 1) ";
+	public String putEgitimTuruKazanimlar(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
 
 		String id = info.getQueryParameters().getFirst("id");
-		if ((id != null) && id.length() > 0) {
-
-			criteria = criteria + " AND id = '" + id + "'";
-		}
-
-		String egitim_turu_adi = info.getQueryParameters().getFirst(
-				"egitim_turu_adi");
-		if ((egitim_turu_adi != null) && egitim_turu_adi.length() > 0) {
-
-			criteria = criteria + " AND egitim_turu_adi = '" + egitim_turu_adi
-					+ "'";
-		}
-
-		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
-		if ((alan_adi != null) && egitim_turu_adi.length() > 0) {
-
-			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
-		}
-
-		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
-				.getEgitimTuruTanimlamaGetAlanAdi(criteria);
-
-		return listEgitimTuruTanimlama;
+		String sinif_adi = info.getQueryParameters().getFirst("sinif_adi");
+		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+		String kazanimlar = info.getQueryParameters().getFirst("kazanimlar");
+		return DBUtil.putKonuTanimlari(id, sinif_adi, ders_adi, unite_adi,
+				konu_adi, kazanimlar);
 	}
 
 	@POST
