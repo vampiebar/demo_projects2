@@ -1346,6 +1346,12 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String hizmet_turu = info.getQueryParameters().getFirst("hizmet_turu");
+		if ((hizmet_turu != null) && hizmet_turu.length() > 0) {
+
+			criteria = criteria + " AND hizmet_turu = '" + hizmet_turu + "'";
+		}
+
 		List<HizmetTanimla> listHizmetTanimla = DBUtil
 				.getHizmetTanimla(criteria);
 
