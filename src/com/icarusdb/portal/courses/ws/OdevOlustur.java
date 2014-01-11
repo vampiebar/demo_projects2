@@ -5,12 +5,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class OdevOlustur {
 
+	private String id;
 	private String odev_adi;
 	private String egitim_turu;
 	private String alan;
 	private String ders;
 	private String unite;
 	private String soru_sayisi;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getOdev_adi() {
 		return odev_adi;

@@ -38,7 +38,8 @@ public class RegisterResource {
 		if ((adi_soyadi_tc_kimlik_no != null)
 				&& adi_soyadi_tc_kimlik_no.length() > 0) {
 
-			criteria = criteria + " AND adi || soyadi || tc_kimlik_no ilike '%"
+			criteria = criteria
+					+ " AND (adi || soyadi || tc_kimlik_no) ilike '%"
 					+ adi_soyadi_tc_kimlik_no + "%'";
 		}
 
@@ -245,6 +246,8 @@ public class RegisterResource {
 				"gorusme_indirim_turu");
 		String gorusme_indirim_miktari = info.getQueryParameters().getFirst(
 				"gorusme_indirim_miktari");
+		String gorusme_indirim_sekli = info.getQueryParameters().getFirst(
+				"gorusme_indirim_sekli");
 		String gorusme_referans = info.getQueryParameters().getFirst(
 				"gorusme_referans");
 		String gorusme_tarihi = info.getQueryParameters().getFirst(
@@ -293,13 +296,14 @@ public class RegisterResource {
 				gorusme_egitim_turu, gorusme_alan, gorusme_kurs_zamani,
 				gorusme_sinif, gorusme_kurs_indirim_fiyati,
 				gorusme_indirim_turu, gorusme_indirim_miktari,
-				gorusme_referans, gorusme_tarihi, gorusme_tipi, gorusme_sonucu,
-				gorusme_yuzdesi, aciklama, seri_no, cuzdan_no,
-				ogrenci_kimlik_bilgileri_ulke, ogrenci_kimlik_bilgileri_il,
-				ogrenci_kimlik_bilgileri_ilce, mahalle_koy, cilt_no,
-				aile_sira_no, sira_no, verildigi_yer, verilis_nedeni, kayit_no,
-				verilis_tarihi, adres_bilgileri_ulke, adres_bilgileri_il,
-				adres_bilgileri_ilce, semt, mahalle, sokak_ve_no);
+				gorusme_indirim_sekli, gorusme_referans, gorusme_tarihi,
+				gorusme_tipi, gorusme_sonucu, gorusme_yuzdesi, aciklama,
+				seri_no, cuzdan_no, ogrenci_kimlik_bilgileri_ulke,
+				ogrenci_kimlik_bilgileri_il, ogrenci_kimlik_bilgileri_ilce,
+				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
+				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
+				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle,
+				sokak_ve_no);
 	}
 
 	@GET
@@ -722,6 +726,12 @@ public class RegisterResource {
 		if ((ders != null) && ders.length() > 0) {
 
 			criteria = criteria + " AND ders ilike " + "'%" + ders + "%'";
+		}
+
+		String unite = info.getQueryParameters().getFirst("unite");
+		if ((unite != null) && unite.length() > 0) {
+
+			criteria = criteria + " AND unite ilike " + "'%" + unite + "%'";
 		}
 
 		List<OdevOlustur> listOdevOlustur = DBUtil.getOdevOlustur(criteria);
@@ -1221,6 +1231,26 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String egitim_turu = info.getQueryParameters().getFirst("egitim_turu");
+		if ((egitim_turu != null) && egitim_turu.length() > 0) {
+
+			criteria = criteria + " AND egitim_turu = '" + egitim_turu + "'";
+		}
+
+		String alan = info.getQueryParameters().getFirst("alan");
+
+		if ((alan != null) && alan.length() > 0) {
+
+			criteria = criteria + " AND alan  = '" + alan + "'";
+		}
+
+		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
+
+		if ((kurs_zamani != null) && kurs_zamani.length() > 0) {
+
+			criteria = criteria + " AND kurs_zamani  = '" + kurs_zamani + "'";
 		}
 
 		List<SinifTanimlari> listSinifTanimlari = DBUtil
