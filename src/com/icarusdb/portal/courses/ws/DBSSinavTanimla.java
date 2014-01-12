@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class DBSSinavTanimla {
 
 	private String id;
-	private String okul_adi;
+	private String okul_durumu;
 	private String alan_bilgisi;
 	private String sinav_tarihi;
 	private String kota;
@@ -28,12 +28,12 @@ public class DBSSinavTanimla {
 		this.id = id;
 	}
 
-	public String getOkul_adi() {
-		return okul_adi;
+	public String getOkul_durumu() {
+		return okul_durumu;
 	}
 
-	public void setOkul_adi(String okul_adi) {
-		this.okul_adi = okul_adi;
+	public void setOkul_durumu(String okul_durumu) {
+		this.okul_durumu = okul_durumu;
 	}
 
 	public String getAlan_bilgisi() {

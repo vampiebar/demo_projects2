@@ -1132,6 +1132,18 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
+		if ((okul_durumu != null) && okul_durumu.length() > 0) {
+
+			criteria = criteria + " AND okul_durumu = '" + okul_durumu + "'";
+		}
+		String alan_bilgisi = info.getQueryParameters()
+				.getFirst("alan_bilgisi");
+		if ((alan_bilgisi != null) && alan_bilgisi.length() > 0) {
+
+			criteria = criteria + " AND alan_bilgisi = '" + alan_bilgisi + "'";
+		}
+
 		List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil
 				.getDBSSinavTanimla(criteria);
 		return listDBSSinavTanimla;

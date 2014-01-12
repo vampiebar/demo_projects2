@@ -1243,7 +1243,8 @@ public class DBUtil {
 				DBSSinavTanimla DBSSinavTanimla = new DBSSinavTanimla();
 
 				DBSSinavTanimla.setId(restTemp.getString("id"));
-				DBSSinavTanimla.setOkul_adi(restTemp.getString("okul_adi"));
+				DBSSinavTanimla.setOkul_durumu(restTemp
+						.getString("okul_durumu"));
 				DBSSinavTanimla.setAlan_bilgisi(restTemp
 						.getString("alan_bilgisi"));
 				DBSSinavTanimla.setSinav_tarihi(restTemp
@@ -1294,7 +1295,7 @@ public class DBUtil {
 	}
 
 	// INSERT
-	public static String putDBSSinavTanimla(String id, String okul_adi,
+	public static String putDBSSinavTanimla(String id, String okul_durumu,
 			String alan_bilgisi, String sinav_tarihi, String kota,
 			String sinav_yeri, String ulke, String il, String ilce,
 			String semt, String mahalle_koy, String adres, String saat,
@@ -1308,27 +1309,27 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_adi,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_adi,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_adi,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE dbs_sinav_tanimla SET okul_adi = ?,alan_bilgisi = ?,sinav_tarihi= ?::date, kota= ?, sinav_yeri= ?,ulke=?,il = ?,ilce= ?,semt= ?,mahalle_koy= ?,adres = ?,saat=?,dakika = ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE dbs_sinav_tanimla SET okul_durumu = ?,alan_bilgisi = ?,sinav_tarihi= ?::date, kota= ?, sinav_yeri= ?,ulke=?,il = ?,ilce= ?,semt= ?,mahalle_koy= ?,adres = ?,saat=?,dakika = ?  	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
 
 		List<String> lstValues = new ArrayList<String>();
 
-		lstValues.add(okul_adi);
+		lstValues.add(okul_durumu);
 		lstValues.add(alan_bilgisi);
 		lstValues.add(sinav_tarihi);
 		lstValues.add(kota);
