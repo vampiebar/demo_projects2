@@ -343,6 +343,7 @@ public class DBUtil {
 				onKayit.setSemt(restTemp.getString("semt"));
 				onKayit.setMahalle(restTemp.getString("mahalle"));
 				onKayit.setSokak_ve_no(restTemp.getString("sokak_ve_no"));
+				onKayit.setKesin_kayit_mi(restTemp.getString("kesin_kayit_mi"));
 
 				listOnKayit.add(onKayit);
 
@@ -401,7 +402,8 @@ public class DBUtil {
 			String verildigi_yer, String verilis_nedeni, String kayit_no,
 			String verilis_tarihi, String adres_bilgileri_ulke,
 			String adres_bilgileri_il, String adres_bilgileri_ilce,
-			String semt, String mahalle, String sokak_ve_no) {
+			String semt, String mahalle, String sokak_ve_no,
+			String kesin_kayit_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -413,24 +415,24 @@ public class DBUtil {
 		if (id == null) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
 			strSQL = "UPDATE on_kayit SET adi = ?,soyadi = ?,tc_kimlik_no = ? ,cinsiyet = ? ,medeni_hali = ? ,dogum_tarihi = ?::date ,ev_telefonu = ? ,cep_telefonu = ? ,email = ? , ogrenci_bilgileri_ulke  = ? , ogrenci_bilgileri_il  = ? , ogrenci_bilgileri_ilce  = ? ,okul  = ? ,ogrenci_bilgileri_sinif = ? ,gorusme_egitim_turu = ? ,gorusme_alan = ? ,"
-					+ "gorusme_kurs_zamani = ? ,gorusme_sinif = ? ,gorusme_kurs_indirim_fiyati = ? , gorusme_indirim_turu = ? , gorusme_indirim_miktari = ?,gorusme_indirim_sekli= ? ,gorusme_referans = ? , gorusme_tarihi = ?::date ,gorusme_tipi = ? ,  gorusme_sonucu  = ? , gorusme_yuzdesi = ? ,aciklama   = ? , seri_no = ? ,cuzdan_no = ? ,ogrenci_kimlik_bilgileri_ulke = ? ,ogrenci_kimlik_bilgileri_il = ? ,ogrenci_kimlik_bilgileri_ilce = ? ,mahalle_koy = ? ,cilt_no = ? ,aile_sira_no = ? ,sira_no = ? ,verildigi_yer = ? ,verilis_nedeni = ? ,kayit_no = ? ,verilis_tarihi = ?::date ,adres_bilgileri_ulke = ? ,adres_bilgileri_il = ? , adres_bilgileri_ilce = ? ,semt = ? ,mahalle = ? ,sokak_ve_no = ?  WHERE id = ?::bigint ";
+					+ "gorusme_kurs_zamani = ? ,gorusme_sinif = ? ,gorusme_kurs_indirim_fiyati = ? , gorusme_indirim_turu = ? , gorusme_indirim_miktari = ?,gorusme_indirim_sekli= ? ,gorusme_referans = ? , gorusme_tarihi = ?::date ,gorusme_tipi = ? ,  gorusme_sonucu  = ? , gorusme_yuzdesi = ? ,aciklama   = ? , seri_no = ? ,cuzdan_no = ? ,ogrenci_kimlik_bilgileri_ulke = ? ,ogrenci_kimlik_bilgileri_il = ? ,ogrenci_kimlik_bilgileri_ilce = ? ,mahalle_koy = ? ,cilt_no = ? ,aile_sira_no = ? ,sira_no = ? ,verildigi_yer = ? ,verilis_nedeni = ? ,kayit_no = ? ,verilis_tarihi = ?::date ,adres_bilgileri_ulke = ? ,adres_bilgileri_il = ? , adres_bilgileri_ilce = ? ,semt = ? ,mahalle = ? ,sokak_ve_no = ?,kesin_kayit_mi= ?::boolean  WHERE id = ?::bigint ";
 
 			isInsert = false;
 		}
@@ -483,6 +485,7 @@ public class DBUtil {
 		lstValues.add(semt);
 		lstValues.add(mahalle);
 		lstValues.add(sokak_ve_no);
+		lstValues.add(kesin_kayit_mi);
 
 		if (!isInsert) {
 
@@ -1594,9 +1597,12 @@ public class DBUtil {
 				SaatGirisi SaatGirisi = new SaatGirisi();
 
 				SaatGirisi.setId(restTemp.getString("id"));
-				SaatGirisi.setBaslangic_saati(restTemp
-						.getString("baslangic_saati"));
-				SaatGirisi.setBitis_saati(restTemp.getString("bitis_saati"));
+				SaatGirisi.setBaslangic_saat(restTemp
+						.getString("baslangic_saat"));
+				SaatGirisi.setBaslangic_dakika(restTemp
+						.getString("baslangic_dakika"));
+				SaatGirisi.setBitis_saat(restTemp.getString("bitis_saat"));
+				SaatGirisi.setBitis_dakika(restTemp.getString("bitis_dakika"));
 				SaatGirisi.setGun(restTemp.getString("gun"));
 				SaatGirisi.setAciklama(restTemp.getString("aciklama"));
 
@@ -1631,8 +1637,9 @@ public class DBUtil {
 	}
 
 	// INSERT
-	public static String putSaatGirisi(String id, String baslangic_saati,
-			String bitis_saati, String gun, String aciklama) {
+	public static String putSaatGirisi(String id, String baslangic_saat,
+			String baslangic_dakika, String bitis_saat, String bitis_dakika,
+			String gun, String aciklama) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -1643,28 +1650,30 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saati,bitis_saati,gun,aciklama)  VALUES (?::time,?::time,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saati,bitis_saati,gun,aciklama)  VALUES (?::time,?::time,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saati,bitis_saati,gun,aciklama)  VALUES (?::time,?::time,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE saat_girisi SET baslangic_saati= ?::time,bitis_saati= ?::time,gun= ?,aciklama= ?  	WHERE id = ?  ::bigint";
+			strSQL = "UPDATE saat_girisi SET baslangic_saat= ?,baslangic_dakika= ?,bitis_saat= ?,bitis_dakika= ?,gun= ?,aciklama= ?  	WHERE id = ?  ::bigint";
 
 			isInsert = false;
 		}
 
 		List<String> lstValues = new ArrayList<String>();
 
-		lstValues.add(baslangic_saati);
-		lstValues.add(bitis_saati);
+		lstValues.add(baslangic_saat);
+		lstValues.add(baslangic_dakika);
+		lstValues.add(bitis_saat);
+		lstValues.add(bitis_dakika);
 		lstValues.add(gun);
 		lstValues.add(aciklama);
 
@@ -4763,7 +4772,7 @@ public class DBUtil {
 
 		String strSQL = "";
 
-		System.out.println(" wqeqweqwqw: " + id);
+		System.out.println(" sozlesme: " + sozlesme);
 
 		if (id == null) {
 

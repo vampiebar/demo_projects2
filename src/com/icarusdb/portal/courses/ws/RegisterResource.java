@@ -1,5 +1,6 @@
 package com.icarusdb.portal.courses.ws;
 
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -288,6 +289,8 @@ public class RegisterResource {
 		String mahalle = info.getQueryParameters().getFirst("mahalle");
 		String semt = info.getQueryParameters().getFirst("semt");
 		String sokak_ve_no = info.getQueryParameters().getFirst("sokak_ve_no");
+		String kesin_kayit_mi = info.getQueryParameters().getFirst(
+				"kesin_kayit_mi");
 
 		return DBUtil.putOnKayit(id, adi, soyadi, tc_kimlik_no, cinsiyet,
 				medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu, email,
@@ -303,7 +306,7 @@ public class RegisterResource {
 				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
 				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
 				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle,
-				sokak_ve_no);
+				sokak_ve_no, kesin_kayit_mi);
 	}
 
 	@GET
@@ -692,14 +695,18 @@ public class RegisterResource {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String id = info.getQueryParameters().getFirst("id");
-		String baslangic_saati = info.getQueryParameters().getFirst(
-				"baslangic_saati");
-		String bitis_saati = info.getQueryParameters().getFirst("bitis_saati");
+		String baslangic_saat = info.getQueryParameters().getFirst(
+				"baslangic_saat");
+		String baslangic_dakika = info.getQueryParameters().getFirst(
+				"baslangic_dakika");
+		String bitis_saat = info.getQueryParameters().getFirst("bitis_saat");
+		String bitis_dakika = info.getQueryParameters()
+				.getFirst("bitis_dakika");
 		String gun = info.getQueryParameters().getFirst("gun");
 		String aciklama = info.getQueryParameters().getFirst("aciklama");
 
-		return DBUtil.putSaatGirisi(id, baslangic_saati, bitis_saati, gun,
-				aciklama);
+		return DBUtil.putSaatGirisi(id, baslangic_saat, baslangic_dakika,
+				bitis_saat, bitis_dakika, gun, aciklama);
 	}
 
 	@GET
@@ -1795,6 +1802,7 @@ public class RegisterResource {
 
 		String id = info.getQueryParameters().getFirst("id");
 		String sozlesme = info.getQueryParameters().getFirst("sozlesme");
+		String urldecode = URLDecoder.decode(sozlesme);
 
 		return DBUtil.putSozlesmeMaddeleri(id, sozlesme);
 	}

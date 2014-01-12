@@ -6,8 +6,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SaatGirisi {
 
 	private String id;
-	private String baslangic_saati;
-	private String bitis_saati;
+	private String baslangic_saat;
+	private String bitis_saat;
+	private String baslangic_dakika;
+	private String bitis_dakika;
 	private String gun;
 	private String aciklama;
 
@@ -19,20 +21,36 @@ public class SaatGirisi {
 		this.id = id;
 	}
 
-	public String getBaslangic_saati() {
-		return baslangic_saati;
+	public String getBaslangic_saat() {
+		return baslangic_saat;
 	}
 
-	public void setBaslangic_saati(String baslangic_saati) {
-		this.baslangic_saati = baslangic_saati;
+	public void setBaslangic_saat(String baslangic_saat) {
+		this.baslangic_saat = baslangic_saat;
 	}
 
-	public String getBitis_saati() {
-		return bitis_saati;
+	public String getBitis_saat() {
+		return bitis_saat;
 	}
 
-	public void setBitis_saati(String bitis_saati) {
-		this.bitis_saati = bitis_saati;
+	public void setBitis_saat(String bitis_saat) {
+		this.bitis_saat = bitis_saat;
+	}
+
+	public String getBaslangic_dakika() {
+		return baslangic_dakika;
+	}
+
+	public void setBaslangic_dakika(String baslangic_dakika) {
+		this.baslangic_dakika = baslangic_dakika;
+	}
+
+	public String getBitis_dakika() {
+		return bitis_dakika;
+	}
+
+	public void setBitis_dakika(String bitis_dakika) {
+		this.bitis_dakika = bitis_dakika;
 	}
 
 	public String getGun() {

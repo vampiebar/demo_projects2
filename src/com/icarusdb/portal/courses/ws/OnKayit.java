@@ -36,6 +36,15 @@ public class OnKayit {
 	private String gorusme_yuzdesi;
 	private String aciklama;
 	private String sinif_bilgileri_kurs_indirim_fiyati;
+	private String kesin_kayit_mi;
+
+	public String getKesin_kayit_mi() {
+		return kesin_kayit_mi;
+	}
+
+	public void setKesin_kayit_mi(String kesin_kayit_mi) {
+		this.kesin_kayit_mi = kesin_kayit_mi;
+	}
 
 	public String getSinif_bilgileri_kurs_indirim_fiyati() {
 		return sinif_bilgileri_kurs_indirim_fiyati;
