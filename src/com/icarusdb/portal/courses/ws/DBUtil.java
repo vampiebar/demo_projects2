@@ -4773,7 +4773,12 @@ public class DBUtil {
 
 		String strSQL = "";
 
-		System.out.println(" sozlesme: " + sozlesme);
+		// System.out.println(" sozlesme: " + sozlesme);
+
+		String sozlesmeReplacedChars = sozlesme.replace("___C___", "Ç")
+				.replace("___c___", "ç").replace("___U___", "Ü")
+				.replace("___u___", "ü").replace("___O___", "Ö")
+				.replace("___o___", "ö");
 
 		if (id == null) {
 
@@ -4797,7 +4802,7 @@ public class DBUtil {
 
 		List<String> lstValues = new ArrayList<String>();
 
-		lstValues.add(sozlesme);
+		lstValues.add(sozlesmeReplacedChars);
 
 		if (!isInsert) {
 
