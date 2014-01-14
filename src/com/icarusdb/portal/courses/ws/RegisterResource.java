@@ -2462,6 +2462,44 @@ public class RegisterResource {
 				konu_adi, kazanimlar);
 	}
 
+	@GET
+	@Path("getokulsinifbilgisi")
+	@Produces("application/xml")
+	public List<OkulSinifBilgisi> getOkulSinifBilgisi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
+		if ((okul_durumu != null) && okul_durumu.length() > 0) {
+
+			criteria = criteria + " AND okul_durumu = '" + okul_durumu + "'";
+		}
+
+		List<OkulSinifBilgisi> listOkulSinifBilgisi = DBUtil
+				.getOkulSinifBilgisi(criteria);
+		return listOkulSinifBilgisi;
+	}
+
+	@GET
+	@Path("putokulsinifbilgisi")
+	@Produces("application/xml")
+	public String putOkulSinifBilgisi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
+
+		return DBUtil.putOKulSinifBilgisi(id, okul_durumu);
+	}
+
 	@POST
 	@Path("add")
 	@Produces("application/xml")

@@ -5390,6 +5390,59 @@ public class DBUtil {
 		return listEgitimTuruTanimlama;
 	}
 
+	// INSERT
+	public static String putEgitimTuruTanimlama(String id,
+			String egitim_turu_adi, String alan_adi) {
+
+		String result = "";
+		boolean isInsert = true;
+
+		getConnection();
+		String strSQL = "";
+
+		if (id == null) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+
+		} else if (id.length() <= 0) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+
+		} else if (new Long(id).longValue() < 0) {
+
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+		}
+
+		else {
+
+			strSQL = "UPDATE egitim_turu_tanimlama SET egitim_turu_adi= ?,alan_adi= ?  	WHERE id = ?  ::bigint";
+
+			isInsert = false;
+		}
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(egitim_turu_adi);
+		lstValues.add(alan_adi);
+
+		if (!isInsert) {
+
+			lstValues.add(id);
+		}
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
 	// EĞİTİM TÜRÜ
 	// GET
 	public static List<EgitimTuru> getEgitimTuru(String criteria) {
@@ -5820,59 +5873,6 @@ public class DBUtil {
 	// return listEgitimTuruTanimlama;
 	//
 	// }
-
-	// INSERT
-	public static String putEgitimTuruTanimlama(String id,
-			String egitim_turu_adi, String alan_adi) {
-
-		String result = "";
-		boolean isInsert = true;
-
-		getConnection();
-		String strSQL = "";
-
-		if (id == null) {
-
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
-
-		} else if (id.length() <= 0) {
-
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
-
-		} else if (new Long(id).longValue() < 0) {
-
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
-		}
-
-		else {
-
-			strSQL = "UPDATE egitim_turu_tanimlama SET egitim_turu_adi= ?,alan_adi= ?  	WHERE id = ?  ::bigint";
-
-			isInsert = false;
-		}
-
-		List<String> lstValues = new ArrayList<String>();
-
-		lstValues.add(egitim_turu_adi);
-		lstValues.add(alan_adi);
-
-		if (!isInsert) {
-
-			lstValues.add(id);
-		}
-
-		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
-
-		if (result.length() > 1) {
-
-			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
-					+ result);
-
-		}
-
-		return result;
-
-	}
 
 	// EĞİTİM TÜRÜ SINIF ADİ
 	// GET
@@ -6382,6 +6382,110 @@ public class DBUtil {
 
 		return result;
 	}
+
+	// OKUL SINIF BİLGİSİ
+	// GET
+	public static List<OkulSinifBilgisi> getOkulSinifBilgisi(String criteria) {
+		List<OkulSinifBilgisi> listOkulSinifBilgisi = new ArrayList<OkulSinifBilgisi>();
+
+		getConnection();
+
+		String strSQL = "SELECT * FROM okul_sinif_bilgisi ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				OkulSinifBilgisi OkulSinifBilgisi = new OkulSinifBilgisi();
+
+				OkulSinifBilgisi.setId(restTemp.getString("id"));
+				OkulSinifBilgisi.setOkul_durumu(restTemp
+						.getString("okul_durumu"));
+
+				listOkulSinifBilgisi.add(OkulSinifBilgisi);
+
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getokulsinifbilgisi Error: "
+						+ e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getokulsinifbilgisi Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listOkulSinifBilgisi;
+
+	}
+
+	// INSERT
+	public static String putOKulSinifBilgisi(String id, String okul_durumu) {
+
+		String result = "";
+
+		getConnection();
+
+		String strSQL = "INSERT INTO okul_sinif_bilgisi (okul_durumu)  VALUES (?)";
+
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(id);
+		lstValues.add(okul_durumu);
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+	}
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	public static String insertRegisteredUsers(String userName,
 			String userPass, String companyPersonName, String phone1,
