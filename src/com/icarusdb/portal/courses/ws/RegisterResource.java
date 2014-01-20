@@ -1,6 +1,5 @@
 package com.icarusdb.portal.courses.ws;
 
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,6 +61,22 @@ public class RegisterResource {
 
 			criteria = criteria + " AND tc_kimlik_no ilike " + "'%"
 					+ tc_kimlik_no + "%'";
+		}
+
+		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
+				"ogrenci_tc_kimlik_no");
+		if ((ogrenci_tc_kimlik_no != null) && ogrenci_tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND ogrenci_tc_kimlik_no ilike " + "'%"
+					+ ogrenci_tc_kimlik_no + "%'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<DBSKayit> listDBSKayit = DBUtil.getDBSKayit(criteria);
@@ -132,6 +147,10 @@ public class RegisterResource {
 				.getFirst("alan_bilgisi");
 		String sinav_tarihi = info.getQueryParameters()
 				.getFirst("sinav_tarihi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		String silme_sebebi = info.getQueryParameters()
+				.getFirst("silme_sebebi");
 
 		// System.out.println("IDDDDDDDDDDDDDD: " + id);
 
@@ -144,7 +163,7 @@ public class RegisterResource {
 				aile_sira_no, sira_no, verildigi_yer, verilis_nedeni, kayit_no,
 				verilis_tarihi, adres_bilgileri_ulke, adres_bilgileri_il,
 				adres_bilgileri_ilce, semt, mahalle, sokak_ve_no, okul_durumu,
-				alan_bilgisi, sinav_tarihi);
+				alan_bilgisi, sinav_tarihi, kayit_silinsin_mi, silme_sebebi);
 	}
 
 	@GET
@@ -197,6 +216,14 @@ public class RegisterResource {
 
 			criteria = criteria + " AND tc_kimlik_no ilike " + "'%"
 					+ tc_kimlik_no + "%'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<OnKayit> listOnKayit = DBUtil.getOnKayit(criteria);
@@ -291,6 +318,10 @@ public class RegisterResource {
 		String sokak_ve_no = info.getQueryParameters().getFirst("sokak_ve_no");
 		String kesin_kayit_mi = info.getQueryParameters().getFirst(
 				"kesin_kayit_mi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		String silme_sebebi = info.getQueryParameters()
+				.getFirst("silme_sebebi");
 
 		return DBUtil.putOnKayit(id, adi, soyadi, tc_kimlik_no, cinsiyet,
 				medeni_hali, dogum_tarihi, ev_telefonu, cep_telefonu, email,
@@ -306,7 +337,7 @@ public class RegisterResource {
 				mahalle_koy, cilt_no, aile_sira_no, sira_no, verildigi_yer,
 				verilis_nedeni, kayit_no, verilis_tarihi, adres_bilgileri_ulke,
 				adres_bilgileri_il, adres_bilgileri_ilce, semt, mahalle,
-				sokak_ve_no, kesin_kayit_mi);
+				sokak_ve_no, kesin_kayit_mi, kayit_silinsin_mi, silme_sebebi);
 	}
 
 	@GET
@@ -477,6 +508,13 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String tc_kimlik_no = info.getQueryParameters()
+				.getFirst("tc_kimlik_no");
+		if ((tc_kimlik_no != null) && tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND tc_kimlik_no = '" + tc_kimlik_no + "'";
 		}
 
 		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
@@ -682,6 +720,15 @@ public class RegisterResource {
 
 			criteria = criteria + " AND id = '" + id + "'";
 		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<SaatGirisi> listSaatGirisi = DBUtil.getSaatGirisi(criteria);
 
 		return listSaatGirisi;
@@ -739,6 +786,14 @@ public class RegisterResource {
 		if ((unite != null) && unite.length() > 0) {
 
 			criteria = criteria + " AND unite ilike " + "'%" + unite + "%'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<OdevOlustur> listOdevOlustur = DBUtil.getOdevOlustur(criteria);
@@ -818,6 +873,15 @@ public class RegisterResource {
 
 			criteria = criteria + " AND ders ilike " + "'%" + ders + "%'";
 		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<OdevTakipUnite> listOdevTakipUnite = DBUtil
 				.getOdevTakipUnite(criteria);
 
@@ -903,6 +967,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<SinavTanimlama> listSinavTanimlama = DBUtil
 				.getSinavTanimlama(criteria);
 		return listSinavTanimlama;
@@ -950,6 +1022,15 @@ public class RegisterResource {
 			criteria = criteria + " AND sablon_adi ilike " + "'%" + sablon_adi
 					+ "%'";
 		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<SablonTanimlari> listSablonTanimlari = DBUtil
 				.getSablonTanimlari(criteria);
 
@@ -985,6 +1066,15 @@ public class RegisterResource {
 
 			criteria = criteria + " AND id = '" + id + "'";
 		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<GelirlerveGiderler> listGelirlerveGiderler = DBUtil
 				.getGelirlerveGiderler(criteria);
 
@@ -1029,6 +1119,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<GelirGiderTanimlari> listGelirGiderTanimlari = DBUtil
 				.getGelirGiderTanimlari(criteria);
 		return listGelirGiderTanimlari;
@@ -1066,6 +1164,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<GelirGiderKategorileri> listGelirGiderKategorileri = DBUtil
 				.getGelirGiderKategorileri(criteria);
 		return listGelirGiderKategorileri;
@@ -1096,6 +1202,15 @@ public class RegisterResource {
 
 			criteria = criteria + " AND id = '" + id + "'";
 		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<BankaEkle> listBankaEkle = DBUtil.getBankaEkle(criteria);
 		return listBankaEkle;
 	}
@@ -1144,6 +1259,14 @@ public class RegisterResource {
 			criteria = criteria + " AND alan_bilgisi = '" + alan_bilgisi + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<DBSSinavTanimla> listDBSSinavTanimla = DBUtil
 				.getDBSSinavTanimla(criteria);
 		return listDBSSinavTanimla;
@@ -1188,6 +1311,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<OgretmenTanimlari> listOgretmenTanimlari = DBUtil
@@ -1272,6 +1403,14 @@ public class RegisterResource {
 			criteria = criteria + " AND kurs_zamani  = '" + kurs_zamani + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<SinifTanimlari> listSinifTanimlari = DBUtil
 				.getSinifTanimlari(criteria);
 
@@ -1327,6 +1466,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<IndirimTuru> listIndirimTuru = DBUtil.getIndirimTuru(criteria);
 		return listIndirimTuru;
 	}
@@ -1371,6 +1518,14 @@ public class RegisterResource {
 			criteria = criteria + " AND hizmet_turu = '" + hizmet_turu + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<HizmetTanimla> listHizmetTanimla = DBUtil
 				.getHizmetTanimla(criteria);
 
@@ -1389,9 +1544,10 @@ public class RegisterResource {
 		String hizmet_turu = info.getQueryParameters().getFirst("hizmet_turu");
 		String birim_fiyati = info.getQueryParameters()
 				.getFirst("birim_fiyati");
+		String guzergah = info.getQueryParameters().getFirst("guzergah");
 
 		return DBUtil.putHizmetTanimla(id, hizmet_adi, hizmet_turu,
-				birim_fiyati);
+				birim_fiyati, guzergah);
 
 	}
 
@@ -1407,6 +1563,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<Referanslar> listReferanslar = DBUtil.getReferanslar(criteria);
@@ -1439,6 +1603,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<PersonelTanimlari> listPersonelTanimlari = DBUtil
@@ -1537,6 +1709,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<DonemTanimlari> listDonemTanimlari = DBUtil
 				.getDonemTanimlari(criteria);
 		return listDonemTanimlari;
@@ -1594,6 +1774,14 @@ public class RegisterResource {
 		if ((ders_adi != null) && ders_adi.length() > 0) {
 
 			criteria = criteria + " AND ders_adi = '" + ders_adi + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<DersTanimlari> listDersTanimlari = DBUtil
@@ -1659,6 +1847,14 @@ public class RegisterResource {
 			criteria = criteria + " AND unite_adi = '" + unite_adi + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<UniteTanimlari> listUniteTanimlari = DBUtil
 				.getUniteTanimlari(criteria);
 		return listUniteTanimlari;
@@ -1694,6 +1890,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<KonuTanimlari> listKonuTanimlari = DBUtil
@@ -1735,6 +1939,14 @@ public class RegisterResource {
 			criteria = criteria + " AND id = '" + id + "'";
 		}
 
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
 		List<FizikselSinifTanimlari> listFizikselSinifTanimlari = DBUtil
 				.getFizikselSinifTanimlari(criteria);
 		return listFizikselSinifTanimlari;
@@ -1766,6 +1978,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<KursZamaniTanimlama> listKursZamaniTanimlama = DBUtil
@@ -1814,7 +2034,7 @@ public class RegisterResource {
 
 		String id = info.getQueryParameters().getFirst("id");
 		String sozlesme = info.getQueryParameters().getFirst("sozlesme");
-		String urldecode = URLDecoder.decode(sozlesme);
+		// String urldecode = URLDecoder.decode(sozlesme);
 
 		return DBUtil.putSozlesmeMaddeleri(id, sozlesme);
 	}
@@ -1881,6 +2101,14 @@ public class RegisterResource {
 		if ((id != null) && id.length() > 0) {
 
 			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<KullaniciTanimlama> listKullaniciTanimlama = DBUtil
@@ -2150,6 +2378,14 @@ public class RegisterResource {
 		if ((alan_adi != null) && alan_adi.length() > 0) {
 
 			criteria = criteria + " AND alan_adi = '" + alan_adi + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<EgitimTuruTanimlama> listEgitimTuruTanimlama = DBUtil
@@ -2498,6 +2734,65 @@ public class RegisterResource {
 		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
 
 		return DBUtil.putOKulSinifBilgisi(id, okul_durumu);
+	}
+
+	@GET
+	@Path("getservistanimlama")
+	@Produces("application/xml")
+	public List<ServisTanimlama> getServisTanimlama(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
+		List<ServisTanimlama> listServisTanimlama = DBUtil
+				.getServisTanimlama(criteria);
+
+		return listServisTanimlama;
+	}
+
+	@GET
+	@Path("putservistanimlama")
+	@Produces("application/xml")
+	public String putServisTanimlama(@Context UriInfo info) {
+		// throw new UnsupportedOperationException("Not yet implemented.");
+		String id = info.getQueryParameters().getFirst("id");
+
+		String kodu = info.getQueryParameters().getFirst("kodu");
+		String guzergah = info.getQueryParameters().getFirst("guzergah");
+		String servis_ucreti = info.getQueryParameters().getFirst(
+				"servis_ucreti");
+		String sofor_adi = info.getQueryParameters().getFirst("sofor_adi");
+		String soforun_telefonu = info.getQueryParameters().getFirst(
+				"soforun_telefonu");
+		String arac_sahibi = info.getQueryParameters().getFirst("arac_sahibi");
+		String arac_sahibinin_telefonu = info.getQueryParameters().getFirst(
+				"arac_sahibinin_telefonu");
+		String arac_plakasi = info.getQueryParameters()
+				.getFirst("arac_plakasi");
+		String kapasitesi = info.getQueryParameters().getFirst("kapasitesi");
+		String yolcu_sayisi = info.getQueryParameters()
+				.getFirst("yolcu_sayisi");
+
+		return DBUtil
+				.putServisTanimlama(id, kodu, guzergah, servis_ucreti,
+						sofor_adi, soforun_telefonu, arac_sahibi,
+						arac_sahibinin_telefonu, arac_plakasi, kapasitesi,
+						yolcu_sayisi);
+
 	}
 
 	@POST

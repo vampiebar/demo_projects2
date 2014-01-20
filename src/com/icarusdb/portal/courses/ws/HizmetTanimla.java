@@ -9,6 +9,15 @@ public class HizmetTanimla {
 	private String hizmet_adi;
 	private String hizmet_turu;
 	private String birim_fiyati;
+	private String guzergah;
+
+	public String getGuzergah() {
+		return guzergah;
+	}
+
+	public void setGuzergah(String guzergah) {
+		this.guzergah = guzergah;
+	}
 
 	public String getId() {
 		return id;

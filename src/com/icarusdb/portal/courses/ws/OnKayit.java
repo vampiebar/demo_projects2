@@ -37,6 +37,24 @@ public class OnKayit {
 	private String aciklama;
 	private String sinif_bilgileri_kurs_indirim_fiyati;
 	private String kesin_kayit_mi;
+	private String kayit_silinsin_mi;
+	private String silme_sebebi;
+
+	public String getKayit_silinsin_mi() {
+		return kayit_silinsin_mi;
+	}
+
+	public void setKayit_silinsin_mi(String kayit_silinsin_mi) {
+		this.kayit_silinsin_mi = kayit_silinsin_mi;
+	}
+
+	public String getSilme_sebebi() {
+		return silme_sebebi;
+	}
+
+	public void setSilme_sebebi(String silme_sebebi) {
+		this.silme_sebebi = silme_sebebi;
+	}
 
 	public String getKesin_kayit_mi() {
 		return kesin_kayit_mi;
