@@ -11,6 +11,16 @@ public class DersTanimlari {
 	private String alan_adi;
 	private String ders_adi;
 
+	private String kayit_silinsin_mi;
+
+	public String getKayit_silinsin_mi() {
+		return kayit_silinsin_mi;
+	}
+
+	public void setKayit_silinsin_mi(String kayit_silinsin_mi) {
+		this.kayit_silinsin_mi = kayit_silinsin_mi;
+	}
+
 	public String getId() {
 		return id;
 	}

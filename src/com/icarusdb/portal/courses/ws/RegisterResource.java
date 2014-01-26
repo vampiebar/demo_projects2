@@ -1800,8 +1800,11 @@ public class RegisterResource {
 				"egitim_turu_adi");
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
 		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putDersTanimlari(id, egitim_turu_adi, alan_adi, ders_adi);
+		return DBUtil.putDersTanimlari(id, egitim_turu_adi, alan_adi, ders_adi,
+				kayit_silinsin_mi);
 	}
 
 	@GET
