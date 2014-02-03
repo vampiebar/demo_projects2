@@ -560,11 +560,13 @@ public class RegisterResource {
 				"veli_bilgileri_adres");
 		String ogrenci_tc_kimlik_no = info.getQueryParameters().getFirst(
 				"ogrenci_tc_kimlik_no");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putVeliler(id, veli_bilgileri_adi, veli_bilgileri_soyadi,
 				veli_bilgileri_tc_kimlik_no, yakinlik_durumu, odeme_sorumlusu,
 				cep_tel, ev_tel, is_tel, e_mail, firma, sektor, unvani, gorevi,
-				veli_bilgileri_adres, ogrenci_tc_kimlik_no);
+				veli_bilgileri_adres, ogrenci_tc_kimlik_no, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -751,9 +753,11 @@ public class RegisterResource {
 				.getFirst("bitis_dakika");
 		String gun = info.getQueryParameters().getFirst("gun");
 		String aciklama = info.getQueryParameters().getFirst("aciklama");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putSaatGirisi(id, baslangic_saat, baslangic_dakika,
-				bitis_saat, bitis_dakika, gun, aciklama);
+				bitis_saat, bitis_dakika, gun, aciklama, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -815,9 +819,11 @@ public class RegisterResource {
 		String ders = info.getQueryParameters().getFirst("ders");
 		String unite = info.getQueryParameters().getFirst("unite");
 		String soru_sayisi = info.getQueryParameters().getFirst("soru_sayisi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putOdevOlustur(id, odev_adi, egitim_turu, alan, ders,
-				unite, soru_sayisi);
+				unite, soru_sayisi, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -899,8 +905,11 @@ public class RegisterResource {
 		String alan = info.getQueryParameters().getFirst("alan");
 		String ders = info.getQueryParameters().getFirst("ders");
 		String unite = info.getQueryParameters().getFirst("unite");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putOdevTakipUnite(id, egitim_turu, alan, ders, unite);
+		return DBUtil.putOdevTakipUnite(id, egitim_turu, alan, ders, unite,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -997,9 +1006,12 @@ public class RegisterResource {
 				"sablon_seciniz");
 		String saat = info.getQueryParameters().getFirst("saat");
 		String dakika = info.getQueryParameters().getFirst("dakika");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putSinavTanimlari(id, sinav_no, sinav_adi, tarih,
-				son_kitapcik_no, sablon_seciniz, saat, dakika);
+				son_kitapcik_no, sablon_seciniz, saat, dakika,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1047,8 +1059,11 @@ public class RegisterResource {
 		String id = info.getQueryParameters().getFirst("id");
 		String sablon_adi = info.getQueryParameters().getFirst("sablon_adi");
 		String sinav_turu = info.getQueryParameters().getFirst("sinav_turu");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putSablonTanimlari(id, sablon_adi, sinav_turu);
+		return DBUtil.putSablonTanimlari(id, sablon_adi, sinav_turu,
+				kayit_silinsin_mi);
 
 	}
 
@@ -1099,10 +1114,12 @@ public class RegisterResource {
 		String miktar = info.getQueryParameters().getFirst("miktar");
 		String tarih = info.getQueryParameters().getFirst("tarih");
 		String aciklama = info.getQueryParameters().getFirst("aciklama");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putGelirlerveGiderler(id, islem_tipi, kategoriler,
 				gelirler, odeme_turu, banka, cek, vade_tarihi, miktar, tarih,
-				aciklama);
+				aciklama, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1144,9 +1161,11 @@ public class RegisterResource {
 		String tipi = info.getQueryParameters().getFirst("tipi");
 		String gelir_gider_adi = info.getQueryParameters().getFirst(
 				"gelir_gider_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putGelirGiderTanimlari(id, kategori_adi, tipi,
-				gelir_gider_adi);
+				gelir_gider_adi, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1186,8 +1205,11 @@ public class RegisterResource {
 		String id = info.getQueryParameters().getFirst("id");
 		String kategori_adi = info.getQueryParameters()
 				.getFirst("kategori_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putGelirGiderKategorileri(id, kategori_adi);
+		return DBUtil.putGelirGiderKategorileri(id, kategori_adi,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1229,9 +1251,11 @@ public class RegisterResource {
 		String bankanin_odeme_sekli = info.getQueryParameters().getFirst(
 				"bankanin_odeme_sekli");
 		String vade_tarihi = info.getQueryParameters().getFirst("vade_tarihi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putBankaEkle(id, banka_adi, banka_sube, hesap_no,
-				iban_no, bankanin_odeme_sekli, vade_tarihi);
+				iban_no, bankanin_odeme_sekli, vade_tarihi, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1279,7 +1303,7 @@ public class RegisterResource {
 		// throw new UnsupportedOperationException("Not yet implemented.");
 
 		String id = info.getQueryParameters().getFirst("id");
-		String okul_adi = info.getQueryParameters().getFirst("okul_adi");
+		String okul_durumu = info.getQueryParameters().getFirst("okul_durumu");
 		String alan_bilgisi = info.getQueryParameters()
 				.getFirst("alan_bilgisi");
 		String sinav_tarihi = info.getQueryParameters()
@@ -1294,10 +1318,12 @@ public class RegisterResource {
 		String adres = info.getQueryParameters().getFirst("adres");
 		String saat = info.getQueryParameters().getFirst("saat");
 		String dakika = info.getQueryParameters().getFirst("dakika");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putDBSSinavTanimla(id, okul_adi, alan_bilgisi,
+		return DBUtil.putDBSSinavTanimla(id, okul_durumu, alan_bilgisi,
 				sinav_tarihi, kota, sinav_yeri, ulke, il, ilce, semt,
-				mahalle_koy, adres, saat, dakika);
+				mahalle_koy, adres, saat, dakika, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1361,12 +1387,15 @@ public class RegisterResource {
 		String cuma = info.getQueryParameters().getFirst("cuma");
 		String cumartesi = info.getQueryParameters().getFirst("cumartesi");
 		String pazar = info.getQueryParameters().getFirst("pazar");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putOgretmenTanimlari(id, tc_kimlik_no, adi_soyadi,
 				girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler,
 				ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email,
 				sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi,
-				sali, carsamba, persembe, cuma, cumartesi, pazar);
+				sali, carsamba, persembe, cuma, cumartesi, pazar,
+				kayit_silinsin_mi);
 
 	}
 
@@ -1445,11 +1474,14 @@ public class RegisterResource {
 				"baslangic_tarihi");
 		String bitis_tarihi = info.getQueryParameters()
 				.getFirst("bitis_tarihi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putSinifTanimlari(id, sinif_adi, fiziksel_sinif_adi,
 				kurs_zamani, egitim_turu, alan, danisman_ogretmen,
 				sinif_kontenjani, baslangic_numarasi, bitis_numarasi,
-				ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi);
+				ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1492,9 +1524,11 @@ public class RegisterResource {
 				"indirim_sekli");
 		String indirim_miktari = info.getQueryParameters().getFirst(
 				"indirim_miktari");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putIndirimTuru(id, indirim_turu, indirim_sekli,
-				indirim_miktari);
+				indirim_miktari, kayit_silinsin_mi);
 
 	}
 
@@ -1545,9 +1579,11 @@ public class RegisterResource {
 		String birim_fiyati = info.getQueryParameters()
 				.getFirst("birim_fiyati");
 		String guzergah = info.getQueryParameters().getFirst("guzergah");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putHizmetTanimla(id, hizmet_adi, hizmet_turu,
-				birim_fiyati, guzergah);
+				birim_fiyati, guzergah, kayit_silinsin_mi);
 
 	}
 
@@ -1587,8 +1623,11 @@ public class RegisterResource {
 		String id = info.getQueryParameters().getFirst("id");
 		String referans_adi_soyadi = info.getQueryParameters().getFirst(
 				"referans_adi_soyadi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putReferanslar(id, referans_adi_soyadi);
+		return DBUtil
+				.putReferanslar(id, referans_adi_soyadi, kayit_silinsin_mi);
 
 	}
 
@@ -1632,9 +1671,12 @@ public class RegisterResource {
 		String ucreti = info.getQueryParameters().getFirst("ucreti");
 		String telefonu_1 = info.getQueryParameters().getFirst("telefonu_1");
 		String telefonu_2 = info.getQueryParameters().getFirst("telefonu_2");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putPersonelTanimlari(id, adi_soyadi, gorevi,
-				ise_giris_tarihi, ucreti, telefonu_1, telefonu_2);
+				ise_giris_tarihi, ucreti, telefonu_1, telefonu_2,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1736,9 +1778,11 @@ public class RegisterResource {
 				.getFirst("bitis_tarihi");
 		String varsayilan_donem = info.getQueryParameters().getFirst(
 				"varsayilan_donem");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putDonemTanimlari(id, donem_adi, baslangic_tarihi,
-				bitis_tarihi, varsayilan_donem);
+				bitis_tarihi, varsayilan_donem, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1876,9 +1920,11 @@ public class RegisterResource {
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
 		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
 		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putUniteTanimlari(id, egitim_turu_adi, alan_adi,
-				ders_adi, unite_adi);
+				ders_adi, unite_adi, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1922,9 +1968,11 @@ public class RegisterResource {
 		String ders_adi = info.getQueryParameters().getFirst("ders_adi");
 		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
 		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putKonuTanimlari(id, egitim_turu_adi, alan_adi, ders_adi,
-				unite_adi, konu_adi);
+				unite_adi, konu_adi, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -1964,8 +2012,11 @@ public class RegisterResource {
 		String id = info.getQueryParameters().getFirst("id");
 		String fiziksel_sinif_adi = info.getQueryParameters().getFirst(
 				"fiziksel_sinif_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putFizikselSinifTanimlari(id, fiziksel_sinif_adi);
+		return DBUtil.putFizikselSinifTanimlari(id, fiziksel_sinif_adi,
+				kayit_silinsin_mi);
 	}
 
 	@GET
@@ -2005,8 +2056,11 @@ public class RegisterResource {
 
 		String id = info.getQueryParameters().getFirst("id");
 		String kurs_zamani = info.getQueryParameters().getFirst("kurs_zamani");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putKursZamaniTanimlama(id, kurs_zamani);
+		return DBUtil
+				.putKursZamaniTanimlama(id, kurs_zamani, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -2134,9 +2188,11 @@ public class RegisterResource {
 		String sifre = info.getQueryParameters().getFirst("sifre");
 		String sifre_tekrar = info.getQueryParameters()
 				.getFirst("sifre_tekrar");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
 		return DBUtil.putKullaniciTanimlama(id, kullanici_kodu, adi, soyadi,
-				sifre, sifre_tekrar);
+				sifre, sifre_tekrar, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -2407,8 +2463,11 @@ public class RegisterResource {
 		String egitim_turu_adi = info.getQueryParameters().getFirst(
 				"egitim_turu_adi");
 		String alan_adi = info.getQueryParameters().getFirst("alan_adi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil.putEgitimTuruTanimlama(id, egitim_turu_adi, alan_adi);
+		return DBUtil.putEgitimTuruTanimlama(id, egitim_turu_adi, alan_adi,
+				kayit_silinsin_mi);
 
 	}
 
@@ -2697,8 +2756,11 @@ public class RegisterResource {
 		String unite_adi = info.getQueryParameters().getFirst("unite_adi");
 		String konu_adi = info.getQueryParameters().getFirst("konu_adi");
 		String kazanimlar = info.getQueryParameters().getFirst("kazanimlar");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+
 		return DBUtil.putKonuTanimlari(id, sinif_adi, ders_adi, unite_adi,
-				konu_adi, kazanimlar);
+				konu_adi, kazanimlar, kayit_silinsin_mi);
 	}
 
 	@GET
@@ -2789,12 +2851,13 @@ public class RegisterResource {
 		String kapasitesi = info.getQueryParameters().getFirst("kapasitesi");
 		String yolcu_sayisi = info.getQueryParameters()
 				.getFirst("yolcu_sayisi");
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
 
-		return DBUtil
-				.putServisTanimlama(id, kodu, guzergah, servis_ucreti,
-						sofor_adi, soforun_telefonu, arac_sahibi,
-						arac_sahibinin_telefonu, arac_plakasi, kapasitesi,
-						yolcu_sayisi);
+		return DBUtil.putServisTanimlama(id, kodu, guzergah, servis_ucreti,
+				sofor_adi, soforun_telefonu, arac_sahibi,
+				arac_sahibinin_telefonu, arac_plakasi, kapasitesi,
+				yolcu_sayisi, kayit_silinsin_mi);
 
 	}
 

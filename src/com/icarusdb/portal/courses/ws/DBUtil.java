@@ -987,7 +987,8 @@ public class DBUtil {
 			String yakinlik_durumu, String odeme_sorumlusu, String cep_tel,
 			String ev_tel, String is_tel, String e_mail, String firma,
 			String sektor, String unvani, String gorevi,
-			String veli_bilgileri_adres, String ogrenci_tc_kimlik_no) {
+			String veli_bilgileri_adres, String ogrenci_tc_kimlik_no,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -999,21 +1000,21 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no , kayit_silinsin_mi)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no , kayit_silinsin_mi)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO veliler(veli_bilgileri_adi,veli_bilgileri_soyadi,veli_bilgileri_tc_kimlik_no,yakinlik_durumu,odeme_sorumlusu,cep_tel,ev_tel,is_tel,e_mail,firma,sektor,unvani,gorevi,veli_bilgileri_adres,ogrenci_tc_kimlik_no , kayit_silinsin_mi)  VALUES (?,?,?,?,?::boolean,?,?,?,?,?,?,?,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE veliler SET veli_bilgileri_adi=?,veli_bilgileri_soyadi= ?,veli_bilgileri_tc_kimlik_no= ?,yakinlik_durumu= ?,odeme_sorumlusu = ?::boolean,cep_tel= ?,ev_tel= ?,is_tel = ?,e_mail = ?,firma = ?,sektor= ?,unvani= ?,gorevi= ?,veli_bilgileri_adres= ?,ogrenci_tc_kimlik_no= ?  WHERE id = ?::bigint ";
+			strSQL = "UPDATE veliler SET veli_bilgileri_adi=?,veli_bilgileri_soyadi= ?,veli_bilgileri_tc_kimlik_no= ?,yakinlik_durumu= ?,odeme_sorumlusu = ?::boolean,cep_tel= ?,ev_tel= ?,is_tel = ?,e_mail = ?,firma = ?,sektor= ?,unvani= ?,gorevi= ?,veli_bilgileri_adres= ?,ogrenci_tc_kimlik_no= ?,kayit_silinsin_mi =?::boolean  WHERE id = ?::bigint ";
 
 			isInsert = false;
 		}
@@ -1035,6 +1036,7 @@ public class DBUtil {
 		lstValues.add(gorevi);
 		lstValues.add(veli_bilgileri_adres);
 		lstValues.add(ogrenci_tc_kimlik_no);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -1309,7 +1311,7 @@ public class DBUtil {
 			String alan_bilgisi, String sinav_tarihi, String kota,
 			String sinav_yeri, String ulke, String il, String ilce,
 			String semt, String mahalle_koy, String adres, String saat,
-			String dakika) {
+			String dakika, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -1319,20 +1321,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika , kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?, ?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika , kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?, ?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO dbs_sinav_tanimla(okul_durumu,alan_bilgisi,sinav_tarihi, kota, sinav_yeri,ulke,il,ilce,semt,mahalle_koy,adres,saat,dakika , kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?,?,?,?,?,?,?, ?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE dbs_sinav_tanimla SET okul_durumu = ?,alan_bilgisi = ?,sinav_tarihi= ?::date, kota= ?, sinav_yeri= ?,ulke=?,il = ?,ilce= ?,semt= ?,mahalle_koy= ?,adres = ?,saat=?,dakika = ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE dbs_sinav_tanimla SET okul_durumu = ?,alan_bilgisi = ?,sinav_tarihi= ?::date, kota= ?, sinav_yeri= ?,ulke=?,il = ?,ilce= ?,semt= ?,mahalle_koy= ?,adres = ?,saat=?,dakika = ?  , kayit_silinsin_mi=?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -1352,6 +1354,7 @@ public class DBUtil {
 		lstValues.add(adres);
 		lstValues.add(saat);
 		lstValues.add(dakika);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -1573,7 +1576,7 @@ public class DBUtil {
 
 	}
 
-	// SAAT GÝRÝÞÝ
+	// SAAT GİRİŞİ
 	// GET
 	public static List<SaatGirisi> getSaatGirisi(String criteria) {
 
@@ -1650,7 +1653,7 @@ public class DBUtil {
 	// INSERT
 	public static String putSaatGirisi(String id, String baslangic_saat,
 			String baslangic_dakika, String bitis_saat, String bitis_dakika,
-			String gun, String aciklama) {
+			String gun, String aciklama, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -1661,20 +1664,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama ,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?, ?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama ,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?, ?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama)  VALUES (?,?,?,?,?,?) ";
+			strSQL = "INSERT INTO saat_girisi(baslangic_saat,baslangic_dakika,bitis_saat,bitis_dakika,gun,aciklama ,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?, ?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE saat_girisi SET baslangic_saat= ?,baslangic_dakika= ?,bitis_saat= ?,bitis_dakika= ?,gun= ?,aciklama= ?  	WHERE id = ?  ::bigint";
+			strSQL = "UPDATE saat_girisi SET baslangic_saat= ?,baslangic_dakika= ?,bitis_saat= ?,bitis_dakika= ?,gun= ?,aciklama= ?,kayit_silinsin_mi= ?::boolean  	WHERE id = ?  ::bigint";
 
 			isInsert = false;
 		}
@@ -1687,6 +1690,7 @@ public class DBUtil {
 		lstValues.add(bitis_dakika);
 		lstValues.add(gun);
 		lstValues.add(aciklama);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -1781,7 +1785,7 @@ public class DBUtil {
 	// INSERT
 	public static String putOdevOlustur(String id, String odev_adi,
 			String egitim_turu, String alan, String ders, String unite,
-			String soru_sayisi) {
+			String soru_sayisi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -1792,20 +1796,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi ,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean  ) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi ,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean  ) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO odev_olustur(odev_adi,egitim_turu,alan, ders, unite,soru_sayisi ,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean  ) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE odev_olustur SET odev_adi= ?,egitim_turu= ?,alan = ?, ders = ?, unite= ?,soru_sayisi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE odev_olustur SET odev_adi= ?,egitim_turu= ?,alan = ?, ders = ?, unite= ?,soru_sayisi= ?  ,kayit_silinsin_mi=?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -1818,6 +1822,7 @@ public class DBUtil {
 		lstValues.add(ders);
 		lstValues.add(unite);
 		lstValues.add(soru_sayisi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -1997,7 +2002,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putOdevTakipUnite(String id, String egitim_turu,
-			String alan, String ders, String unite) {
+			String alan, String ders, String unite, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2008,21 +2013,21 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO odev_takip_unite(egitim_turu,alan, ders, unite,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE odev_takip_unite SET egitim_turu= ?, alan= ?, ders= ?, unite= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE odev_takip_unite SET egitim_turu= ?, alan= ?, ders= ?, unite= ?,kayit_silinsin_mi=?::boolean  	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2033,6 +2038,7 @@ public class DBUtil {
 		lstValues.add(alan);
 		lstValues.add(ders);
 		lstValues.add(unite);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -2230,7 +2236,8 @@ public class DBUtil {
 	// INSERT
 	public static String putSinavTanimlari(String id, String sinav_no,
 			String sinav_adi, String tarih, String son_kitapcik_no,
-			String sablon_seciniz, String saat, String dakika) {
+			String sablon_seciniz, String saat, String dakika,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2240,20 +2247,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika)  VALUES (?, ?, ?::timestamp,?,?,?,?) ";
+			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika,kayit_silinsin_mi)  VALUES (?, ?, ?::timestamp,?,?,?,?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika)  VALUES (?, ?, ?::timestamp,?,?,?,?) ";
+			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika,kayit_silinsin_mi)  VALUES (?, ?, ?::timestamp,?,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika)  VALUES (?, ?, ?::timestamp,?,?,?,?) ";
+			strSQL = "INSERT INTO sinav_tanimlama(sinav_no,sinav_adi,tarih,son_kitapcik_no,sablon_seciniz,saat,dakika,kayit_silinsin_mi)  VALUES (?, ?, ?::timestamp,?,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE sinav_tanimlama SET sinav_no= ?,sinav_adi= ?,tarih= ?::date,son_kitapcik_no= ?,sablon_seciniz= ?,saat= ?,dakika=?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE sinav_tanimlama SET sinav_no= ?,sinav_adi= ?,tarih= ?::date,son_kitapcik_no= ?,sablon_seciniz= ?,saat= ?,dakika=? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?::bigint";
 			isInsert = false;
 		}
 
@@ -2266,6 +2273,7 @@ public class DBUtil {
 		lstValues.add(sablon_seciniz);
 		lstValues.add(saat);
 		lstValues.add(dakika);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -2356,7 +2364,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putSablonTanimlari(String id, String sablon_adi,
-			String sinav_turu) {
+			String sinav_turu, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2366,20 +2374,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu)  VALUES (?,?) ";
+			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu,kayit_silinsin_mi)  VALUES (?,?,?::boolean  ) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu)  VALUES (?,?) ";
+			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu,kayit_silinsin_mi)  VALUES (?,?,?::boolean  ) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu)  VALUES (?,?) ";
+			strSQL = "INSERT INTO sablon_tanimlari(sablon_adi,sinav_turu,kayit_silinsin_mi)  VALUES (?,?,?::boolean  ) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE sablon_tanimlari SET sablon_adi= ?,sinav_turu= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE sablon_tanimlari SET sablon_adi= ?,sinav_turu= ?,kayit_silinsin_mi=?::boolean  	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2387,6 +2395,7 @@ public class DBUtil {
 
 		lstValues.add(sablon_adi);
 		lstValues.add(sinav_turu);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -2492,7 +2501,7 @@ public class DBUtil {
 	public static String putGelirlerveGiderler(String id, String islem_tipi,
 			String kategoriler, String gelirler, String odeme_turu,
 			String banka, String cek, String vade_tarihi, String miktar,
-			String tarih, String aciklama) {
+			String tarih, String aciklama, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2503,18 +2512,18 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama)  VALUES (?, ?, ?,?,?,?,?::date,?,?::timestamp,?) ";
+			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::date,?,?::timestamp,?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama)  VALUES (?, ?, ?,?,?,?,?::date,?,?,::timestamp?) ";
+			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::date,?,?,::timestamp,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama)  VALUES (?, ?, ?,?,?,?,?::date,?,?::timestamp,?) ";
+			strSQL = "INSERT INTO gelirler_ve_giderler(islem_tipi,kategoriler,gelirler,odeme_turu,banka,cek,vade_tarihi,miktar,tarih,aciklama,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::date,?,?::timestamp,?,?::boolean) ";
 
 		} else {
 
-			strSQL = "UPDATE gelirler_ve_giderler SET islem_tipi= ?,kategoriler= ?,gelirler= ?,odeme_turu= ?,banka= ?,cek= ?,vade_tarihi= ?::date,miktar= ?,tarih= ?::timestamp,aciklama = ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE gelirler_ve_giderler SET islem_tipi= ?,kategoriler= ?,gelirler= ?,odeme_turu= ?,banka= ?,cek= ?,vade_tarihi= ?::date,miktar= ?,tarih= ?::timestamp,aciklama = ? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2531,6 +2540,7 @@ public class DBUtil {
 		lstValues.add(miktar);
 		lstValues.add(tarih);
 		lstValues.add(aciklama);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -2626,7 +2636,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putGelirGiderTanimlari(String id, String kategori_adi,
-			String tipi, String gelir_gider_adi) {
+			String tipi, String gelir_gider_adi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2637,20 +2647,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi)  VALUES (?, ?, ?) ";
+			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi,kayit_silinsin_mi)  VALUES (?, ?, ?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi)  VALUES (?, ?, ?) ";
+			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi,kayit_silinsin_mi)  VALUES (?, ?, ?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi)  VALUES (?, ?, ?) ";
+			strSQL = "INSERT INTO gelir_gider_tanimlari(kategori_adi,tipi,gelir_gider_adi,kayit_silinsin_mi)  VALUES (?, ?, ?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE gelir_gider_tanimlari SET kategori_adi= ?,tipi= ?, gelir_gider_adi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE gelir_gider_tanimlari SET kategori_adi= ?,tipi= ?, gelir_gider_adi= ? ,kayit_silinsin_mi = ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2660,6 +2670,7 @@ public class DBUtil {
 		lstValues.add(kategori_adi);
 		lstValues.add(tipi);
 		lstValues.add(gelir_gider_adi);
+		lstValues.add(kayit_silinsin_mi);
 		if (!isInsert) {
 
 			lstValues.add(id);
@@ -2750,7 +2761,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putGelirGiderKategorileri(String id,
-			String kategori_adi) {
+			String kategori_adi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2760,21 +2771,21 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi)  VALUES (?)";
+			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi)  VALUES (?)";
+			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi)  VALUES (?)";
+			strSQL = "INSERT INTO gelir_gider_kategorileri(kategori_adi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE gelir_gider_kategorileri SET kategori_adi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE gelir_gider_kategorileri SET kategori_adi= ? ,kayit_silinsin_mi= ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2782,6 +2793,7 @@ public class DBUtil {
 		List<String> lstValues = new ArrayList<String>();
 
 		lstValues.add(kategori_adi);
+		lstValues.add(kayit_silinsin_mi);
 		if (!isInsert) {
 
 			lstValues.add(id);
@@ -2875,7 +2887,8 @@ public class DBUtil {
 	// INSERT
 	public static String putBankaEkle(String id, String banka_adi,
 			String banka_sube, String hesap_no, String iban_no,
-			String bankanin_odeme_sekli, String vade_tarihi) {
+			String bankanin_odeme_sekli, String vade_tarihi,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -2886,20 +2899,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi)  VALUES (?, ?, ?,?,?,?) ";
+			strSQL = "INSERT INTO banka_ekle(banka_adi,banka_sube,hesap_no, iban_no, bankanin_odeme_sekli,vade_tarihi,kayit_silinsin_mi)  VALUES (?, ?, ?,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE banka_ekle SET banka_adi= ?,banka_sube= ?,hesap_no= ?, iban_no = ?, bankanin_odeme_sekli = ?,vade_tarihi = ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE banka_ekle SET banka_adi= ?,banka_sube= ?,hesap_no= ?, iban_no = ?, bankanin_odeme_sekli = ?,vade_tarihi = ? ,kayit_silinsin_mi= ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -2912,6 +2925,8 @@ public class DBUtil {
 		lstValues.add(iban_no);
 		lstValues.add(bankanin_odeme_sekli);
 		lstValues.add(vade_tarihi);
+		lstValues.add(kayit_silinsin_mi);
+
 		if (!isInsert) {
 
 			lstValues.add(id);
@@ -3038,7 +3053,7 @@ public class DBUtil {
 			String email, String sigorta_gun_sayisi,
 			String ders_programini_gorsun, String durum, String pazartesi,
 			String sali, String carsamba, String persembe, String cuma,
-			String cumartesi, String pazar) {
+			String cumartesi, String pazar, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3049,20 +3064,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean)";
+			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean)";
+			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean)";
+			strSQL = "INSERT INTO ogretmen_tanimlari(tc_kimlik_no, adi_soyadi, girdigi_ders_bilgisi, egitim_turu, brans, girdigi_dersler, ucreti, ev_telefonu, cep_telefonu, cep_telefonu_2, email, sigorta_gun_sayisi, ders_programini_gorsun, durum, pazartesi, sali, carsamba, persembe ,cuma, cumartesi, pazar,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::boolean, ?::boolean ,?::boolean ,?::boolean ,?::boolean ,?::boolean,?::boolean,?::boolean,?::boolean,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE ogretmen_tanimlari SET tc_kimlik_no= ?, adi_soyadi= ?, girdigi_ders_bilgisi= ?, egitim_turu= ?, brans = ?, girdigi_dersler = ?, ucreti= ?, ev_telefonu= ?, cep_telefonu= ?, cep_telefonu_2= ?, email = ?, sigorta_gun_sayisi = ? , ders_programini_gorsun= ?::boolean, durum= ?::boolean, pazartesi= ?::boolean ,sali = ?::boolean, carsamba = ?::boolean,persembe = ?::boolean,cuma = ?::boolean,cumartesi= ?::boolean, pazar=?::boolean 	WHERE id = ?::bigint";
+			strSQL = "UPDATE ogretmen_tanimlari SET tc_kimlik_no= ?, adi_soyadi= ?, girdigi_ders_bilgisi= ?, egitim_turu= ?, brans = ?, girdigi_dersler = ?, ucreti= ?, ev_telefonu= ?, cep_telefonu= ?, cep_telefonu_2= ?, email = ?, sigorta_gun_sayisi = ? , ders_programini_gorsun= ?::boolean, durum= ?::boolean, pazartesi= ?::boolean ,sali = ?::boolean, carsamba = ?::boolean,persembe = ?::boolean,cuma = ?::boolean,cumartesi= ?::boolean, pazar=?::boolean ,kayit_silinsin_mi= ?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3090,6 +3105,7 @@ public class DBUtil {
 		lstValues.add(cuma);
 		lstValues.add(cumartesi);
 		lstValues.add(pazar);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -3214,7 +3230,7 @@ public class DBUtil {
 			String alan, String danisman_ogretmen, String sinif_kontenjani,
 			String baslangic_numarasi, String bitis_numarasi,
 			String ozel_ders_sayisi, String fiyati, String baslangic_tarihi,
-			String bitis_tarihi) {
+			String bitis_tarihi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3225,20 +3241,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date)";
+			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi ,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date)";
+			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi ,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date)";
+			strSQL = "INSERT INTO sinif_tanimlari(sinif_adi, fiziksel_sinif_adi, kurs_zamani, egitim_turu, alan, danisman_ogretmen, sinif_kontenjani, baslangic_numarasi, bitis_numarasi, ozel_ders_sayisi, fiyati, baslangic_tarihi, bitis_tarihi ,kayit_silinsin_mi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?::date,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE sinif_tanimlari SET sinif_adi = ?, fiziksel_sinif_adi= ?, kurs_zamani= ?, egitim_turu= ?, alan= ?, danisman_ogretmen= ?, sinif_kontenjani= ?, baslangic_numarasi= ?, bitis_numarasi= ?, ozel_ders_sayisi= ?, fiyati= ?, baslangic_tarihi= ?::date, bitis_tarihi= ?::date  	WHERE id = ?::bigint";
+			strSQL = "UPDATE sinif_tanimlari SET sinif_adi = ?, fiziksel_sinif_adi= ?, kurs_zamani= ?, egitim_turu= ?, alan= ?, danisman_ogretmen= ?, sinif_kontenjani= ?, baslangic_numarasi= ?, bitis_numarasi= ?, ozel_ders_sayisi= ?, fiyati= ?, baslangic_tarihi= ?::date, bitis_tarihi= ?::date ,kayit_silinsin_mi= ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3258,6 +3274,7 @@ public class DBUtil {
 		lstValues.add(fiyati);
 		lstValues.add(baslangic_tarihi);
 		lstValues.add(bitis_tarihi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -3276,7 +3293,7 @@ public class DBUtil {
 		return result;
 	}
 
-	// ÝNDÝRÝM TÜRÜ
+	// İNDİRİM TÜRÜ
 	// GET
 	public static List<IndirimTuru> getIndirimTuru(String criteria) {
 
@@ -3350,7 +3367,8 @@ public class DBUtil {
 
 	// INSERT
 	public static String putIndirimTuru(String id, String indirim_turu,
-			String indirim_sekli, String indirim_miktari) {
+			String indirim_sekli, String indirim_miktari,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3361,20 +3379,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari)  VALUES (?, ?,?)";
+			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari,kayit_silinsin_mi)  VALUES (?, ?,?,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari)  VALUES (?, ?,?)";
+			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari,kayit_silinsin_mi)  VALUES (?, ?,?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari)  VALUES (?, ?,?)";
+			strSQL = "INSERT INTO indirim_turu(indirim_turu,indirim_sekli,indirim_miktari,kayit_silinsin_mi)  VALUES (?, ?,?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE indirim_turu SET indirim_turu = ?,indirim_sekli= ?,indirim_miktari= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE indirim_turu SET indirim_turu = ?,indirim_sekli= ?,indirim_miktari= ? , kayit_silinsin_mi= ?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3384,6 +3402,7 @@ public class DBUtil {
 		lstValues.add(indirim_turu);
 		lstValues.add(indirim_sekli);
 		lstValues.add(indirim_miktari);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -3403,7 +3422,7 @@ public class DBUtil {
 
 	}
 
-	// HÝZMET TANIMLA
+	// HİZMET TANIMLA
 	// GET
 	public static List<HizmetTanimla> getHizmetTanimla(String criteria) {
 
@@ -3478,7 +3497,8 @@ public class DBUtil {
 
 	// INSERT
 	public static String putHizmetTanimla(String id, String hizmet_adi,
-			String hizmet_turu, String birim_fiyati, String guzergah) {
+			String hizmet_turu, String birim_fiyati, String guzergah,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3489,20 +3509,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah)  VALUES (?, ?,?,?)";
+			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah,kayit_silinsin_mi)  VALUES (?, ?,?,?,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah)  VALUES (?, ?,?,?)";
+			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah,kayit_silinsin_mi)  VALUES (?, ?,?,?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah)  VALUES (?, ?,?,?)";
+			strSQL = "INSERT INTO hizmet_tanimla(hizmet_adi,hizmet_turu,birim_fiyati,guzergah,kayit_silinsin_mi)  VALUES (?, ?,?,?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE hizmet_tanimla SET hizmet_adi= ?,hizmet_turu = ?,birim_fiyati= ?,guzergah= ? 	WHERE id = ?::bigint";
+			strSQL = "UPDATE hizmet_tanimla SET hizmet_adi= ?,hizmet_turu = ?,birim_fiyati= ?,guzergah= ?,kayit_silinsin_mi= ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3513,6 +3533,7 @@ public class DBUtil {
 		lstValues.add(hizmet_turu);
 		lstValues.add(birim_fiyati);
 		lstValues.add(guzergah);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -3598,7 +3619,8 @@ public class DBUtil {
 	}
 
 	// INSERT
-	public static String putReferanslar(String id, String referans_adi_soyadi) {
+	public static String putReferanslar(String id, String referans_adi_soyadi,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3609,20 +3631,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO referanslar(referans_adi_soyadi)  VALUES (?)";
+			strSQL = "INSERT INTO referanslar(referans_adi_soyadi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO referanslar(referans_adi_soyadi)  VALUES (?)";
+			strSQL = "INSERT INTO referanslar(referans_adi_soyadi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO referanslar(referans_adi_soyadi)  VALUES (?)";
+			strSQL = "INSERT INTO referanslar(referans_adi_soyadi,kayit_silinsin_mi)  VALUES (?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE referanslar SET referans_adi_soyadi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE referanslar SET referans_adi_soyadi= ?,kayit_silinsin_mi=?::boolean  	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3630,6 +3652,7 @@ public class DBUtil {
 		List<String> lstValues = new ArrayList<String>();
 
 		lstValues.add(referans_adi_soyadi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -3727,7 +3750,7 @@ public class DBUtil {
 	// INSERT
 	public static String putPersonelTanimlari(String id, String adi_soyadi,
 			String gorevi, String ise_giris_tarihi, String ucreti,
-			String telefonu_1, String telefonu_2) {
+			String telefonu_1, String telefonu_2, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -3738,20 +3761,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2)  VALUES (?, ?, ?::date,?,?,?) ";
+			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2,kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2)  VALUES (?, ?, ?::date,?,?,?) ";
+			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2,kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2)  VALUES (?, ?, ?::date,?,?,?) ";
+			strSQL = "INSERT INTO personel_tanimlari(adi_soyadi,gorevi,ise_giris_tarihi, ucreti, telefonu_1,telefonu_2,kayit_silinsin_mi)  VALUES (?, ?, ?::date,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE personel_tanimlari SET adi_soyadi= ?,gorevi= ?,ise_giris_tarihi = ?::date, ucreti = ?, telefonu_1=?,telefonu_2= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE personel_tanimlari SET adi_soyadi= ?,gorevi= ?,ise_giris_tarihi = ?::date, ucreti = ?, telefonu_1=?,telefonu_2= ? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -3764,6 +3787,7 @@ public class DBUtil {
 		lstValues.add(ucreti);
 		lstValues.add(telefonu_1);
 		lstValues.add(telefonu_2);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -4029,7 +4053,7 @@ public class DBUtil {
 	// INSERT
 	public static String putDonemTanimlari(String id, String donem_adi,
 			String baslangic_tarihi, String bitis_tarihi,
-			String varsayilan_donem) {
+			String varsayilan_donem, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -4040,20 +4064,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem)  VALUES (?, ?::date,?::date, ?)";
+			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem,kayit_silinsin_mi)  VALUES (?, ?::date,?::date, ?,?::boolean)";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem)  VALUES (?, ?::date,?::date, ?)";
+			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem,kayit_silinsin_mi)  VALUES (?, ?::date,?::date, ?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem)  VALUES (?, ?::date,?::date, ?)";
+			strSQL = "INSERT INTO donem_tanimlari(donem_adi, baslangic_tarihi, bitis_tarihi, varsayilan_donem,kayit_silinsin_mi)  VALUES (?, ?::date,?::date, ?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE donem_tanimlari SET donem_adi= ?, baslangic_tarihi = ?::date, bitis_tarihi = ?::date, varsayilan_donem= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE donem_tanimlari SET donem_adi= ?, baslangic_tarihi = ?::date, bitis_tarihi = ?::date, varsayilan_donem= ? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -4064,6 +4088,7 @@ public class DBUtil {
 		lstValues.add(baslangic_tarihi);
 		lstValues.add(bitis_tarihi);
 		lstValues.add(varsayilan_donem);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -4211,7 +4236,7 @@ public class DBUtil {
 
 	}
 
-	// ÜNÝTE TANIMLARI
+	// ÜNİTE TANIMLARI
 	// GET
 	public static List<UniteTanimlari> getUniteTanimlari(String criteria) {
 		List<UniteTanimlari> listUniteTanimlari = new ArrayList<UniteTanimlari>();
@@ -4285,7 +4310,8 @@ public class DBUtil {
 
 	// INSERT
 	public static String putUniteTanimlari(String id, String egitim_turu_adi,
-			String alan_adi, String ders_adi, String unite_adi) {
+			String alan_adi, String ders_adi, String unite_adi,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -4295,20 +4321,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi)  VALUES (?, ?, ?, ?) ";
+			strSQL = "INSERT INTO unite_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE unite_tanimlari SET egitim_turu_adi= ?, alan_adi= ?, ders_adi= ?, unite_adi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE unite_tanimlari SET egitim_turu_adi= ?, alan_adi= ?, ders_adi= ?, unite_adi= ? ,kayit_silinsin_mi= ?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -4319,6 +4345,7 @@ public class DBUtil {
 		lstValues.add(alan_adi);
 		lstValues.add(ders_adi);
 		lstValues.add(unite_adi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -4412,7 +4439,8 @@ public class DBUtil {
 
 	// INSERT
 	public static String putKonuTanimlari(String id, String egitim_turu_adi,
-			String alan_adi, String ders_adi, String unite_adi, String konu_adi) {
+			String alan_adi, String ders_adi, String unite_adi,
+			String konu_adi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -4422,20 +4450,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi)  VALUES (?, ?, ?, ?, ?) ";
+			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?, ?,?::boolean) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi)  VALUES (?, ?, ?, ?, ?) ";
+			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?, ?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi)  VALUES (?, ?, ?, ?, ?) ";
+			strSQL = "INSERT INTO konu_tanimlari(egitim_turu_adi, alan_adi , ders_adi, unite_adi, konu_adi ,kayit_silinsin_mi)  VALUES (?, ?, ?, ?, ?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE konu_tanimlari SET egitim_turu_adi= ?, alan_adi= ?, ders_adi= ?, unite_adi= ?, konu_adi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE konu_tanimlari SET egitim_turu_adi= ?, alan_adi= ?, ders_adi= ?, unite_adi= ?, konu_adi= ?  ,kayit_silinsin_mi=?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -4447,6 +4475,7 @@ public class DBUtil {
 		lstValues.add(ders_adi);
 		lstValues.add(unite_adi);
 		lstValues.add(konu_adi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -4466,7 +4495,7 @@ public class DBUtil {
 
 	}
 
-	// FÝZÝKSEL SINIF TANIMLARI
+	// FİZİKSEL SINIF TANIMLARI
 	// GET
 	public static List<FizikselSinifTanimlari> getFizikselSinifTanimlari(
 			String criteria) {
@@ -4538,7 +4567,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putFizikselSinifTanimlari(String id,
-			String fiziksel_sinif_adi) {
+			String fiziksel_sinif_adi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -4549,21 +4578,21 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi)  VALUES (?) ";
+			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi,kayit_silinsin_mi)  VALUES (?,?::boolean ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi)  VALUES (?) ";
+			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi,kayit_silinsin_mi)  VALUES (?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi)  VALUES (?) ";
+			strSQL = "INSERT INTO fiziksel_sinif_tanimlari(fiziksel_sinif_adi,kayit_silinsin_mi)  VALUES (?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE fiziksel_sinif_tanimlari SET fiziksel_sinif_adi = ? 	WHERE id = ?::bigint ";
+			strSQL = "UPDATE fiziksel_sinif_tanimlari SET fiziksel_sinif_adi = ? ,kayit_silinsin_mi= ?::boolean	WHERE id = ?::bigint ";
 
 			isInsert = false;
 		}
@@ -4571,6 +4600,7 @@ public class DBUtil {
 		List<String> lstValues = new ArrayList<String>();
 
 		lstValues.add(fiziksel_sinif_adi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -4659,7 +4689,8 @@ public class DBUtil {
 	}
 
 	// INSERT
-	public static String putKursZamaniTanimlama(String id, String kurs_zamani) {
+	public static String putKursZamaniTanimlama(String id, String kurs_zamani,
+			String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -4670,21 +4701,21 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani)  VALUES (?) ";
+			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani,kayit_silinsin_mi)  VALUES (?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani)  VALUES (?) ";
+			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani,kayit_silinsin_mi)  VALUES (?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani)  VALUES (?) ";
+			strSQL = "INSERT INTO kurs_zamani_tanimlama(kurs_zamani,kayit_silinsin_mi)  VALUES (?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE kurs_zamani_tanimlama SET kurs_zamani= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE kurs_zamani_tanimlama SET kurs_zamani= ? , kayit_silinsin_mi=?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -4692,6 +4723,7 @@ public class DBUtil {
 		List<String> lstValues = new ArrayList<String>();
 
 		lstValues.add(kurs_zamani);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -5093,7 +5125,7 @@ public class DBUtil {
 	// INSERT
 	public static String putKullaniciTanimlama(String id,
 			String kullanici_kodu, String adi, String soyadi, String sifre,
-			String sifre_tekrar) {
+			String sifre_tekrar, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -5104,21 +5136,21 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO kullanici_tanimlama(kullanici_kodu,adi,soyadi,sifre,sifre_tekrar,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?::boolean) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE kullanici_tanimlama SET kullanici_kodu= ?,adi=?,soyadi= ?,sifre= ?,sifre_tekrar= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE kullanici_tanimlama SET kullanici_kodu= ?,adi=?,soyadi= ?,sifre= ?,sifre_tekrar= ? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -5129,6 +5161,7 @@ public class DBUtil {
 		lstValues.add(soyadi);
 		lstValues.add(sifre);
 		lstValues.add(sifre_tekrar);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -5407,7 +5440,7 @@ public class DBUtil {
 
 	// INSERT
 	public static String putEgitimTuruTanimlama(String id,
-			String egitim_turu_adi, String alan_adi) {
+			String egitim_turu_adi, String alan_adi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -5417,20 +5450,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi,kayit_silinsin_mi)  VALUES (?,?,?::boolean) ";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi,kayit_silinsin_mi)  VALUES (?,?,?::boolean) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi)  VALUES (?,?) ";
+			strSQL = "INSERT INTO egitim_turu_tanimlama(egitim_turu_adi,alan_adi,kayit_silinsin_mi)  VALUES (?,?,?::boolean) ";
 		}
 
 		else {
 
-			strSQL = "UPDATE egitim_turu_tanimlama SET egitim_turu_adi= ?,alan_adi= ?  	WHERE id = ?  ::bigint";
+			strSQL = "UPDATE egitim_turu_tanimlama SET egitim_turu_adi= ?,alan_adi= ? ,kayit_silinsin_mi=?::boolean 	WHERE id = ?  ::bigint";
 
 			isInsert = false;
 		}
@@ -5439,6 +5472,7 @@ public class DBUtil {
 
 		lstValues.add(egitim_turu_adi);
 		lstValues.add(alan_adi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
@@ -6581,7 +6615,7 @@ public class DBUtil {
 			String guzergah, String servis_ucreti, String sofor_adi,
 			String soforun_telefonu, String arac_sahibi,
 			String arac_sahibinin_telefonu, String arac_plakasi,
-			String kapasitesi, String yolcu_sayisi) {
+			String kapasitesi, String yolcu_sayisi, String kayit_silinsin_mi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -6591,21 +6625,21 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi)  VALUES (?,?,?,?,?,?,?,?,?,?)";
+			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?,?,?,?,?,?::boolean)";
 
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi)  VALUES (?,?,?,?,?,?,?,?,?,?)";
+			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?,?,?,?,?,?::boolean)";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi)  VALUES (?,?,?,?,?,?,?,?,?,?)";
+			strSQL = "INSERT INTO servis_tanimlama(kodu,guzergah,servis_ucreti,sofor_adi,soforun_telefonu,arac_sahibi,arac_sahibinin_telefonu,arac_plakasi,kapasitesi,yolcu_sayisi,kayit_silinsin_mi)  VALUES (?,?,?,?,?,?,?,?,?,?,?::boolean)";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE servis_tanimlama SET kodu= ?,guzergah= ?,servis_ucreti= ?,sofor_adi= ?,soforun_telefonu= ?,arac_sahibi= ?,arac_sahibinin_telefonu= ?,arac_plakasi= ?,kapasitesi= ?,yolcu_sayisi= ?  	WHERE id = ?::bigint";
+			strSQL = "UPDATE servis_tanimlama SET kodu= ?,guzergah= ?,servis_ucreti= ?,sofor_adi= ?,soforun_telefonu= ?,arac_sahibi= ?,arac_sahibinin_telefonu= ?,arac_plakasi= ?,kapasitesi= ?,yolcu_sayisi= ?  ,kayit_silinsin_mi=?::boolean	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -6622,6 +6656,7 @@ public class DBUtil {
 		lstValues.add(arac_plakasi);
 		lstValues.add(kapasitesi);
 		lstValues.add(yolcu_sayisi);
+		lstValues.add(kayit_silinsin_mi);
 
 		if (!isInsert) {
 
