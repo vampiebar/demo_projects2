@@ -423,17 +423,17 @@ public class DBUtil {
 		if (id == null) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi,kayit_silinsin_mi,silme_sebebi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
 
 		} else if (id.length() <= 0) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi,kayit_silinsin_mi,silme_sebebi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
 			strSQL = "INSERT INTO on_kayit(adi,soyadi,tc_kimlik_no,cinsiyet,medeni_hali,dogum_tarihi,ev_telefonu,cep_telefonu,email, ogrenci_bilgileri_ulke , ogrenci_bilgileri_il , ogrenci_bilgileri_ilce ,okul ,ogrenci_bilgileri_sinif,gorusme_egitim_turu,gorusme_alan,"
-					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
+					+ "gorusme_kurs_zamani,gorusme_sinif,gorusme_kurs_indirim_fiyati, gorusme_indirim_turu, gorusme_indirim_miktari,gorusme_indirim_sekli,gorusme_referans, gorusme_tarihi,gorusme_tipi,  gorusme_sonucu , gorusme_yuzdesi,aciklama , seri_no,cuzdan_no,ogrenci_kimlik_bilgileri_ulke,ogrenci_kimlik_bilgileri_il,ogrenci_kimlik_bilgileri_ilce,mahalle_koy,cilt_no,aile_sira_no,sira_no,verildigi_yer,verilis_nedeni,kayit_no,verilis_tarihi,adres_bilgileri_ulke,adres_bilgileri_il, adres_bilgileri_ilce,semt,mahalle,sokak_ve_no,kesin_kayit_mi,kayit_silinsin_mi,silme_sebebi)  VALUES (?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?::date,?,?,?,?,?,?,?::boolean,?::boolean,?) ";
 
 		}
 
@@ -803,6 +803,8 @@ public class DBUtil {
 						.getString("hizmetler_indirim_turu"));
 				Hizmetler.setHizmetler_indirim_miktari(restTemp
 						.getString("hizmetler_indirim_miktari"));
+				Hizmetler.setOgrenci_numarasi(restTemp
+						.getString("ogrenci_numarasi"));
 
 				listHizmetler.add(Hizmetler);
 			}
@@ -837,7 +839,7 @@ public class DBUtil {
 	// INSERT
 	public static String putHizmetler(String id, String hizmet_turu,
 			String hizmet_adi, String miktar, String hizmetler_indirim_turu,
-			String hizmetler_indirim_miktari) {
+			String hizmetler_indirim_miktari, String ogrenci_numarasi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -848,20 +850,20 @@ public class DBUtil {
 
 		if (id == null) {
 
-			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari,ogrenci_numarasi)  VALUES (?,?,?,?,?,?) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari,ogrenci_numarasi)  VALUES (?,?,?,?,?,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari)  VALUES (?,?,?,?,?) ";
+			strSQL = "INSERT INTO hizmetler(hizmet_turu,hizmet_adi,miktar,hizmetler_indirim_turu,hizmetler_indirim_miktari,ogrenci_numarasi)  VALUES (?,?,?,?,?,?) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE hizmetler SET hizmet_turu= ?,hizmet_adi = ?,miktar = ?,hizmetler_indirim_turu= ?,hizmetler_indirim_miktari= ?  	WHERE id = ?  ::bigint";
+			strSQL = "UPDATE hizmetler SET hizmet_turu= ?,hizmet_adi = ?,miktar = ?,hizmetler_indirim_turu= ?,hizmetler_indirim_miktari= ?,ogrenci_numarasi= ?  	WHERE id = ?  ::bigint";
 
 			isInsert = false;
 		}
@@ -873,6 +875,7 @@ public class DBUtil {
 		lstValues.add(miktar);
 		lstValues.add(hizmetler_indirim_turu);
 		lstValues.add(hizmetler_indirim_miktari);
+		lstValues.add(ogrenci_numarasi);
 
 		if (!isInsert) {
 
@@ -1117,6 +1120,8 @@ public class DBUtil {
 				Odemeler.setTaksit_sayisi(restTemp.getString("taksit_sayisi"));
 				Odemeler.setTakside_baslanacak_gun(restTemp
 						.getString("takside_baslanacak_gun"));
+				Odemeler.setOgrenci_numarasi(restTemp
+						.getString("ogrenci_numarasi"));
 
 				listOdemeler.add(Odemeler);
 
@@ -1157,7 +1162,7 @@ public class DBUtil {
 			String taksitlerin_toplami, String sozlesme_disi_kalan,
 			String taksitin_odeme_turu, String taksit_aciklama,
 			String taksitin_yatacagi_banka, String taksit_sayisi,
-			String takside_baslanacak_gun) {
+			String takside_baslanacak_gun, String ogrenci_numarasi) {
 
 		String result = "";
 		boolean isInsert = true;
@@ -1167,20 +1172,20 @@ public class DBUtil {
 		String strSQL = "";
 		if (id == null) {
 
-			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date) ";
+			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun,ogrenci_numarasi)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date,?) ";
 		} else if (id.length() <= 0) {
 
-			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date) ";
+			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun,ogrenci_numarasi)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date,?) ";
 
 		} else if (new Long(id).longValue() < 0) {
 
-			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date) ";
+			strSQL = "INSERT INTO odemeler(indirimli_tutar,hizmetlerin_toplami,toplam_tutar, pesinat_odeme_turu, aciklama,pesinatin_yatacagi_banka,pesinat_miktari,taksitlerin_toplami,sozlesme_disi_kalan,taksitin_odeme_turu,taksit_aciklama,taksitin_yatacagi_banka,taksit_sayisi,takside_baslanacak_gun,ogrenci_numarasi)  VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?::date,?) ";
 
 		}
 
 		else {
 
-			strSQL = "UPDATE odemeler SET indirimli_tutar = ?,hizmetlerin_toplami = ?,toplam_tutar= ?, pesinat_odeme_turu= ?, aciklama= ?, pesinatin_yatacagi_banka=?,pesinat_miktari=?,taksitlerin_toplami=?,sozlesme_disi_kalan=?,taksitin_odeme_turu=?,taksit_aciklama=?,taksitin_yatacagi_banka=?,taksit_sayisi=?,takside_baslanacak_gun=?::date	WHERE id = ?::bigint";
+			strSQL = "UPDATE odemeler SET indirimli_tutar = ?,hizmetlerin_toplami = ?,toplam_tutar= ?, pesinat_odeme_turu= ?, aciklama= ?, pesinatin_yatacagi_banka=?,pesinat_miktari=?,taksitlerin_toplami=?,sozlesme_disi_kalan=?,taksitin_odeme_turu=?,taksit_aciklama=?,taksitin_yatacagi_banka=?,taksit_sayisi=?,takside_baslanacak_gun=?::date,ogrenci_numarasi= ?	WHERE id = ?::bigint";
 
 			isInsert = false;
 		}
@@ -1201,6 +1206,7 @@ public class DBUtil {
 		lstValues.add(taksit_sayisi);
 		lstValues.add(taksit_aciklama);
 		lstValues.add(takside_baslanacak_gun);
+		lstValues.add(ogrenci_numarasi);
 
 		if (!isInsert) {
 
@@ -7094,6 +7100,519 @@ public class DBUtil {
 			System.out.print("Exceptiion" + e);
 		}
 
+	}
+
+	// ÖĞRENCİ SINAV DEĞERLENDİRMESİ
+	public static List<OgrenciSinavDegerlendirmesi> getOgrenciSinavDegerlendirmesi(
+			String criteria) {
+		List<OgrenciSinavDegerlendirmesi> listOgrenciSinavDegerlendirmesi = new ArrayList<OgrenciSinavDegerlendirmesi>();
+
+		getConnection();
+
+		String strSQL = "SELECT * FROM ogrenci_sinav_degerlendirmesi ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				OgrenciSinavDegerlendirmesi ogrenciSinavDegerlendirmesi = new OgrenciSinavDegerlendirmesi();
+
+				ogrenciSinavDegerlendirmesi.setId(restTemp.getString("id"));
+				ogrenciSinavDegerlendirmesi.setTc_kimlik_no(restTemp
+						.getString("tc_kimlik_no"));
+				ogrenciSinavDegerlendirmesi.setAdi_soyadi(restTemp
+						.getString("adi_soyadi"));
+				ogrenciSinavDegerlendirmesi.setOgrenci_numarasi(restTemp
+						.getString("ogrenci_numarasi"));
+				ogrenciSinavDegerlendirmesi.setSinav_kodu(restTemp
+						.getString("sinav_kodu"));
+				ogrenciSinavDegerlendirmesi.setSinav_adi(restTemp
+						.getString("sinav_adi"));
+				ogrenciSinavDegerlendirmesi.setSablon_kodu(restTemp
+						.getString("sablon_kodu"));
+				ogrenciSinavDegerlendirmesi.setKitapcik_kodu(restTemp
+						.getString("kitapcik_kodu"));
+				ogrenciSinavDegerlendirmesi.setDogru_cevaplar(restTemp
+						.getString("dogru_cevaplar"));
+				ogrenciSinavDegerlendirmesi.setOgrencinin_cevaplari(restTemp
+						.getString("ogrencinin_cevaplari"));
+				ogrenciSinavDegerlendirmesi.setSinav_sonucu(restTemp
+						.getString("sinav_sonucu"));
+				ogrenciSinavDegerlendirmesi.setCevap_secenek_son_harf(restTemp
+						.getString("cevap_secenek_son_harf"));
+
+				listOgrenciSinavDegerlendirmesi
+						.add(ogrenciSinavDegerlendirmesi);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getogrencisinavdegerlendirmesi Error: "
+						+ e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getogrencisinavdegerlendirmesi Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listOgrenciSinavDegerlendirmesi;
+
+	}
+
+	// INSERT
+	public static String putOgrenciSinavDegerlendirmesi(String id,
+			String tc_kimlik_no, String adi_soyadi, String ogrenci_numarasi,
+			String sinav_kodu, String sinav_adi, String sablon_kodu,
+			String kitapcik_kodu, String dogru_cevaplar,
+			String ogrencinin_cevaplari, String sinav_sonucu,
+			String cevap_secenek_son_harf) {
+
+		String result = "";
+		boolean isInsert = true;
+
+		getConnection();
+
+		String strSQL = "";
+
+		if (id == null) {
+
+			strSQL = "INSERT INTO ogrenci_sinav_degerlendirmesi(tc_kimlik_no,adi_soyadi,ogrenci_numarasi,sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,dogru_cevaplar,ogrencinin_cevaplari,sinav_sonucu,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+
+		} else if (id.length() <= 0) {
+
+			strSQL = "INSERT INTO ogrenci_sinav_degerlendirmesi(tc_kimlik_no,adi_soyadi,ogrenci_numarasi,sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,dogru_cevaplar,ogrencinin_cevaplari,sinav_sonucu,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+
+		} else if (new Long(id).longValue() < 0) {
+
+			strSQL = "INSERT INTO ogrenci_sinav_degerlendirmesi(tc_kimlik_no,adi_soyadi,ogrenci_numarasi,sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,dogru_cevaplar,ogrencinin_cevaplari,sinav_sonucu,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+
+		}
+
+		else {
+
+			strSQL = "UPDATE ogrenci_sinav_degerlendirmesi SET tc_kimlik_no= ?,adi_soyadi= ?,ogrenci_numarasi = ?,sinav_kodu= ? ,sinav_adi= ? ,sablon_kodu= ?,kitapcik_kodu= ?,dogru_cevaplar= ?,ogrencinin_cevaplari= ?,sinav_sonucu = ?,cevap_secenek_son_harf= ?  WHERE id = ?::bigint";
+
+			isInsert = false;
+		}
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(tc_kimlik_no);
+		lstValues.add(adi_soyadi);
+		lstValues.add(ogrenci_numarasi);
+		lstValues.add(sinav_kodu);
+		lstValues.add(sinav_adi);
+		lstValues.add(sablon_kodu);
+		lstValues.add(kitapcik_kodu);
+		lstValues.add(dogru_cevaplar);
+		lstValues.add(ogrencinin_cevaplari);
+		lstValues.add(sinav_sonucu);
+		lstValues.add(cevap_secenek_son_harf);
+
+		if (!isInsert) {
+
+			lstValues.add(id);
+		}
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
+	// SINAV CEVAP ANAHTARI
+	public static List<SinavCevapAnahtari> getSinavCevapAnahtari(String criteria) {
+		List<SinavCevapAnahtari> listSinavCevapAnahtari = new ArrayList<SinavCevapAnahtari>();
+
+		getConnection();
+
+		String strSQL = "SELECT * FROM sinav_cevap_anahtari ";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				SinavCevapAnahtari sinavCevapAnahtari = new SinavCevapAnahtari();
+
+				sinavCevapAnahtari.setId(restTemp.getString("id"));
+				sinavCevapAnahtari.setSinav_kodu(restTemp
+						.getString("sinav_kodu"));
+				sinavCevapAnahtari
+						.setSinav_adi(restTemp.getString("sinav_adi"));
+				sinavCevapAnahtari.setSablon_kodu(restTemp
+						.getString("sablon_kodu"));
+				sinavCevapAnahtari.setKitapcik_kodu(restTemp
+						.getString("kitapcik_kodu"));
+				sinavCevapAnahtari.setCevaplar(restTemp.getString("cevaplar"));
+				sinavCevapAnahtari.setCevap_secenek_son_harf(restTemp
+						.getString("cevap_secenek_son_harf"));
+
+				listSinavCevapAnahtari.add(sinavCevapAnahtari);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getsinavcevapanahtari Error: "
+						+ e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err.println("getsinavcevapanahtari Error: "
+						+ e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listSinavCevapAnahtari;
+
+	}
+
+	// INSERT
+	public static String putSinavCevapAnahtari(String id, String sinav_kodu,
+			String sinav_adi, String sablon_kodu, String kitapcik_kodu,
+			String cevaplar, String cevap_secenek_son_harf) {
+
+		String result = "";
+		boolean isInsert = true;
+
+		getConnection();
+
+		String strSQL = "";
+
+		if (id == null) {
+
+			strSQL = "INSERT INTO sinav_cevap_anahtari(sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,cevaplar,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?) ";
+
+		} else if (id.length() <= 0) {
+
+			strSQL = "INSERT INTO sinav_cevap_anahtari(sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,cevaplar,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?) ";
+
+		} else if (new Long(id).longValue() < 0) {
+
+			strSQL = "INSERT INTO sinav_cevap_anahtari(sinav_kodu,sinav_adi,sablon_kodu,kitapcik_kodu,cevaplar,cevap_secenek_son_harf)  VALUES (?,?,?,?,?,?) ";
+
+		}
+
+		else {
+
+			strSQL = "UPDATE sinav_cevap_anahtari SET sinav_kodu= ? ,sinav_adi= ? ,sablon_kodu= ?,kitapcik_kodu= ?,cevaplar= ?,cevap_secenek_son_harf= ?  WHERE id = ?::bigint";
+
+			isInsert = false;
+		}
+		List<String> lstValues = new ArrayList<String>();
+
+		lstValues.add(sinav_kodu);
+		lstValues.add(sinav_adi);
+		lstValues.add(sablon_kodu);
+		lstValues.add(kitapcik_kodu);
+		lstValues.add(cevaplar);
+		lstValues.add(cevap_secenek_son_harf);
+
+		if (!isInsert) {
+
+			lstValues.add(id);
+		}
+
+		result = strRunSelectSQLWithPreparedStatement(strSQL, lstValues);
+
+		if (result.length() > 1) {
+
+			System.out.println("REGISTERED_USERS INSERTED SUCCESSFULLY --- "
+					+ result);
+
+		}
+
+		return result;
+
+	}
+
+	//
+	// DOĞRU CEVAPLAR
+
+	public static List<DogruCevaplar> getDogruCevaplar(String criteria) {
+		List<DogruCevaplar> listDogruCevaplar = new ArrayList<DogruCevaplar>();
+
+		getConnection();
+		String strSQL = "SELECT * FROM ogrenci_sinav_degerlendirmesi ";
+		// String strSQL =
+		// "SELECT DISTINCT dogru_cevaplar FROM ogrenci_sinav_degerlendirmesi";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+
+				DogruCevaplar dogruCevaplar = new DogruCevaplar();
+
+				// dogruCevaplar.setId(restTemp.getString("id"));
+
+				dogruCevaplar.setDogru_cevaplar(restTemp
+						.getString("dogru_cevaplar"));
+
+				listDogruCevaplar.add(dogruCevaplar);
+
+				System.out.println("CEVAPLARIN KONTROLU: "
+						+ cevapKarsilastir("ABCDE", "A0CEE"));
+
+				// System.out.println("CEVAPLARIN YORUMU: "
+				// + cevaplariYorumla(cevapKarsilastir("ABCDE", "A0CEE")));
+
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getdogrucevaplar Error: " + e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err
+						.println("getdogrucevaplar Error: " + e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listDogruCevaplar;
+
+	}
+
+	// CEVAP DEGERLENDİR
+
+	public static List<DogruCevaplar> getCevapDegerlendir(String criteria) {
+		List<DogruCevaplar> listDogruCevaplar = new ArrayList<DogruCevaplar>();
+
+		getConnection();
+
+		String strSQL = "SELECT DISTINCT dogru_cevaplar FROM ogrenci_sinav_degerlendirmesi";
+		if (criteria.length() > 15) {
+
+			strSQL = strSQL + criteria;
+		}
+
+		System.out.println("SQL: " + strSQL);
+
+		// NOW PROCESS
+		Connection connTemp = _con;
+		Statement stmtTemp = null;
+		ResultSet restTemp = null;
+
+		try {
+
+			if (connTemp.isClosed()) {
+
+			}
+
+			stmtTemp = connTemp.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+					ResultSet.CONCUR_READ_ONLY);
+			restTemp = stmtTemp.executeQuery(strSQL);
+
+			while (restTemp.next()) {
+				DogruCevaplar dogruCevaplar = new DogruCevaplar();
+
+				dogruCevaplar.setDogru_cevaplar(restTemp
+						.getString("dogru_cevaplar"));
+
+				listDogruCevaplar.add(dogruCevaplar);
+			}
+
+			// Close
+			restTemp.close();
+			stmtTemp.close();
+			_con.close();
+
+		} catch (SQLException e) {
+
+			try {
+				System.err.println("getdogrucevaplar Error: " + e.getMessage());
+				restTemp.close();
+				stmtTemp.close();
+				_con.close();
+
+			} catch (SQLException e1) {
+				System.err
+						.println("getdogrucevaplar Error: " + e1.getMessage());
+				e1.printStackTrace();
+			}
+
+			e.printStackTrace();
+
+		}
+
+		return listDogruCevaplar;
+
+	}
+
+	// CEVAPLARI KARSILASTIRABILEN VE SONUCTA STRING DONEN BIR UTIL FONKSIYONU
+	public static String cevapKarsilastir(String dogruCevaplar,
+			String ogrencininCevaplari) {
+
+		String returnValue = "";
+
+		if (dogruCevaplar.length() != ogrencininCevaplari.length()) {
+
+			System.err.println("Cevap sayilari esit degil dikkat et");
+		}
+
+		String value = "";
+
+		for (int i = 0; i < dogruCevaplar.length(); i++) {
+
+			if (dogruCevaplar.substring(i, i + 1).equalsIgnoreCase(
+					ogrencininCevaplari.substring(i, i + 1))) {
+
+				value = "D";
+
+			} else if (ogrencininCevaplari.substring(i, i + 1)
+					.equalsIgnoreCase("0")) {
+
+				value = "0";
+			} else {
+
+				value = "Y";
+			}
+
+			returnValue = returnValue + value;
+		}
+
+		return returnValue;
+
+	}
+
+	public static String cevaplariYorumla(String cevapKarsilastirSonuc) {
+
+		String returnValue = "";
+
+		int dogru = countStringInsideString(cevapKarsilastirSonuc, "D");
+
+		int bos = countStringInsideString(cevapKarsilastirSonuc, "0");
+
+		int yanlis = countStringInsideString(cevapKarsilastirSonuc, "Y");
+
+		returnValue = "D: __DOGRU__, B: __BOS__, Y: __YANLIS__"
+				.replace("__DOGRU__", String.valueOf(dogru))
+				.replace("__BOS__", String.valueOf(bos))
+				.replace("__YANLIS__", String.valueOf(yanlis));
+
+		return returnValue;
+
+	}
+
+	// String icinde string say
+	public static int countStringInsideString(String toCheck, String inString) {
+
+		String str = toCheck;
+		String findStr = inString;
+		int lastIndex = 0;
+		int count = 0;
+
+		while (lastIndex != -1) {
+
+			lastIndex = str.toLowerCase().indexOf(findStr.toLowerCase(),
+					lastIndex);
+
+			if (lastIndex != -1) {
+				count++;
+				lastIndex += findStr.length();
+			}
+		}
+		System.out.println(count);
+
+		return count;
 	}
 
 }

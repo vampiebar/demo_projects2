@@ -491,9 +491,11 @@ public class RegisterResource {
 				"hizmetler_indirim_turu");
 		String hizmetler_indirim_miktari = info.getQueryParameters().getFirst(
 				"hizmetler_indirim_miktari");
-
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
 		return DBUtil.putHizmetler(id, hizmet_turu, hizmet_adi, miktar,
-				hizmetler_indirim_turu, hizmetler_indirim_miktari);
+				hizmetler_indirim_turu, hizmetler_indirim_miktari,
+				ogrenci_numarasi);
 	}
 
 	@GET
@@ -523,6 +525,14 @@ public class RegisterResource {
 
 			criteria = criteria + " AND ogrenci_tc_kimlik_no = '"
 					+ ogrenci_tc_kimlik_no + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
 		}
 
 		List<Veliler> listVeliler = DBUtil.getVeliler(criteria);
@@ -629,12 +639,15 @@ public class RegisterResource {
 				"taksit_sayisi");
 		String takside_baslanacak_gun = info.getQueryParameters().getFirst(
 				"takside_baslanacak_gun");
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
 
 		return DBUtil.putOdemeler(id, indirimli_tutar, hizmetlerin_toplami,
 				toplam_tutar, pesinat_odeme_turu, aciklama,
 				pesinatin_yatacagi_banka, pesinat_miktari, taksitlerin_toplami,
 				sozlesme_disi_kalan, taksitin_odeme_turu, taksit_aciklama,
-				taksitin_yatacagi_banka, taksit_sayisi, takside_baslanacak_gun);
+				taksitin_yatacagi_banka, taksit_sayisi, takside_baslanacak_gun,
+				ogrenci_numarasi);
 
 	}
 
@@ -3081,6 +3094,214 @@ public class RegisterResource {
 		DBUtil.ReportProducePDF(path, jrxmlFile, id);
 		return "";
 
+	}
+
+	@GET
+	@Path("getogrencisinavdegerlendirmesi")
+	@Produces("application/xml")
+	public List<OgrenciSinavDegerlendirmesi> getOgrenciSinavDegerlendirmesi(
+			@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
+		List<OgrenciSinavDegerlendirmesi> listOgrenciSinavDegerlendirmesi = DBUtil
+				.getOgrenciSinavDegerlendirmesi(criteria);
+		return listOgrenciSinavDegerlendirmesi;
+	}
+
+	@GET
+	@Path("putogrencisinavdegerlendirmesi")
+	@Produces("application/xml")
+	public String putOgrenciSinavDegerlendirmesi(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String tc_kimlik_no = info.getQueryParameters()
+				.getFirst("tc_kimlik_no");
+		String adi_soyadi = info.getQueryParameters().getFirst("adi_soyadi");
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
+		String sinav_kodu = info.getQueryParameters().getFirst("sinav_kodu");
+		String sinav_adi = info.getQueryParameters().getFirst("sinav_adi");
+		String sablon_kodu = info.getQueryParameters().getFirst("sablon_kodu");
+		String kitapcik_kodu = info.getQueryParameters().getFirst(
+				"kitapcik_kodu");
+		String dogru_cevaplar = info.getQueryParameters().getFirst(
+				"dogru_cevaplar");
+		String ogrencinin_cevaplari = info.getQueryParameters().getFirst(
+				"ogrencinin_cevaplari");
+		String sinav_sonucu = info.getQueryParameters()
+				.getFirst("sinav_sonucu");
+		String cevap_secenek_son_harf = info.getQueryParameters().getFirst(
+				"cevap_secenek_son_harf");
+
+		return DBUtil.putOgrenciSinavDegerlendirmesi(id, tc_kimlik_no,
+				adi_soyadi, ogrenci_numarasi, sinav_kodu, sinav_adi,
+				sablon_kodu, kitapcik_kodu, dogru_cevaplar,
+				ogrencinin_cevaplari, sinav_sonucu, cevap_secenek_son_harf);
+	}
+
+	@GET
+	@Path("getsinavcevapanahtari")
+	@Produces("application/xml")
+	public List<SinavCevapAnahtari> getSinavCevapAnahtari(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String kayit_silinsin_mi = info.getQueryParameters().getFirst(
+				"kayit_silinsin_mi");
+		if ((kayit_silinsin_mi != null) && kayit_silinsin_mi.length() > 0) {
+
+			criteria = criteria + " AND kayit_silinsin_mi = '"
+					+ kayit_silinsin_mi.toLowerCase() + "'";
+		}
+
+		List<SinavCevapAnahtari> listSinavCevapAnahtari = DBUtil
+				.getSinavCevapAnahtari(criteria);
+		return listSinavCevapAnahtari;
+	}
+
+	@GET
+	@Path("putsinavcevapanahtari")
+	@Produces("application/xml")
+	public String putSinavCevapAnahtari(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String id = info.getQueryParameters().getFirst("id");
+		String sinav_kodu = info.getQueryParameters().getFirst("sinav_kodu");
+		String sinav_adi = info.getQueryParameters().getFirst("sinav_adi");
+		String sablon_kodu = info.getQueryParameters().getFirst("sablon_kodu");
+		String kitapcik_kodu = info.getQueryParameters().getFirst(
+				"kitapcik_kodu");
+		String cevaplar = info.getQueryParameters().getFirst("cevaplar");
+		String cevap_secenek_son_harf = info.getQueryParameters().getFirst(
+				"cevap_secenek_son_harf");
+
+		return DBUtil.putSinavCevapAnahtari(id, sinav_kodu, sinav_adi,
+				sablon_kodu, kitapcik_kodu, cevaplar, cevap_secenek_son_harf);
+	}
+
+	@GET
+	@Path("getdogrucevaplar")
+	@Produces("application/xml")
+	public List<DogruCevaplar> getDogruCevaplar(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String dogru_cevaplar = info.getQueryParameters().getFirst(
+				"dogru_cevaplar");
+		if ((dogru_cevaplar != null) && dogru_cevaplar.length() > 0) {
+
+			criteria = criteria + " AND dogru_cevaplar = '" + dogru_cevaplar
+					+ "'";
+		}
+
+		String sinav_kodu = info.getQueryParameters().getFirst("sinav_kodu");
+		if ((sinav_kodu != null) && sinav_kodu.length() > 0) {
+
+			criteria = criteria + " AND sinav_kodu = '" + sinav_kodu + "'";
+		}
+
+		String kitapcik_kodu = info.getQueryParameters().getFirst(
+				"kitapcik_kodu");
+		if ((kitapcik_kodu != null) && kitapcik_kodu.length() > 0) {
+
+			criteria = criteria + " AND kitapcik_kodu = '" + kitapcik_kodu
+					+ "'";
+		}
+
+		List<DogruCevaplar> listDogruCevaplar = DBUtil
+				.getDogruCevaplar(criteria);
+		return listDogruCevaplar;
+	}
+
+	@GET
+	@Path("getcevapdegerlendir")
+	@Produces("application/xml")
+	public List<DogruCevaplar> getCevapDegerlendir(@Context UriInfo info) {
+		// throw new
+		// UnsupportedOperationException("Not yet implemented.");
+
+		String criteria = "WHERE (1 = 1) ";
+
+		String id = info.getQueryParameters().getFirst("id");
+		if ((id != null) && id.length() > 0) {
+
+			criteria = criteria + " AND id = '" + id + "'";
+		}
+
+		String sinav_kodu = info.getQueryParameters().getFirst("sinav_kodu");
+		if ((sinav_kodu != null) && sinav_kodu.length() > 0) {
+
+			criteria = criteria + " AND sinav_kodu = '" + sinav_kodu + "'";
+		}
+
+		String kitapcik_kodu = info.getQueryParameters().getFirst(
+				"kitapcik_kodu");
+		if ((kitapcik_kodu != null) && kitapcik_kodu.length() > 0) {
+
+			criteria = criteria + " AND kitapcik_kodu = '" + kitapcik_kodu
+					+ "'";
+		}
+
+		String tc_kimlik_no = info.getQueryParameters()
+				.getFirst("tc_kimlik_no");
+		if ((tc_kimlik_no != null) && tc_kimlik_no.length() > 0) {
+
+			criteria = criteria + " AND tc_kimlik_no = '" + tc_kimlik_no + "'";
+		}
+
+		String adi_soyadi = info.getQueryParameters().getFirst("adi_soyadi");
+		if ((adi_soyadi != null) && adi_soyadi.length() > 0) {
+
+			criteria = criteria + " AND adi_soyadi = '" + adi_soyadi + "'";
+		}
+
+		String ogrenci_numarasi = info.getQueryParameters().getFirst(
+				"ogrenci_numarasi");
+		if ((ogrenci_numarasi != null) && ogrenci_numarasi.length() > 0) {
+
+			criteria = criteria + " AND ogrenci_numarasi = '"
+					+ ogrenci_numarasi + "'";
+		}
+
+		List<DogruCevaplar> listDogruCevaplar = DBUtil
+				.getDogruCevaplar(criteria);
+		return listDogruCevaplar;
 	}
 
 }
