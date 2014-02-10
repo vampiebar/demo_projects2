@@ -7401,8 +7401,7 @@ public class DBUtil {
 
 		getConnection();
 		String strSQL = "SELECT * FROM ogrenci_sinav_degerlendirmesi ";
-		// String strSQL =
-		// "SELECT DISTINCT dogru_cevaplar FROM ogrenci_sinav_degerlendirmesi";
+
 		if (criteria.length() > 15) {
 
 			strSQL = strSQL + criteria;
